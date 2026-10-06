@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les triangles</title>
+<meta name="description" content="Nommer six triangles (équilatéral, isocèle, rectangle, obtusangle…) en lisant le codage des côtés et des angles.">
+<meta name="keywords" content="géométrie, triangle, isocèle, équilatéral, rectangle, obtusangle, quelconque, angle droit">
+<meta name="exercice:matiere" content="Mathématiques">
+<meta name="exercice:niveau" content="4P">
+<meta name="exercice:ajout" content="2026-09-30">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+
+  :root {
+    color-scheme: light;
+    --ink: #1f2933;
+    --rule: #cfd6dd;
+    --model-bg: #f3f6f9;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #e9edf1; }
+
+  body {
+    margin: 0;
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Feuille A4 */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 10mm auto;
+    padding: 12mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+  }
+
+  header { text-align: center; }
+  h1 { margin: 0; font-size: 24pt; letter-spacing: .3pt; }
+  header p { margin: 2mm 0 0; font-size: 12pt; }
+
+  /* Légende du codage */
+  .legend {
+    margin: 3mm 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 7mm;
+    font-size: 10pt;
+  }
+  .legend li { display: flex; align-items: center; gap: 1.8mm; }
+  .legend svg { width: 7mm; height: 5mm; }
+
+  /* Les six figures */
+  .grid {
+    flex: 1;
+    min-height: 0;
+    margin-top: 5mm;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 6mm;
+  }
+
+  .card {
+    margin: 0;
+    padding: 4mm 5mm 5mm;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border: .35mm solid var(--rule);
+    border-radius: 4mm;
+    break-inside: avoid;
+  }
+
+  .figure { flex: 1; min-height: 0; position: relative; }
+  .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Ligne sur laquelle l'élève écrit le nom */
+  .line { flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+
+  .shape { stroke-width: 4; stroke-linejoin: round; }
+  .s1 { fill: #ffe08a; stroke: #b8860b; }
+  .s2 { fill: #ffb3c1; stroke: #c2185b; }
+  .s3 { fill: #a5d8ff; stroke: #1c7ed6; }
+  .s4 { fill: #b2f2bb; stroke: #2f9e44; }
+  .s5 { fill: #d0bfff; stroke: #6741d9; }
+  .s6 { fill: #ffd8a8; stroke: #e8590c; }
+
+  /* Codage : traits (côtés égaux), carré (angle droit), arc (angle obtus) */
+  .mark {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Liste modèle */
+  .model {
+    margin-top: 6mm;
+    padding: 3.5mm 5mm 4mm;
+    border: .35mm solid var(--rule);
+    border-radius: 4mm;
+    background: var(--model-bg);
+  }
+  .model h2 { margin: 0 0 2.5mm; font-size: 11pt; font-weight: normal; text-align: center; }
+  .model ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5mm 4mm;
+  }
+  .model li { text-align: center; font-size: 13pt; font-weight: bold; white-space: nowrap; }
+
+  .print-btn {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    padding: 8px 16px;
+    font: inherit;
+    font-size: 14px;
+    color: #fff;
+    background: #1c7ed6;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; height: 296mm; box-shadow: none; }
+    .print-btn { display: none; }
+  }
+
+  /* Lien vers la liste de tous les exercices (écran uniquement) */
+  .retour {
+    position: fixed;
+    top: 12px;
+    left: 16px;
+    padding: 8px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: #1864ab;
+    text-decoration: none;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1.5px #1864ab;
+  }
+  .retour:hover { background: #e7f5ff; }
+  @media print { .retour { display: none; } }
+
+  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  .page { position: relative; }
+  .page::after {
+    content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.2mm;
+    font: 6.5pt/1 "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: #7b8591;
+    text-align: center;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<a class="retour" href="index.html">← Tous les exercices</a>
+
+<button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
+
+<main class="page">
+  <header>
+    <h1>Les triangles</h1>
+    <p>Observe chaque triangle, puis écris son nom sur la ligne.</p>
+    <ul class="legend" aria-label="Codage">
+      <li>
+        <svg viewBox="0 0 28 20" aria-hidden="true">
+          <path class="mark" d="M2,14 L26,14" stroke-width="2"/>
+          <path class="mark" d="M14,7 L14,19"/>
+        </svg>
+        côtés de même longueur
+      </li>
+      <li>
+        <svg viewBox="0 0 28 20" aria-hidden="true">
+          <path class="mark" d="M6,2 L6,18 L24,18" stroke-width="2"/>
+          <path class="mark" d="M6,9 L13,9 L13,18"/>
+        </svg>
+        angle droit
+      </li>
+      <li>
+        <svg viewBox="0 0 28 20" aria-hidden="true">
+          <path class="mark" d="M2,18 L24,18 M12,18 L4,4" stroke-width="2"/>
+          <path class="mark" d="M20,18 A8,8 0 0 0 8,11.05"/>
+        </svg>
+        angle obtus
+      </li>
+    </ul>
+  </header>
+
+  <div class="grid">
+    <!-- 1. Triangle équilatéral : 3 côtés égaux -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 1">
+          <polygon class="shape s1" points="37,119 163,119 100,9.9"/>
+          <path class="mark" d="M100,125 L100,113 M136.7,61.4 L126.3,67.4 M63.3,61.4 L73.7,67.4"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 2. Triangle rectangle : un angle droit -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 2">
+          <polygon class="shape s2" points="28,113 176,113 28,17"/>
+          <path class="mark" d="M39,113 L39,102 L28,102"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 3. Triangle isocèle : 2 côtés égaux -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 3">
+          <polygon class="shape s3" points="100,8 142,122 58,122"/>
+          <path class="mark" d="M115.4,67.1 L126.6,62.9 M73.4,62.9 L84.6,67.1"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 4. Triangle obtusangle : un angle obtus -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 4">
+          <polygon class="shape s4" points="70,44 12,86 188,86"/>
+          <path class="mark" d="M57.9,52.8 A15,15 0 0 0 84.1,49"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 5. Triangle rectangle isocèle : un angle droit et 2 côtés égaux -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 5">
+          <polygon class="shape s5" points="100,27 20,107 180,107"/>
+          <path class="mark" d="M92.2,34.8 L100,42.6 L107.8,34.8"/>
+          <path class="mark" d="M55.8,62.8 L64.2,71.2 M135.8,71.2 L144.2,62.8"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 6. Triangle quelconque : 3 côtés différents, pas d'angle droit -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 6">
+          <polygon class="shape s6" points="22,104 174,116 118,12"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+  </div>
+
+  <section class="model" aria-labelledby="model-title">
+    <h2 id="model-title">Pour t'aider, voici le nom des triangles :</h2>
+    <ul>
+      <li>Triangle isocèle</li>
+      <li>Triangle rectangle isocèle</li>
+      <li>Triangle équilatéral</li>
+      <li>Triangle quelconque</li>
+      <li>Triangle obtusangle</li>
+      <li>Triangle rectangle</li>
+    </ul>
+  </section>
+</main>
+
+</body>
+</html>

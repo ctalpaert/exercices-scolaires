@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exercices scolaires · fiches à imprimer</title>
+<meta name="description" content="Fiches d’exercices gratuites à imprimer en A4, de la 1P à l’université : français, mathématiques, sciences… Souvent avec corrigé. Licence CC BY-NC-SA 4.0.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Exercices scolaires · fiches à imprimer">
+<meta property="og:description" content="Fiches d’exercices gratuites à imprimer en A4, de la 1P à l’université.">
+<meta property="og:url" content="https://ctalpaert.github.io/exercices-scolaires/">
+<meta name="theme-color" content="#fbf8f1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M7 3h13l6 6v20H7z' fill='%23fff' stroke='%233451c7' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M20 3v6h6' fill='none' stroke='%233451c7' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M11 15h11M11 20h7' stroke='%233451c7' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M17 24l2.5 2.5L25 20' fill='none' stroke='%23d6336c' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Lexend:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  /* ============ Couleurs et typographie ============ */
+  :root {
+    color-scheme: light dark;
+    --papier: #fbf8f1;
+    --papier-2: #f3eee2;
+    --carte: #fffdf9;
+    --feuille: #ffffff;
+    --encre: #1d2230;
+    --encre-2: #555c6c;
+    --encre-3: #646a79;
+    --trait: #e4dccb;
+    --trait-fort: #cfc5ae;
+    --quadrillage: rgba(52, 81, 199, .08);
+    --bleu: #3451c7;
+    --bleu-fonce: #253c9e;
+    --bleu-pale: #e7ebfc;
+    --rouge: #c2255c;
+    --surligneur: #ffe46b;
+    --entete: rgba(251, 248, 241, .88);
+    --bord-champ: #948a75;
+    --ombre: 0 1px 2px rgba(29, 34, 48, .06), 0 12px 32px -16px rgba(29, 34, 48, .28);
+    --ombre-forte: 0 2px 4px rgba(29, 34, 48, .06), 0 22px 44px -18px rgba(29, 34, 48, .38);
+    --rayon: 18px;
+    --titre: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --texte: "Lexend", "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --papier: #14161c;
+      --papier-2: #1b1e26;
+      --carte: #1c1f28;
+      --feuille: #f4f1ea;
+      --encre: #ece8df;
+      --encre-2: #b3b5bf;
+      --encre-3: #9a9daa;
+      --trait: #2d313d;
+      --trait-fort: #3d4250;
+      --quadrillage: rgba(142, 162, 255, .07);
+      --bleu: #8ea2ff;
+      --bleu-fonce: #b4c1ff;
+      --bleu-pale: #262c47;
+      --rouge: #f06595;
+      --surligneur: rgba(255, 212, 59, .38);
+      --entete: rgba(20, 22, 28, .86);
+      --bord-champ: #6b7080;
+      --ombre: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px -16px rgba(0, 0, 0, .7);
+      --ombre-forte: 0 2px 4px rgba(0, 0, 0, .3), 0 22px 44px -18px rgba(0, 0, 0, .8);
+    }
+  }
+
+  /* Teintes par matière et par cycle : l'élément porte --h (0-360) */
+  .t {
+    --t-fond: hsl(var(--h) 70% 96%);
+    --t-trait: hsl(var(--h) 50% 82%);
+    --t-fort: hsl(var(--h) 60% 32%);
+    --t-vif: hsl(var(--h) 60% 48%);
+  }
+  @media (prefers-color-scheme: dark) {
+    .t {
+      --t-fond: hsl(var(--h) 25% 22%);
+      --t-trait: hsl(var(--h) 22% 36%);
+      --t-fort: hsl(var(--h) 70% 85%);
+      --t-vif: hsl(var(--h) 55% 66%);
+    }
+  }
+  @supports (color: oklch(0 0 0)) {
+    .t {
+      --t-fond: oklch(.955 .03 var(--h));
+      --t-trait: oklch(.86 .07 var(--h));
+      --t-fort: oklch(.5 .15 var(--h));
+      --t-vif: oklch(.68 .16 var(--h));
+    }
+    @media (prefers-color-scheme: dark) {
+      .t {
+        --t-fond: oklch(.3 .05 var(--h));
+        --t-trait: oklch(.43 .08 var(--h));
+        --t-fort: oklch(.86 .1 var(--h));
+        --t-vif: oklch(.72 .14 var(--h));
+      }
+    }
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--texte);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--encre);
+    background: var(--papier);
+    overflow-x: hidden;
+  }
+  a { color: var(--bleu); text-underline-offset: .18em; }
+  a:hover { color: var(--bleu-fonce); }
+  button, input, select { font: inherit; color: inherit; }
+  :focus-visible { outline: 3px solid var(--bleu); outline-offset: 2px; border-radius: 6px; }
+  [hidden] { display: none !important; }
+  .visuellement-cache {
+    position: absolute !important; width: 1px; height: 1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+  .conteneur { width: min(1180px, 100% - 32px); margin-inline: auto; }
+
+  .evitement {
+    position: absolute; top: 8px; left: 8px; z-index: 100;
+    padding: 10px 16px; color: #fff; background: var(--bleu); border-radius: 10px;
+    transform: translateY(-160%);
+  }
+  .evitement:focus { transform: none; color: #fff; }
+  @media (prefers-color-scheme: dark) { .evitement, .evitement:focus { color: var(--papier); } }
+
+  /* ============ Boutons ============ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .55em;
+    min-height: 46px; padding: 10px 22px;
+    font-weight: 500; line-height: 1.2; text-decoration: none; white-space: nowrap;
+    border: 0; border-radius: 999px; cursor: pointer;
+    transition: background-color .15s, box-shadow .15s, transform .15s;
+  }
+  .btn svg { width: 1.15em; height: 1.15em; flex: none; }
+  .btn-primaire { color: #fff; background: var(--bleu); box-shadow: 0 6px 18px -8px var(--bleu); }
+  .btn-primaire:hover { color: #fff; background: var(--bleu-fonce); transform: translateY(-1px); }
+  .btn-secondaire { color: var(--encre); background: var(--carte); box-shadow: inset 0 0 0 1.5px var(--trait-fort); }
+  .btn-secondaire:hover { color: var(--encre); background: var(--papier-2); }
+  .btn-petit { min-height: 38px; padding: 7px 16px; font-size: .9rem; }
+  @media (prefers-color-scheme: dark) {
+    .btn-primaire, .btn-primaire:hover { color: #10131c; }
+  }
+
+  /* ============ En-tête ============ */
+  .entete {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--entete);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    backdrop-filter: saturate(1.4) blur(10px);
+    border-bottom: 1px solid var(--trait);
+  }
+  .entete .conteneur { display: flex; align-items: center; gap: 16px; min-height: 64px; }
+  .marque {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--titre); font-size: 1.2rem; font-weight: 600;
+    color: var(--encre); text-decoration: none;
+  }
+  .marque:hover { color: var(--encre); }
+  .marque svg { width: 30px; height: 30px; flex: none; }
+  .entete nav { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .entete nav a { padding: 8px 12px; font-size: .92rem; color: var(--encre-2); text-decoration: none; border-radius: 999px; }
+  .entete nav a:hover { color: var(--encre); background: var(--papier-2); }
+  .entete .btn-petit .court { display: none; }
+  @media (max-width: 720px) {
+    .entete nav a { display: none; }
+  }
+  @media (max-width: 480px) {
+    .marque { font-size: 1.05rem; white-space: nowrap; }
+    .entete .btn-petit .long { display: none; }
+    .entete .btn-petit .court { display: inline; }
+  }
+
+  /* ============ Bandeau d'accueil ============ */
+  .accueil { position: relative; padding: clamp(36px, 7vw, 84px) 0 clamp(28px, 5vw, 56px); isolation: isolate; }
+  .accueil::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background-image:
+      linear-gradient(var(--quadrillage) 1px, transparent 1px),
+      linear-gradient(90deg, var(--quadrillage) 1px, transparent 1px);
+    background-size: 26px 26px;
+    background-position: center top;
+    -webkit-mask-image: linear-gradient(#000 55%, transparent);
+    mask-image: linear-gradient(#000 55%, transparent);
+  }
+  .accueil .conteneur { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 5vw, 64px); }
+  .surtitre {
+    display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px;
+    padding: 6px 14px 6px 10px; font-size: .85rem; font-weight: 500; color: var(--encre-2);
+    background: var(--carte); border: 1px solid var(--trait); border-radius: 999px;
+  }
+  .surtitre::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--rouge); box-shadow: 0 0 0 4px color-mix(in srgb, var(--rouge) 18%, transparent); }
+  .accueil h1 {
+    margin: 0; font-family: var(--titre); font-weight: 650;
+    font-size: clamp(2.15rem, 5.2vw, 3.7rem); line-height: 1.06; letter-spacing: -.015em;
+    text-wrap: balance;
+  }
+  .surligne {
+    padding: 0 .08em;
+    background: linear-gradient(100deg, transparent .2em, var(--surligneur) .2em, var(--surligneur) calc(100% - .25em), transparent calc(100% - .25em)) 0 78% / 100% 38% no-repeat;
+    -webkit-box-decoration-break: clone; box-decoration-break: clone;
+  }
+  .accroche { max-width: 36em; margin: 20px 0 0; font-size: clamp(1.02rem, 1.6vw, 1.15rem); font-weight: 300; color: var(--encre-2); text-wrap: pretty; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+  .chiffres { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 28px 0 0; padding: 0; list-style: none; font-size: .92rem; color: var(--encre-2); }
+  .chiffres b { font-family: var(--titre); font-size: 1.35rem; font-weight: 650; color: var(--encre); }
+  .illustration { width: 100%; max-width: 440px; justify-self: center; overflow: visible; }
+  .illustration .f-fond-1 { fill: #d3eed8; }
+  .illustration .f-fond-2 { fill: #d8e6fb; }
+  .illustration .f-avant { fill: var(--feuille); }
+  .illustration .f-bord { fill: none; stroke: var(--trait-fort); stroke-width: 1.5; }
+  .illustration .encre { fill: #1d2230; }
+  .illustration .ligne { stroke: #c9cfdc; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2 5; }
+  .illustration .bandeau { fill: #ecebfb; stroke: #6f63dd; stroke-width: 1.6; }
+  .illustration .titre-feuille { fill: #4a35c8; }
+  .illustration .case { fill: #fff; stroke: #5a48d1; stroke-width: 1.8; }
+  .illustration .case-pleine { fill: #5a48d1; }
+  .illustration .lettre { font: 700 15px var(--texte); fill: #1d2230; }
+  .illustration .lettre-blanche { font: 700 15px var(--texte); fill: #fff; }
+  .illustration .triangle { fill: #f3e2a1; stroke: #b98a2c; stroke-width: 2.4; stroke-linejoin: round; }
+  .illustration .marque-trait { stroke: #1d2230; stroke-width: 2; stroke-linecap: round; }
+  .illustration .coche { fill: none; stroke: #e03131; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+  .illustration .ombre-feuille { filter: drop-shadow(0 18px 22px rgba(29, 34, 48, .18)); }
+  @media (prefers-color-scheme: dark) {
+    .illustration .f-fond-1 { fill: #2f5a3c; }
+    .illustration .f-fond-2 { fill: #2c4467; }
+    .illustration .ombre-feuille { filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .5)); }
+  }
+  @media (max-width: 860px) {
+    .accueil .conteneur { grid-template-columns: minmax(0, 1fr); }
+    .illustration { display: none; }
+  }
+  @media (max-width: 480px) {
+    .actions .btn { width: 100%; white-space: normal; text-align: center; }
+  }
+
+  /* ============ Filtres ============ */
+  .filtres { padding: 8px 0 4px; }
+  .filtres h2, .fiches-entete h2 {
+    margin: 0; font-family: var(--titre); font-weight: 650; font-size: clamp(1.45rem, 2.6vw, 1.9rem); letter-spacing: -.01em;
+  }
+  .etiquette-filtre { display: block; margin: 0 0 10px; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--encre-3); }
+
+  /* Frise des degrés, de la 1P à l'université */
+  .frise-cadre {
+    position: relative; margin-top: 18px; padding: 18px 18px 16px;
+    background: var(--carte); border: 1px solid var(--trait); border-radius: var(--rayon); box-shadow: var(--ombre);
+  }
+  .frise {
+    display: flex; align-items: flex-end; gap: 14px;
+    overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin;
+    padding: 2px 2px 6px;
+  }
+  .cycle { flex: none; display: flex; flex-direction: column; gap: 8px; }
+  .cycle-nom { padding-left: 4px; font-size: .78rem; font-weight: 600; color: var(--t-fort); white-space: nowrap; }
+  .cycle-nom small { font-weight: 400; color: var(--encre-3); }
+  .cycle-degres { position: relative; display: flex; gap: 6px; padding: 5px; background: var(--t-fond); border-radius: 999px; }
+  .degre {
+    position: relative; flex: none;
+    min-width: 46px; height: 40px; padding: 0 12px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    font-size: .92rem; font-weight: 600; color: var(--t-fort, var(--encre));
+    background: var(--carte); border: 0; border-radius: 999px; cursor: pointer;
+    box-shadow: inset 0 0 0 1.5px var(--t-trait, var(--trait-fort));
+    transition: background-color .15s, color .15s, transform .15s;
+  }
+  .degre:hover { transform: translateY(-1px); }
+  .degre.vide { color: var(--encre-3); font-weight: 400; background: transparent; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--t-trait, var(--trait)) 55%, transparent); }
+  .degre[aria-pressed="true"] { color: #fff; background: var(--t-fort, var(--bleu)); box-shadow: none; }
+  .degre .compte {
+    min-width: 20px; height: 20px; padding: 0 6px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: .72rem; font-weight: 600; color: #fff; background: var(--t-fort, var(--bleu)); border-radius: 999px;
+  }
+  .degre[aria-pressed="true"] .compte { color: var(--t-fort); background: #fff; }
+  .degre-tous { --t-fort: var(--encre); --t-trait: var(--trait-fort); --t-vif: var(--encre); align-self: flex-end; margin-bottom: 5px; }
+  @media (prefers-color-scheme: dark) {
+    .degre[aria-pressed="true"] { color: #10131c; background: var(--t-vif, var(--bleu)); }
+    .degre-tous[aria-pressed="true"] { color: var(--papier); }
+    .degre .compte { color: #10131c; background: var(--t-vif, var(--bleu)); }
+    .degre[aria-pressed="true"] .compte { color: #10131c; background: #fff; }
+  }
+  .frise-fleche { margin: 10px 0 0; display: flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--encre-3); }
+  .frise-fleche::before {
+    content: ""; flex: 1; height: 3px; border-radius: 3px;
+    background: linear-gradient(90deg, #ea8f5b, #5fb878, #5d97dc, #9a7ae0, #d9679b);
+    opacity: .7;
+  }
+
+  /* Matières et recherche */
+  .barre { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 24px; align-items: end; margin-top: 22px; }
+  .matieres { display: flex; flex-wrap: wrap; gap: 8px; }
+  .matiere-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    min-height: 40px; padding: 6px 14px 6px 10px;
+    font-size: .92rem; font-weight: 500; color: var(--encre);
+    background: var(--carte); border: 0; border-radius: 999px; cursor: pointer;
+    box-shadow: inset 0 0 0 1.5px var(--trait);
+    transition: background-color .15s, box-shadow .15s;
+  }
+  .matiere-btn:hover { box-shadow: inset 0 0 0 1.5px var(--t-trait, var(--trait-fort)); }
+  .matiere-btn .emoji { font-size: 1.05rem; line-height: 1; }
+  .matiere-btn .compte { font-size: .78rem; color: var(--encre-3); }
+  .matiere-btn[aria-pressed="true"] { color: var(--t-fort, var(--encre)); background: var(--t-fond, var(--papier-2)); box-shadow: inset 0 0 0 2px var(--t-fort, var(--encre)); }
+  .matiere-btn[aria-pressed="true"] .compte { color: inherit; }
+  .recherche { position: relative; width: min(340px, 100%); }
+  .recherche svg { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--encre-3); pointer-events: none; }
+  .recherche input {
+    width: 100%; height: 46px; padding: 0 16px 0 42px;
+    background: var(--carte); border: 1.5px solid var(--bord-champ); border-radius: 999px;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .recherche input::placeholder { color: var(--encre-3); }
+  .recherche input:focus { outline: none; border-color: var(--bleu); box-shadow: 0 0 0 4px color-mix(in srgb, var(--bleu) 18%, transparent); }
+  .recherche input::-webkit-search-cancel-button { display: none; }
+  @media (max-width: 760px) {
+    .barre { grid-template-columns: 1fr; }
+    .recherche { width: 100%; order: -1; }
+  }
+
+  /* ============ Liste des fiches ============ */
+  .fiches { padding: 40px 0 72px; }
+  .fiches:focus { outline: none; }
+  .fiches-entete { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; margin-bottom: 8px; }
+  .resultat { margin: 0; font-size: .95rem; color: var(--encre-2); }
+  .fiches-entete .outils { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .lien-bouton {
+    padding: 6px 4px; font-size: .9rem; color: var(--bleu);
+    background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: .18em;
+  }
+  .tri { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--encre-2); }
+  .tri select {
+    height: 40px; padding: 0 34px 0 14px; color: var(--encre);
+    background: var(--carte) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23646a79' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center / 14px;
+    border: 1.5px solid var(--bord-champ); border-radius: 999px;
+    -webkit-appearance: none; appearance: none; cursor: pointer;
+  }
+
+  .groupe { margin-top: 34px; }
+  .groupe-titre {
+    display: flex; align-items: center; gap: 12px; margin: 0 0 18px;
+    font-family: var(--titre); font-size: 1.3rem; font-weight: 600;
+  }
+  .groupe-titre::before { content: ""; width: 12px; height: 12px; border-radius: 4px; background: var(--t-vif); transform: rotate(45deg); flex: none; }
+  .groupe-titre small { font-family: var(--texte); font-size: .9rem; font-weight: 400; color: var(--encre-3); }
+  .groupe-titre::after { content: ""; flex: 1; height: 1px; background: var(--trait); }
+
+  .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 268px), 1fr)); gap: 22px; margin: 0; padding: 0; list-style: none; }
+  .fiche {
+    position: relative; height: 100%;
+    display: flex; flex-direction: column;
+    background: var(--carte); border: 1px solid var(--trait); border-radius: var(--rayon);
+    box-shadow: var(--ombre); overflow: hidden;
+    transition: transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .fiche:hover { transform: translateY(-3px); box-shadow: var(--ombre-forte); border-color: var(--t-trait); }
+  @supports selector(:has(a)) {
+    .fiche:has(.fiche-lien:focus-visible) { outline: 3px solid var(--bleu); outline-offset: 3px; }
+    .fiche-lien:focus-visible { outline: none; }
+  }
+
+  /* Aperçu : la feuille A4 dépasse d'une pochette teintée */
+  .apercu {
+    position: relative; aspect-ratio: 4 / 3; padding: 18px 20px 0; overflow: hidden;
+    background-color: var(--t-fond);
+    background-image: radial-gradient(color-mix(in srgb, var(--t-trait) 70%, transparent) 1.2px, transparent 1.3px);
+    background-size: 14px 14px;
+    border-bottom: 1px solid var(--trait);
+  }
+  .feuille {
+    position: relative; height: calc(100% + 40px); overflow: hidden;
+    background: #fff; border-radius: 6px 6px 0 0;
+    box-shadow: 0 1px 2px rgba(29, 34, 48, .08), 0 10px 26px -10px rgba(29, 34, 48, .35);
+    transition: transform .25s;
+  }
+  .fiche:hover .feuille { transform: translateY(-6px) rotate(-.6deg); }
+  .feuille iframe {
+    position: absolute; top: 0; left: 0;
+    width: 794px; height: calc(100% / var(--echelle, .3));
+    border: 0; background: #fff;
+    transform: scale(var(--echelle, .3)); transform-origin: 0 0;
+    pointer-events: none; opacity: 0; transition: opacity .35s;
+  }
+  .feuille.chargee iframe { opacity: 1; }
+  .feuille-attente {
+    position: absolute; inset: 0; display: grid; place-items: center;
+    background:
+      repeating-linear-gradient(#fff 0 26px, #eef0f4 26px 27px) 0 70px / 100% calc(100% - 70px) no-repeat,
+      linear-gradient(var(--t-fond), var(--t-fond)) 18px 18px / calc(100% - 36px) 36px no-repeat;
+    transition: opacity .35s;
+  }
+  .feuille-attente span { font-size: 2.6rem; filter: saturate(.85); transform: translateY(10px); }
+  .feuille.chargee .feuille-attente { opacity: 0; }
+  .ruban {
+    position: absolute; top: 12px; right: 12px; z-index: 2;
+    padding: 4px 10px; font-size: .74rem; font-weight: 600; letter-spacing: .02em;
+    color: #fff; background: var(--rouge); border-radius: 999px;
+    box-shadow: 0 4px 10px -4px var(--rouge);
+  }
+  @media (prefers-color-scheme: dark) { .ruban { color: #10131c; } }
+
+  .corps { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 16px 18px 18px; }
+  .etiquettes { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .pastille-matiere {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 3px 10px 3px 8px; font-size: .8rem; font-weight: 500;
+    color: var(--t-fort); background: var(--t-fond); border-radius: 999px;
+  }
+  .pastille-niveau {
+    padding: 2px 9px; font-size: .78rem; font-weight: 600;
+    color: var(--t-fort); border: 1.5px solid var(--t-trait); border-radius: 999px;
+  }
+  .fiche h3, .fiche h4 { margin: 2px 0 0; font-family: var(--titre); font-size: 1.22rem; font-weight: 600; line-height: 1.22; letter-spacing: -.005em; text-wrap: balance; }
+  .fiche-lien { color: var(--encre); text-decoration: none; }
+  .fiche-lien::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: var(--rayon); }
+  .fiche-lien:hover { color: var(--encre); }
+  .fiche .description {
+    margin: 0; font-size: .92rem; font-weight: 300; color: var(--encre-2);
+    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .infos { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: auto 0 0; padding: 10px 0 0; list-style: none; font-size: .8rem; color: var(--encre-3); border-top: 1px dashed var(--trait); }
+  .infos li { display: inline-flex; align-items: center; gap: 5px; }
+  .infos svg { width: 14px; height: 14px; flex: none; }
+
+  .vide-etat {
+    margin-top: 28px; padding: 44px 24px; text-align: center;
+    background: var(--carte); border: 1.5px dashed var(--trait-fort); border-radius: var(--rayon);
+  }
+  .vide-etat .grand { font-size: 2.4rem; line-height: 1; }
+  .vide-etat h3 { margin: 12px 0 6px; font-family: var(--titre); font-size: 1.3rem; font-weight: 600; }
+  .vide-etat p { margin: 0 auto 18px; max-width: 34em; color: var(--encre-2); }
+
+  /* ============ Pied de page ============ */
+  .pied { padding: 44px 0 56px; background: var(--papier-2); border-top: 1px solid var(--trait); }
+  .pied .conteneur { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; }
+  .pied h2 { margin: 0 0 10px; font-family: var(--titre); font-size: 1.05rem; font-weight: 600; }
+  .pied p { margin: 0 0 10px; font-size: .9rem; color: var(--encre-2); }
+  .pied ul { margin: 0; padding: 0; list-style: none; font-size: .9rem; }
+  .pied li + li { margin-top: 6px; }
+  .badge-cc {
+    display: inline-flex; align-items: center; gap: 6px; margin-bottom: 10px;
+    padding: 4px 12px 4px 6px; font-size: .78rem; font-weight: 600; letter-spacing: .02em;
+    color: var(--encre); background: var(--carte); border: 1px solid var(--trait-fort); border-radius: 999px;
+  }
+  .badge-cc i {
+    width: 20px; height: 20px; display: grid; place-items: center;
+    font: 700 .62rem/1 var(--texte); font-style: normal; color: var(--carte); background: var(--encre); border-radius: 50%;
+  }
+  @media (max-width: 820px) { .pied .conteneur { grid-template-columns: 1fr; gap: 26px; } }
+
+  /* ============ Boîte de dialogue de la licence ============ */
+  dialog.licence {
+    width: min(780px, 100% - 24px); max-width: none; height: min(92vh, 900px); height: min(92dvh, 900px); max-height: none; padding: 0;
+    color: var(--encre); background: var(--carte);
+    border: 1px solid var(--trait); border-radius: 22px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .45);
+    overflow: hidden;
+  }
+  dialog.licence[open] { display: flex; animation: apparition .22s ease-out; }
+  dialog.licence::backdrop { background: rgba(18, 21, 30, .55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+  @keyframes apparition { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+  .dlg { display: flex; flex-direction: column; width: 100%; min-height: 0; margin: 0; }
+  .dlg-tete { padding: 26px 28px 0; }
+  .dlg-tete h2 { margin: 8px 0 8px; font-family: var(--titre); font-size: clamp(1.4rem, 3vw, 1.75rem); font-weight: 650; line-height: 1.15; }
+  .dlg-tete h2:focus { outline: none; }
+  .dlg-tete p { margin: 0; font-size: .95rem; color: var(--encre-2); }
+  .dlg-milieu { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 16px; padding: 18px 28px 0; overflow: auto; }
+  .resume { flex: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .resume li { display: flex; gap: 10px; padding: 10px 12px; font-size: .83rem; line-height: 1.42; color: var(--encre-2); background: var(--t-fond); border-radius: 14px; }
+  .resume li b { display: block; margin-bottom: 1px; font-size: .9rem; font-weight: 600; color: var(--t-fort); }
+  .resume .ico { flex: none; width: 26px; height: 26px; display: grid; place-items: center; font-size: .85rem; background: var(--carte); border-radius: 50%; }
+  .texte-titre { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 4px 0 -6px; font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--encre-3); }
+  .texte-titre a { font-size: .82rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+  .texte-licence {
+    flex: 1 1 260px; min-height: 160px; overflow-y: auto; overscroll-behavior: contain;
+    padding: 18px 22px; font-size: .86rem; line-height: 1.6; color: var(--encre-2);
+    background: var(--papier); border: 1px solid var(--trait); border-radius: 14px;
+    scrollbar-width: thin; scrollbar-color: var(--trait-fort) transparent;
+  }
+  .texte-licence:focus-visible { outline-offset: -3px; }
+  .texte-licence h3 { margin: 0 0 12px; font-family: var(--titre); font-size: 1.05rem; font-weight: 600; color: var(--encre); }
+  .texte-licence h4 { margin: 20px 0 8px; font-size: .92rem; font-weight: 600; color: var(--encre); }
+  .texte-licence p { margin: 0 0 10px; }
+  .texte-licence ol, .texte-licence ul { margin: 0 0 10px; padding-left: 1.6em; }
+  .texte-licence li { margin: 4px 0; }
+  .texte-licence li > ol { margin-top: 6px; }
+  .texte-licence dfn { font-style: normal; font-weight: 600; color: var(--encre); }
+  .dlg-pied {
+    flex: none; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px;
+    margin-top: 18px; padding: 16px 28px 20px; border-top: 1px solid var(--trait); background: var(--papier-2);
+  }
+  .dlg-pied .note { flex: 1 1 15em; margin: 0; font-size: .8rem; line-height: 1.45; color: var(--encre-3); }
+  @media (max-width: 620px) {
+    dialog.licence { width: calc(100% - 16px); height: calc(100vh - 16px); height: calc(100dvh - 16px); border-radius: 18px; }
+    .dlg-tete { padding: 20px 18px 0; }
+    .dlg-milieu { padding: 14px 18px 0; }
+    .resume { grid-template-columns: 1fr; }
+    .texte-licence { min-height: 140px; padding: 14px 16px; }
+    .dlg-pied { padding: 14px 18px 18px; }
+    .dlg-pied .btn { flex: 1 1 100%; white-space: normal; text-align: center; }
+    .dlg-pied .note { display: none; }
+  }
+  /* Petits écrans : toute la boîte défile, le texte de la licence garde une hauteur lisible
+     et les boutons restent visibles en bas */
+  @media (max-height: 700px), (max-width: 620px) {
+    .dlg { overflow-y: auto; overscroll-behavior: contain; }
+    .dlg-milieu { flex: none; overflow: visible; }
+    .texte-licence { flex: none; height: min(55vh, 420px); height: min(55dvh, 420px); min-height: 140px; }
+    .dlg-pied { position: sticky; bottom: 0; }
+  }
+
+  .message {
+    position: fixed; left: 50%; bottom: 24px; z-index: 60;
+    max-width: calc(100% - 32px); padding: 12px 20px;
+    font-size: .92rem; color: var(--papier); background: var(--encre); border-radius: 999px;
+    box-shadow: var(--ombre-forte);
+    transform: translate(-50%, 140%); opacity: 0; transition: transform .3s, opacity .3s;
+  }
+  .message.visible { transform: translate(-50%, 0); opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0s !important; animation: none !important; }
+    .fiche:hover, .fiche:hover .feuille, .btn-primaire:hover, .degre:hover { transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="evitement" href="#fiches">Aller directement aux fiches</a>
+
+<header class="entete">
+  <div class="conteneur">
+    <a class="marque" href="./" aria-label="Exercices scolaires, accueil">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 3h13l6 6v20H7z" fill="var(--feuille)" stroke="var(--bleu)" stroke-width="2" stroke-linejoin="round"/><path d="M20 3v6h6" fill="none" stroke="var(--bleu)" stroke-width="2" stroke-linejoin="round"/><path d="M11 15h11M11 20h7" stroke="var(--bleu)" stroke-width="2" stroke-linecap="round"/><path d="M17 24l2.5 2.5L25 20" fill="none" stroke="var(--rouge)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Exercices scolaires</span>
+    </a>
+    <nav aria-label="Liens utiles">
+      <a href="#fiches">Les fiches</a>
+      <a href="#a-propos">Licence</a>
+      <a href="https://github.com/ctalpaert/exercices-scolaires">GitHub</a>
+      <button type="button" class="btn btn-secondaire btn-petit" data-telecharger aria-label="Tout télécharger (zip)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
+        <span class="long" aria-hidden="true">Tout télécharger (.zip)</span><span class="court" aria-hidden="true">Zip</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="accueil" aria-labelledby="titre-principal">
+    <div class="conteneur">
+      <div>
+        <p class="surtitre">Fiches à imprimer · format A4</p>
+        <h1 id="titre-principal">Des exercices pour <span class="surligne">apprendre</span>, de la&nbsp;1P à l’université.</h1>
+        <p class="accroche">Des fiches claires, gratuites et prêtes à imprimer, souvent avec leur corrigé. Choisissez un degré, une matière, ou cherchez simplement un mot.</p>
+        <div class="actions">
+          <button type="button" class="btn btn-primaire" data-telecharger>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
+            Télécharger tous les exercices en zip
+          </button>
+          <a class="btn btn-secondaire" href="#fiches">Parcourir les fiches</a>
+        </div>
+        <ul class="chiffres" id="chiffres" aria-label="En bref"></ul>
+      </div>
+
+      <svg class="illustration" viewBox="0 0 440 360" aria-hidden="true">
+        <g transform="rotate(9 250 190)"><rect class="f-fond-1" x="150" y="40" width="210" height="290" rx="10"/></g>
+        <g transform="rotate(-7 210 190)"><rect class="f-fond-2" x="100" y="36" width="210" height="290" rx="10"/></g>
+        <g class="ombre-feuille" transform="rotate(-1.5 230 190)">
+          <rect class="f-avant" x="120" y="26" width="226" height="312" rx="8"/>
+          <rect class="f-bord" x="120" y="26" width="226" height="312" rx="8"/>
+          <rect class="bandeau" x="136" y="42" width="194" height="34" rx="8"/>
+          <rect class="titre-feuille" x="150" y="54" width="92" height="10" rx="5"/>
+          <path class="ligne" d="M262 66h52" />
+          <g>
+            <rect class="case-pleine" x="140" y="96" width="26" height="26" rx="6"/><text class="lettre-blanche" x="153" y="114" text-anchor="middle">B</text>
+            <rect class="case" x="172" y="96" width="26" height="26" rx="6"/>
+            <rect class="case-pleine" x="204" y="96" width="26" height="26" rx="6"/><text class="lettre-blanche" x="217" y="114" text-anchor="middle">D</text>
+            <rect class="case" x="236" y="96" width="26" height="26" rx="6"/><text class="lettre" x="249" y="114" text-anchor="middle" fill="#e03131" style="fill:#e03131">E</text>
+          </g>
+          <polygon class="triangle" points="190,148 148,222 232,222"/>
+          <path class="marque-trait" d="M165 181l7 4M207 181l-7 4M190 216v12"/>
+          <rect x="258" y="150" width="20" height="20" rx="4" fill="#fff" stroke="#1d2230" stroke-width="1.8"/>
+          <path class="coche" d="M262 160l5 5 11-13"/>
+          <path class="ligne" d="M284 162h44"/>
+          <rect x="258" y="186" width="20" height="20" rx="4" fill="#fff" stroke="#1d2230" stroke-width="1.8"/>
+          <path class="ligne" d="M284 198h44"/>
+          <path class="ligne" d="M140 252h188M140 278h188M140 304h120"/>
+        </g>
+        <g transform="translate(18 62) rotate(38 340 250)">
+          <rect x="250" y="238" width="150" height="20" rx="3" fill="#f2cf5b"/>
+          <rect x="250" y="238" width="150" height="7" rx="3" fill="#f8e48f"/>
+          <rect x="392" y="238" width="22" height="20" rx="4" fill="#e8919c"/>
+          <rect x="386" y="238" width="8" height="20" fill="#adb5bd"/>
+          <path d="M250 238l-26 10 26 10z" fill="#f1d5b0"/>
+          <path d="M232 244.9l-8 3.1 8 3.1z" fill="#343a40"/>
+        </g>
+        <g fill="#e7bf4d">
+          <path d="M70 92l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+          <path d="M392 52l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" opacity=".8"/>
+        </g>
+        <circle cx="96" cy="270" r="5" fill="#df7aa0" opacity=".7"/>
+        <circle cx="404" cy="140" r="4" fill="#5f95dd" opacity=".7"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="filtres" aria-labelledby="titre-filtres">
+    <div class="conteneur">
+      <h2 id="titre-filtres">Trouver une fiche</h2>
+
+      <div class="frise-cadre">
+        <span class="etiquette-filtre" id="etiquette-degres">Degré</span>
+        <div class="frise" id="frise" role="group" aria-labelledby="etiquette-degres"></div>
+        <p class="frise-fleche" aria-hidden="true"><span>de la 1<sup>re</sup> primaire à l’université</span></p>
+      </div>
+
+      <div class="barre">
+        <div>
+          <span class="etiquette-filtre" id="etiquette-matieres">Matière</span>
+          <div class="matieres" id="matieres" role="group" aria-labelledby="etiquette-matieres"></div>
+        </div>
+        <div class="recherche">
+          <label class="visuellement-cache" for="recherche">Rechercher une fiche</label>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
+          <input type="search" id="recherche" placeholder="Chercher&nbsp;: arbre, triangle…" autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fiches" id="fiches" aria-labelledby="titre-fiches" tabindex="-1">
+    <div class="conteneur">
+      <div class="fiches-entete">
+        <h2 id="titre-fiches">Les fiches</h2>
+        <p class="resultat" id="resultat" aria-live="polite"></p>
+        <div class="outils">
+          <button type="button" class="lien-bouton" id="reinitialiser" hidden>Effacer les filtres</button>
+          <label class="tri">Trier
+            <select id="tri">
+              <option value="degre">par degré</option>
+              <option value="recent">les plus récentes</option>
+              <option value="titre">de A à Z</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div id="liste"></div>
+
+      <div class="vide-etat" id="vide" hidden>
+        <div class="grand" aria-hidden="true">🔍</div>
+        <h3>Aucune fiche ne correspond</h3>
+        <p id="vide-texte">Essayez un autre degré, une autre matière ou un autre mot.</p>
+        <button type="button" class="btn btn-secondaire" id="vide-reinitialiser">Voir toutes les fiches</button>
+      </div>
+
+      <noscript>
+        <div class="vide-etat">
+          <h3>JavaScript est désactivé</h3>
+          <p>La liste des fiches a besoin de JavaScript. Vous pouvez aussi parcourir les fichiers sur <a href="https://github.com/ctalpaert/exercices-scolaires">GitHub</a>.</p>
+        </div>
+      </noscript>
+    </div>
+  </section>
+</main>
+
+<footer class="pied" id="a-propos">
+  <div class="conteneur">
+    <div>
+      <h2>Exercices scolaires</h2>
+      <p>Des fiches créées à la maison pour accompagner les devoirs, et partagées pour que d’autres élèves, parents et enseignants puissent s’en servir.</p>
+      <p><b>Pour imprimer&nbsp;:</b> format A4 portrait, marges «&nbsp;Aucune&nbsp;», sans en-têtes ni pieds de page. Chaque fiche a son bouton «&nbsp;Imprimer&nbsp;».</p>
+    </div>
+    <div>
+      <h2>Licence</h2>
+      <span class="badge-cc"><i>cc</i>CC BY-NC-SA 4.0</span>
+      <p>Libre de copier, d’imprimer, de partager et d’adapter, en citant l’auteur. Pas d’utilisation commerciale (la revente est interdite)&nbsp;; les versions modifiées restent sous la même licence.</p>
+      <button type="button" class="lien-bouton" id="lire-licence" style="padding-left:0">Lire la licence</button>
+    </div>
+    <div>
+      <h2>Liens</h2>
+      <ul>
+        <li><a href="https://github.com/ctalpaert/exercices-scolaires">Code source sur GitHub</a></li>
+        <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">La licence expliquée (Creative Commons)</a></li>
+        <li><button type="button" class="lien-bouton" data-telecharger style="padding-left:0">Télécharger tous les exercices en zip</button></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<dialog class="licence" id="licence" aria-labelledby="licence-titre" aria-describedby="licence-intro">
+  <form method="dialog" class="dlg">
+    <div class="dlg-tete">
+      <span class="badge-cc"><i>cc</i>BY-NC-SA 4.0</span>
+      <h2 id="licence-titre" tabindex="-1">Avant de télécharger</h2>
+      <p id="licence-intro">Les exercices sont gratuits et publiés sous licence <b>Creative Commons Attribution – Utilisation non commerciale – Partage dans les mêmes conditions 4.0 International</b> (CC BY-NC-SA 4.0). En téléchargeant l’archive, vous acceptez ses conditions.</p>
+    </div>
+
+    <div class="dlg-milieu">
+      <ul class="resume">
+        <li class="t" style="--h:150"><span class="ico" aria-hidden="true">✅</span><span><b>Vous pouvez</b>copier, imprimer et distribuer les fiches, en classe comme à la maison, et les adapter.</span></li>
+        <li class="t" style="--h:255"><span class="ico" aria-hidden="true">✍️</span><span><b>Citer l’auteur</b>Mentionnez «&nbsp;Exercices scolaires, ctalpaert&nbsp;» avec un lien vers le site et vers la licence, et signalez vos modifications.</span></li>
+        <li class="t" style="--h:20"><span class="ico" aria-hidden="true">🚫</span><span><b>Pas d’utilisation commerciale</b>Interdiction de vendre ou de revendre ces fiches, modifiées ou non, ou de les inclure dans un produit payant.</span></li>
+        <li class="t" style="--h:300"><span class="ico" aria-hidden="true">🔁</span><span><b>Partage dans les mêmes conditions</b>Une version modifiée que vous diffusez doit l’être sous cette même licence.</span></li>
+      </ul>
+
+      <p class="texte-titre"><span>Texte complet de la licence</span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr" target="_blank" rel="noopener">Version officielle ↗</a></p>
+      <div class="texte-licence" id="texte-licence" tabindex="0" role="region" aria-label="Texte complet de la licence CC BY-NC-SA 4.0">
+<!-- TEXTE_LICENCE:DEBUT -->
+<h3>Attribution - Utilisation non commerciale - Partage dans les mêmes conditions 4.0 International</h3>
+<p>Lorsque Vous exercez les Droits accordés par la licence (définis ci-dessous), Vous acceptez d'être lié par les termes et conditions de la présente Licence publique Creative Commons Attribution - Utilisation non commerciale - Partage dans les mêmes conditions 4.0 International (la « Licence publique »). Dans la mesure où la présente Licence publique peut être interprétée comme un contrat, Vous bénéficiez des Droits accordés par la licence en contrepartie de Votre acceptation des présents termes et conditions, et le Donneur de licence Vous accorde ces droits en contrepartie des avantages que lui procure le fait de mettre à disposition l’Œuvre sous licence en vertu des présents termes et conditions.</p>
+<h4>Article 1 - Définitions.</h4>
+<ol type="a">
+<li><dfn>Œuvre dérivée</dfn> signifie œuvre protégée par les Droit d’auteur et droits connexes, dérivée ou adaptée de l’Œuvre sous licence et dans laquelle l’Œuvre sous licence est traduite, retouchée, arrangée, transformée, ou modifiée de telle façon que l’autorisation du Donneur de licence est nécessaire, conformément aux dispositions des Droit d’auteur et droits connexes. Dans le cas de la présente Licence publique, lorsque l’Œuvre sous licence est une œuvre musicale, une représentation publique ou un enregistrement sonore, la synchronisation de l'Œuvre sous licence avec une image animée sera considérée comme une Œuvre dérivée aux fins de la présente Licence publique.</li>
+<li><dfn>Licence d’Œuvre dérivée</dfn> signifie licence par laquelle Vous accordez Vos Droit d'auteur et droits connexes portant sur Vos contributions à l'Œuvre dérivée, selon les termes et conditions de la présente Licence publique.</li>
+<li><dfn>Licence compatible BY-NC-SA</dfn> signifie licence figurant à l'adresse suivante creativecommons.org/compatiblelicenses, approuvée par Creative Commons comme étant essentiellement équivalente à la présente Licence publique.</li>
+<li><dfn>Droit d’auteur et droits connexes </dfn> signifie droit d’auteur et/ou droits connexes incluant, notamment, la représentation, la radio et télédiffusion, l’enregistrement sonore et le Droit sui generis des producteurs de bases de données, quelle que soit la classification ou qualification juridique de ces droits. Dans le cadre de la présente Licence publique, les droits visés à l’Article 2(b)(1)-(2) ne relèvent ni du Droit d’auteur ni de droits connexes.</li>
+<li><dfn>Mesures techniques efficaces</dfn> signifie mesures techniques qui, en l’absence d’autorisation expresse, ne peuvent être contournées dans le cadre de lois conformes aux dispositions de l’Article 11 du Traité de l’OMPI sur le droit d’auteur adopté le 20 Décembre 1996 et/ou d’accords internationaux de même objet.</li>
+<li><dfn>Exceptions et limitations</dfn> signifie utilisation loyale et équitable (<em>fair use</em> et <em>fair dealing</em>) et/ou toute autre exception ou limitation applicable à Votre utilisation de l’Œuvre sous licence.</li>
+<li><dfn>Eléments de licence</dfn> signifie les composantes de la licence figurant dans l’intitulé de la Licence publique Creative Commons. Les éléments de la présente Licence publique sont : Attribution, Utilisation non commerciale et Partage dans les mêmes conditions.</li>
+<li><dfn>Œuvre sous licence</dfn> signifie œuvre littéraire ou artistique, base de données ou toute autre œuvre pour laquelle le Donneur de licence a recours à la présente Licence publique.</li>
+<li><dfn>Droits accordés par la licence</dfn> signifie droits qui Vous sont accordés selon les termes et conditions d’utilisation définis par la présente Licence publique, limités aux Droit d’auteur et droits connexes applicables à Votre utilisation de l’Œuvre sous licence et que le Donneur de licence a le droit d’accorder.</li>
+<li><dfn>Donneur de licence</dfn> signifie un individu ou une entité octroyant la présente Licence publique et les droits accordés par elle.</li>
+<li><dfn>Utilisation non commerciale</dfn> signifie que l’utilisation n’a pas principalement pour but ou pour objectif d'obtenir un avantage commercial ou une compensation financière. L’échange de l’Œuvre sous licence avec d’autres œuvres soumises aux Droit d’auteur et droits connexes par voie de partage de fichiers numériques ou autres moyens analogues constitue une Utilisation non commerciale à condition qu’il n’y ait aucun avantage commercial ni aucune compensation financière en relation avec la transaction.</li>
+<li><dfn>Partager</dfn> signifie mettre une œuvre à la disposition du public par tout moyen ou procédé qui requiert l’autorisation découlant des Droits accordés par la licence, tels que les droits de reproduction, de représentation au public, de distribution, de diffusion, de communication ou d’importation, y compris de manière à ce que chacun puisse y avoir accès de l’endroit et au moment qu’il choisit individuellement.</li>
+<li><dfn>Droit sui generis des producteurs de bases de données</dfn> signifie droits distincts du droit d'auteur résultant de la Directive 96/9/CE du Parlement européen et du Conseil du 11 mars 1996 sur la protection juridique des bases de données, ainsi que tout autre droit de nature équivalente dans le monde.</li>
+<li><dfn>Vous</dfn> (preneur de licence) se rapporte à tout individu ou entité exerçant les Droits accordés par la licence. <strong>Votre</strong> et <strong>Vos</strong> renvoient également au preneur de licence.</li>
+</ol>
+<h4>Article 2 - Champ d’application de la présente Licence publique.</h4>
+<ol type="a">
+<li><strong>Octroi de la licence</strong>.<ol>
+<li>Sous réserve du respect des termes et conditions d'utilisation de la présente Licence publique, le Donneur de licence Vous autorise à exercer pour le monde entier, à titre gratuit, non sous-licenciable, non exclusif, irrévocable, les Droits accordés par la licence afin de :<ol type="A">
+<li>reproduire et Partager l’Œuvre sous licence, en tout ou partie, seulement pour une Utilisation non commerciale ; et</li>
+<li>produire, reproduire et Partager l’Œuvre dérivée seulement pour une Utilisation non commerciale.</li>
+</ol>
+</li>
+<li><strong>Exceptions et limitations</strong>. Afin de lever toute ambiguïté, lorsque les Exceptions et limitations s’appliquent à Votre utilisation, la présente Licence publique ne s’applique pas et Vous n’avez pas à Vous conformer à ses termes et conditions.</li>
+<li><strong>Durée</strong>. La durée de la présente Licence publique est définie à l’Article 6(a).</li>
+<li><strong>Supports et formats : modifications techniques autorisées</strong>. Le Donneur de licence Vous autorise à exercer les Droits accordés par la licence sur tous les supports et formats connus ou encore inconnus à ce jour, et à apporter toutes les modifications techniques que ceux-ci requièrent. Le Donneur de licence renonce et/ou accepte de ne pas exercer ses droits qui pourraient être susceptibles de Vous empêcher d’apporter les modifications techniques nécessaires pour exercer les Droits accordés par la licence, y compris celles nécessaires au contournement des Mesures techniques efficaces. Dans le cadre de la présente Licence publique, le fait de ne procéder qu’à de simples modifications techniques autorisées selon les termes du présent Article 2(a)(4) n’est jamais de nature à créer une Œuvre dérivée.</li>
+<li><dfn>Utilisateurs en aval.</dfn>.<ol type="A">
+<li><dfn> Offre du Donneur de licence – Œuvre sous licence</dfn>. Chaque utilisateur de l’Œuvre sous licence reçoit automatiquement une offre de la part du Donneur de licence lui permettant d’exercer les Droits accordés par la licence selon les termes et conditions de la présente Licence publique.</li>
+<li><dfn> Offre additionnelle du Donneur de licence – Œuvre dérivée.</dfn>Chaque utilisateur d’une Œuvre dérivée reçoit automatiquement une offre du Donneur de licence lui permettant d’exercer les Droits accordés par la licence sur l’Œuvre dérivée selon les termes et conditions de la Licence d’Œuvre dérivée que Vous appliquez.</li>
+<li><dfn> Pas de restrictions en aval pour les utilisateurs suivants</dfn>. Vous ne pouvez proposer ou imposer des termes et conditions supplémentaires ou différents, ou appliquer quelque Mesure technique efficace que ce soit à l’Œuvre sous licence si ceux(celles)-ci sont de nature à restreindre l’exercice des Droits accordés par la licence aux utilisateurs de l’Œuvre sous licence.</li>
+</ol>
+</li>
+<li><dfn> Non approbation</dfn>. Aucun élément de la présente Licence publique ne peut être interprété comme laissant supposer que le preneur de licence ou que l’utilisation qu’il fait de l’Œuvre sous licence est lié à, parrainé, approuvé, ou doté d'un statut officiel par le Donneur de licence ou par toute autre personne à qui revient l’attribution de l’Œuvre sous licence, comme indiqué à l’Article 3(a)(1)(A)(i).</li>
+</ol>
+</li>
+<li><strong>Autres droits</strong>.<ol>
+<li>Les droits moraux, tel que le droit à l’intégrité de l’œuvre, ne sont pas accordés par la présente Licence publique, ni le droit à l’image, ni le droit au respect de la vie privée, ni aucun autre droit de la personnalité ou apparenté ; cependant, dans la mesure du possible, le Donneur de licence renonce et/ou accepte de ne pas faire valoir les droits qu’il détient de manière à Vous permettre d’exercer les Droits accordés par la licence.</li>
+<li>Le droit des brevets et le droit des marques ne sont pas concernés par la présente Licence publique.</li>
+<li>Dans la mesure du possible, le Donneur de licence renonce au droit de collecter des redevances auprès de Vous pour l’exercice des Droits accordés par la licence, directement ou indirectement dans le cadre d’un régime de gestion collective facultative ou obligatoire assorti de possibilités de renonciation quel que soit le type d’accord ou de licence. Dans tous les autres cas, le Donneur de licence se réserve expressément le droit de collecter de telles redevances, y compris en dehors des cas d'Utilisation non commerciale de l’Œuvre sous licence.</li>
+</ol>
+</li>
+</ol>
+<h4>Article 3 – Conditions d'utilisation de la présente Licence publique.</h4>
+<p>L’exercice des Droits accordés par la licence est expressément soumis aux conditions suivantes.</p>
+<ol type="a">
+<li><strong>Attribution</strong>.<ol type="1">
+<li><p>Si Vous partagez l’Œuvre sous licence (y compris sous une forme modifiée), Vous devez :</p>
+<ol type="A">
+<li>conserver les informations suivantes lorsqu’elles sont fournies par le Donneur de licence avec l’Œuvre sous licence :<ol type="i">
+<li>identification du(des) auteur(s) de l’Œuvre sous licence et de toute personne à qui revient l’attribution de l’Œuvre sous licence, dans la mesure du possible, conformément à la demande du Donneur de licence (y compris sous la forme d’un pseudonyme s’il est indiqué) ;</li>
+<li>l’indication de l’existence d’un droit d’auteur ;</li>
+<li>une notice faisant référence à la présente Licence publique ;</li>
+<li>une notice faisant référence aux limitations de garantie et exclusions de responsabilité ;</li>
+<li>un URI ou un hyperlien vers l’Œuvre sous licence dans la mesure du possible ;</li>
+</ol>
+</li>
+<li>Indiquer si Vous avez modifié l’Œuvre sous licence et conserver un suivi des modifications précédentes ; et</li>
+<li>Indiquer si l’Œuvre sous licence est mise à disposition en vertu de la présente Licence publique en incluant le texte, l’URI ou l’hyperlien correspondant à la présente Licence publique.</li>
+</ol>
+</li>
+<li>Vous pouvez satisfaire aux conditions de l’Article 3(a)(1) dans toute la mesure du possible, en fonction des supports, moyens et contextes dans lesquels Vous Partagez l’Œuvre sous licence. Par exemple, Vous pouvez satisfaire aux conditions susmentionnées en fournissant l’URI ou l’hyperlien vers la ressource incluant les informations requises.</li>
+<li>Bien que requises aux termes de l’Article 3(a)(1)(A), certaines informations devront être retirées, dans la mesure du possible, si le Donneur de licence en fait la demande.</li>
+</ol>
+</li>
+<li><strong>Partage dans les mêmes conditions</strong>.<p>Outre les conditions indiquées à l’Article 3(a), si Vous Partagez une Œuvre dérivée que Vous avez réalisée, les conditions suivantes s’appliquent aussi.</p>
+<ol>
+<li>La Licence d’Œuvre dérivée que Vous appliquez doit être une licence Creative Commons avec les mêmes Eléments de licence, qu’il s’agisse de cette version ou d’une version ultérieure, ou une Licence compatible BY-NC-SA.</li>
+<li>Vous devez inclure le texte, l’URI ou l’hyperlien correspondant à la Licence d’Œuvre dérivée que Vous appliquez. Ces conditions peuvent être satisfaites dans la mesure du raisonnable suivant les supports, moyens et contextes via lesquels Vous Partagez l’Œuvre dérivée.</li>
+<li>Vous ne pouvez pas proposer ou imposer des termes ou des conditions supplémentaires ou différents ou appliquer des Mesures techniques efficaces à l’Œuvre dérivée qui seraient de nature à restreindre l’exercice des Droits accordés par la Licence d’Œuvre dérivée que Vous appliquez.</li>
+</ol>
+</li>
+</ol>
+<h4>Article 4 – Le Droit sui generis des producteurs de bases de données.</h4>
+<p>Lorsque les Droits accordés par la licence incluent le Droit sui generis des producteurs de bases de données applicable à Votre utilisation de l’Œuvre sous licence :</p>
+<ol type="a">
+<li>afin de lever toute ambiguïté, l’Article 2(a)(1) Vous accorde le droit d’extraire, réutiliser, reproduire et Partager la totalité ou une partie substantielle du contenu de la base de données uniquement pour une Utilisation non commerciale ;</li>
+<li>si Vous incluez la totalité ou une partie substantielle du contenu de la base de données dans une base de données pour laquelle Vous détenez un Droit sui generis de producteur de bases de données, la base de données sur laquelle Vous détenez un tel droit (mais pas ses contenus individuels) sera alors considérée comme une Œuvre dérivée, y compris pour l’application de l’Article 3(b) ; et</li>
+<li>Vous devez respecter les conditions de l’Article 3(a) si Vous Partagez la totalité ou une partie substantielle du contenu des bases de données.</li>
+</ol>
+<p>Afin de lever toute ambiguïté, le présent Article 4 complète mais ne remplace pas Vos obligations découlant des termes de la présente Licence publique lorsque les Droits accordés par la licence incluent d’autres Droit d’auteur et droits connexes.</p>
+<h4>Article 5 – Limitations de garantie et exclusions de responsabilité.</h4>
+<ol type="a">
+<li><strong> Sauf indication contraire et dans la mesure du possible, le Donneur de licence met à disposition l’Œuvre sous licence telle quelle, et n’offre aucune garantie de quelque sorte que ce soit, notamment expresse, implicite, statutaire ou autre la concernant. Cela inclut, notamment, les garanties liées au titre, à la valeur marchande, à la compatibilité de certaines utilisations particulières, à l’absence de violation, à l’absence de vices cachés ou autres défauts, à l’exactitude, à la présence ou à l’absence d’erreurs connues ou non ou susceptibles d’être découvertes dans l’Œuvre sous licence. Lorsqu’une limitation de garantie n’est pas autorisée en tout ou partie, cette clause peut ne pas Vous être applicable. </strong></li>
+<li><strong> Dans la mesure du possible, le Donneur de licence ne saurait voir sa responsabilité engagée vis-à-vis de Vous, quel qu’en soit le fondement juridique (y compris, notamment, la négligence), pour tout préjudice direct, spécial, indirect, incident, conséquentiel, punitif, exemplaire, ou pour toutes pertes, coûts, dépenses ou tout dommage découlant de l’utilisation de la présente Licence publique ou de l’utilisation de l’Œuvre sous licence, même si le Donneur de licence avait connaissance de l’éventualité de telles pertes, coûts, dépenses ou dommages. Lorsqu’une exclusion de responsabilité n’est pas autorisée en tout ou partie, cette clause peut ne pas Vous être applicable. </strong></li>
+<li>Les limitations de garantie et exclusions de responsabilité ci-dessus doivent être interprétées, dans la mesure du possible, comme des limitations et renonciations totales de toute responsabilité.</li>
+</ol>
+<h4>Article 6 – Durée et fin.</h4>
+<ol type="a">
+<li>La présente Licence publique s’applique pendant toute la durée de validité des Droits accordés par la licence. Cependant, si Vous manquez à Vos obligations prévues par la présente Licence publique, Vos droits accordés par la présente Licence publique seront automatiquement révoqués.</li>
+<li><p>Lorsque les Droits accordés par la licence ont été révoqués selon les termes de l’Article 6(a), ils seront rétablis :</p>
+<ol>
+<li>automatiquement, à compter du jour où la violation aura cessé, à condition que Vous y remédiiez dans les 30 jours suivant la date à laquelle Vous aurez eu connaissance de la violation ; ou</li>
+<li>à condition que le Donneur de licence l’autorise expressément.</li>
+</ol>
+<p>Afin de lever toute ambiguïté, le présent Article 6(b) n’affecte pas le droit du Donneur de licence de demander réparation dans les cas de violation de la présente Licence publique.</p>
+</li>
+<li>Afin de lever toute ambiguïté, le Donneur de licence peut également proposer l’Œuvre sous licence selon d’autres termes et conditions et peut cesser la mise à disposition de l’Œuvre sous licence à tout moment ; une telle cessation n’entraîne pas la fin de la présente Licence publique.</li>
+<li>Les Articles 1, 5, 6, 7, et 8 continueront à s’appliquer même après la résiliation de la présente Licence publique.</li>
+</ol>
+<h4>Article 7 – Autres termes et conditions.</h4>
+<ol type="a">
+<li>Sauf accord exprès, le Donneur de licence n’est lié par aucune modification des termes de Votre part.</li>
+<li>Tous arrangements, ententes ou accords relatifs à l’Œuvre sous licence non mentionnés dans la présente Licence publique sont séparés et indépendants des termes et conditions de la présente Licence publique.</li>
+</ol>
+<h4>Article 8 – Interprétation.</h4>
+<ol type="a">
+<li>Afin de lever toute ambiguïté, la présente Licence publique ne doit en aucun cas être interprétée comme ayant pour effet de réduire, limiter, restreindre ou imposer des conditions plus contraignantes que celles qui sont prévues par les dispositions légales applicables.</li>
+<li>Dans la mesure du possible, si une clause de la présente Licence publique est déclarée inapplicable, elle sera automatiquement modifiée a minima afin de la rendre applicable. Dans le cas où la clause ne peut être modifiée, elle sera écartée de la présente Licence publique sans préjudice de l’applicabilité des termes et conditions restants.</li>
+<li>Aucun terme ni aucune condition de la présente Licence publique ne sera écarté(e) et aucune violation ne sera admise sans l’accord exprès du Donneur de licence.</li>
+<li>Aucun terme ni aucune condition de la présente Licence publique ne constitue ou ne peut être interprété(e) comme une limitation ou une renonciation à un quelconque privilège ou à une immunité s’appliquant au Donneur de licence ou à Vous, y compris lorsque celles-ci émanent d’une procédure légale, quel(le) qu’en soit le système juridique concerné ou l’autorité compétente.</li>
+</ol>
+<!-- TEXTE_LICENCE:FIN -->
+      </div>
+    </div>
+
+    <div class="dlg-pied">
+      <p class="note" id="licence-note">L’archive contient toutes les fiches. Ouvrez <b>index.html</b> pour les parcourir hors ligne.</p>
+      <button type="submit" class="btn btn-secondaire" value="annuler" id="licence-annuler">Annuler</button>
+      <button type="submit" class="btn btn-primaire" value="accepter" id="licence-accepter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
+        J’accepte et je télécharge
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<div class="message" id="message" role="status" aria-live="polite"></div>
+
+<script src="catalogue.js"></script>
+<script>
+(() => {
+  "use strict";
+
+  /* ---------- Réglages ---------- */
+  const DEPOT = "ctalpaert/exercices-scolaires";
+  const BRANCHE = "main";
+  const URL_ZIP = `https://github.com/${DEPOT}/archive/refs/heads/${BRANCHE}.zip`;
+  const JOURS_NOUVEAU = 30;     // une fiche est « Nouveau » pendant 30 jours
+  const LARGEUR_A4 = 794;       // 210 mm en pixels CSS
+
+  // Degrés scolaires de Suisse romande. Garder synchronisé avec NIVEAUX dans outils/generer_catalogue.py.
+  const CYCLES = [
+    { id: "c1", nom: "Cycle 1", detail: "1P – 4P", teinte: 40, niveaux: ["1P", "2P", "3P", "4P"] },
+    { id: "c2", nom: "Cycle 2", detail: "5P – 8P", teinte: 150, niveaux: ["5P", "6P", "7P", "8P"] },
+    { id: "c3", nom: "Cycle 3", detail: "9S – 11S", teinte: 250, niveaux: ["9S", "10S", "11S"] },
+    { id: "s2", nom: "Secondaire II", detail: "gymnase, ECG, formation professionnelle", teinte: 300, niveaux: ["SEC2"] },
+    { id: "t", nom: "Tertiaire", detail: "haute école et université", teinte: 355, niveaux: ["UNI"] },
+  ];
+  const LIBELLES = { SEC2: "Sec II", UNI: "Uni" };
+  const NOMS_LONGS = { SEC2: "Secondaire II", UNI: "Haute école et université" };
+  const NIVEAUX = CYCLES.flatMap(c => c.niveaux);
+  const CYCLE_DE = Object.fromEntries(CYCLES.flatMap(c => c.niveaux.map(n => [n, c])));
+
+  // Matières : emoji et teinte. Garder synchronisé avec MATIERES dans outils/generer_catalogue.py.
+  const MATIERES = {
+    "Français": ["📖", 350],
+    "Allemand": ["🗣️", 15],
+    "Anglais": ["🗣️", 265],
+    "Italien": ["🗣️", 135],
+    "Latin": ["📜", 50],
+    "Grec": ["📜", 215],
+    "Mathématiques": ["📐", 255],
+    "Sciences de la nature": ["🌿", 145],
+    "Physique": ["⚛️", 230],
+    "Chimie": ["🧪", 190],
+    "Biologie": ["🧬", 160],
+    "Géographie": ["🗺️", 75],
+    "Histoire": ["⏳", 45],
+    "Citoyenneté": ["🤝", 95],
+    "Éthique et cultures religieuses": ["🕊️", 280],
+    "Philosophie": ["💭", 305],
+    "Économie et droit": ["📈", 110],
+    "Arts visuels": ["🎨", 25],
+    "Activités créatrices et manuelles": ["✂️", 60],
+    "Musique": ["🎵", 320],
+    "Éducation physique": ["⚽", 125],
+    "Éducation numérique": ["💻", 205],
+    "Informatique": ["💻", 220],
+  };
+
+  const $ = sel => document.querySelector(sel);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // Texte comparable pour la recherche : sans accents, apostrophes et tirets unifiés
+  const sansAccents = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .replace(/[’‘ʼ´`]/g, "'").replace(/[-‐‑–—]/g, " ").replace(/œ/g, "oe").replace(/æ/g, "ae").toLowerCase();
+  const libelle = n => LIBELLES[n] || n;
+  const pluriel = (n, un, plusieurs) => `${n} ${n > 1 ? plusieurs : un}`;
+
+  function infoMatiere(nom) {
+    if (MATIERES[nom]) return { emoji: MATIERES[nom][0], teinte: MATIERES[nom][1] };
+    let h = 0;                                    // matière inconnue : teinte stable tirée du nom
+    for (const c of String(nom)) h = (h * 31 + c.codePointAt(0)) % 360;
+    return { emoji: "📄", teinte: h };
+  }
+
+  function dateLocale(iso) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+  }
+  const formatDate = new Intl.DateTimeFormat("fr-CH", { day: "numeric", month: "long", year: "numeric" });
+  const formatDateCourte = new Intl.DateTimeFormat("fr-CH", { day: "numeric", month: "short", year: "numeric" });
+
+  // « 3P – 4P » pour une suite continue, sinon « 3P, 5P »
+  function plageNiveaux(niveaux) {
+    if (!niveaux.length) return "";
+    const idx = niveaux.map(n => NIVEAUX.indexOf(n));
+    const continu = idx.every((v, i) => i === 0 || v === idx[i - 1] + 1);
+    if (niveaux.length > 2 && continu) return `${libelle(niveaux[0])} – ${libelle(niveaux[niveaux.length - 1])}`;
+    return niveaux.map(libelle).join(", ");
+  }
+
+  /* ---------- Données ---------- */
+  const aujourdHui = new Date(); aujourdHui.setHours(0, 0, 0, 0);
+  const brutes = Array.isArray(window.CATALOGUE) ? window.CATALOGUE : null;
+  const FICHES = (brutes || []).map((f, i) => {
+    const niveaux = (f.niveaux || []).filter(n => NIVEAUX.includes(n));
+    const ajout = dateLocale(f.ajout);
+    const m = infoMatiere(f.matiere || "Autre");
+    return {
+      ...f,
+      id: i,
+      matiere: f.matiere || "Autre",
+      niveaux,
+      emoji: m.emoji,
+      teinte: m.teinte,
+      date: ajout,
+      nouveau: !!ajout && (aujourdHui - ajout) / 864e5 <= JOURS_NOUVEAU,
+      rang: niveaux.length ? NIVEAUX.indexOf(niveaux[0]) : NIVEAUX.length,
+      texte: sansAccents([f.titre, f.description, f.matiere, ...(f.mots_cles || []), ...niveaux.map(libelle)].join(" ")),
+    };
+  });
+
+  /* ---------- État (reflété dans l'adresse pour pouvoir partager un lien filtré) ---------- */
+  const params = new URLSearchParams(location.search);
+  const etat = {
+    niveau: NIVEAUX.includes(params.get("niveau")) ? params.get("niveau") : "",
+    matiere: params.get("matiere") || "",
+    q: params.get("q") || "",
+    tri: ["degre", "recent", "titre"].includes(params.get("tri")) ? params.get("tri") : "degre",
+  };
+
+  function majAdresse() {
+    const p = new URLSearchParams();
+    if (etat.niveau) p.set("niveau", etat.niveau);
+    if (etat.matiere) p.set("matiere", etat.matiere);
+    if (etat.q.trim()) p.set("q", etat.q.trim());
+    if (etat.tri !== "degre") p.set("tri", etat.tri);
+    const qs = p.toString();
+    try { history.replaceState(null, "", (qs ? "?" + qs : location.pathname) + location.hash); } catch (e) { /* file:// */ }
+  }
+
+  function correspond(f, sauf) {
+    if (sauf !== "niveau" && etat.niveau && !f.niveaux.includes(etat.niveau)) return false;
+    if (sauf !== "matiere" && etat.matiere && f.matiere !== etat.matiere) return false;
+    const mots = sansAccents(etat.q).split(/\s+/).filter(Boolean);
+    return mots.every(m => f.texte.includes(m));
+  }
+
+  /* ---------- Frise des degrés et matières ---------- */
+  const frise = $("#frise");
+  const zoneMatieres = $("#matieres");
+
+  function construireFrise() {
+    frise.innerHTML =
+      `<button type="button" class="degre degre-tous" data-niveau="">Tous</button>` +
+      CYCLES.map(c => `
+        <div class="cycle t" style="--h:${c.teinte}">
+          <span class="cycle-nom" title="${esc(c.detail)}">${esc(c.nom)}</span>
+          <div class="cycle-degres">
+            ${c.niveaux.map(n => `<button type="button" class="degre" data-niveau="${n}" title="${esc(NOMS_LONGS[n] || n)}"><span>${esc(libelle(n))}</span></button>`).join("")}
+          </div>
+        </div>`).join("");
+  }
+
+  function majFrise() {
+    const base = FICHES.filter(f => correspond(f, "niveau"));
+    frise.querySelectorAll(".degre").forEach(b => {
+      const n = b.dataset.niveau;
+      const nb = n ? base.filter(f => f.niveaux.includes(n)).length : base.length;
+      b.setAttribute("aria-pressed", String(etat.niveau === n));
+      b.classList.toggle("vide", !!n && nb === 0);
+      let badge = b.querySelector(".compte");
+      if (n && nb > 0) {
+        if (!badge) { badge = document.createElement("small"); badge.className = "compte"; b.append(badge); }
+        badge.textContent = nb;
+      } else if (badge) badge.remove();
+      // Le nom accessible commence par le libellé visible (« Sec II », « Uni »…)
+      b.setAttribute("aria-label", n
+        ? `${libelle(n)}${NOMS_LONGS[n] ? ` (${NOMS_LONGS[n]})` : ""} : ${pluriel(nb, "fiche", "fiches")}`
+        : `Tous les degrés : ${pluriel(nb, "fiche", "fiches")}`);
+    });
+  }
+
+  function majMatieres() {
+    const base = FICHES.filter(f => correspond(f, "matiere"));
+    const noms = [...new Set(FICHES.map(f => f.matiere))].sort((a, b) => a.localeCompare(b, "fr"));
+    if (etat.matiere && !noms.includes(etat.matiere)) noms.push(etat.matiere);
+    zoneMatieres.innerHTML =
+      `<button type="button" class="matiere-btn" data-matiere="" aria-pressed="${!etat.matiere}">Toutes <span class="compte">${base.length}</span></button>` +
+      noms.map(nom => {
+        const m = infoMatiere(nom);
+        const nb = base.filter(f => f.matiere === nom).length;
+        return `<button type="button" class="matiere-btn t" style="--h:${m.teinte}" data-matiere="${esc(nom)}" aria-pressed="${etat.matiere === nom}">
+          <span class="emoji" aria-hidden="true">${m.emoji}</span>${esc(nom)} <span class="compte">${nb}</span></button>`;
+      }).join("");
+  }
+
+  /* ---------- Cartes ---------- */
+  const liste = $("#liste");
+  const cartes = new Map();          // id de fiche -> <li>
+  const observateur = "ResizeObserver" in window
+    ? new ResizeObserver(entrees => entrees.forEach(e => {
+        const w = e.contentRect.width;          // 0 quand la carte est masquée : on garde l'ancienne échelle
+        if (w > 0) e.target.style.setProperty("--echelle", (w / LARGEUR_A4).toFixed(4));
+      }))
+    : null;
+  // Les aperçus ne se chargent qu'à l'approche de l'écran (utile avec des dizaines de fiches)
+  const chargeur = "IntersectionObserver" in window
+    ? new IntersectionObserver(entrees => entrees.forEach(e => {
+        if (!e.isIntersecting) return;
+        const cadre = e.target.querySelector("iframe");
+        if (!cadre.src) cadre.src = cadre.dataset.src;
+        chargeur.unobserve(e.target);
+      }), { rootMargin: "600px 0px" })
+    : null;
+
+  const ICONES = {
+    pages: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z" stroke-linejoin="round"/></svg>',
+    corrige: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>',
+    aleatoire: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="3"/><circle cx="5.5" cy="5.5" r=".6" fill="currentColor"/><circle cx="10.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="8" cy="8" r=".6" fill="currentColor"/></svg>',
+  };
+
+  function carte(f, niveauTitre) {
+    const li = document.createElement("li");
+    const h = `h${niveauTitre}`;
+    const infos = [
+      `<li>${ICONES.pages}${pluriel(f.pages || 1, "page A4", "pages A4")}</li>`,
+      f.corrige ? `<li>${ICONES.corrige}Corrigé</li>` : "",
+      f.aleatoire ? `<li>${ICONES.aleatoire}Exercices à volonté</li>` : "",
+    ].join("");
+    li.innerHTML = `
+      <article class="fiche t" style="--h:${f.teinte}">
+        <div class="apercu" aria-hidden="true">
+          ${f.nouveau ? '<span class="ruban">Nouveau</span>' : ""}
+          <div class="feuille">
+            <div class="feuille-attente"><span>${f.emoji}</span></div>
+            <iframe loading="lazy" tabindex="-1" scrolling="no" title="" sandbox="allow-same-origin allow-scripts"></iframe>
+          </div>
+        </div>
+        <div class="corps">
+          <div class="etiquettes">
+            ${f.nouveau ? '<span class="visuellement-cache">Nouveau, </span>' : ""}
+            <span class="pastille-matiere"><span aria-hidden="true">${f.emoji}</span>${esc(f.matiere)}</span>
+            ${f.niveaux.length ? `<span class="pastille-niveau"><span class="visuellement-cache">Degré </span>${esc(plageNiveaux(f.niveaux))}</span>` : ""}
+          </div>
+          <${h}><a class="fiche-lien" href="${esc(encodeURI(f.fichier))}">${esc(f.titre)}</a></${h}>
+          ${f.description ? `<p class="description">${esc(f.description)}</p>` : ""}
+          <ul class="infos">${infos}${f.date ? `<li class="date"><span class="visuellement-cache">Ajoutée le </span>${esc(formatDateCourte.format(f.date))}</li>` : ""}</ul>
+        </div>
+      </article>`;
+
+    const feuille = li.querySelector(".feuille");
+    const cadre = li.querySelector("iframe");
+    cadre.addEventListener("load", () => {
+      try {
+        // Même origine (GitHub Pages) : on retire les boutons et la marge grise de la fiche
+        const doc = cadre.contentDocument;
+        const style = doc.createElement("style");
+        style.textContent = ".toolbar,.print-btn,.retour{display:none!important}html,body{background:#fff!important;overflow:hidden!important}.page{margin:0!important;box-shadow:none!important}";
+        doc.head.append(style);
+      } catch (e) { /* ouvert depuis le disque : aperçu tel quel */ }
+      feuille.classList.add("chargee");
+    });
+    cadre.dataset.src = encodeURI(f.fichier);
+    if (chargeur) chargeur.observe(feuille);
+    else cadre.src = cadre.dataset.src;
+    if (observateur) observateur.observe(feuille);
+    return li;
+  }
+
+  function trier(fiches) {
+    const parTitre = (a, b) => a.titre.localeCompare(b.titre, "fr", { sensitivity: "base" });
+    const copie = [...fiches];
+    if (etat.tri === "recent") return copie.sort((a, b) => (b.date || 0) - (a.date || 0) || parTitre(a, b));
+    if (etat.tri === "titre") return copie.sort(parTitre);
+    return copie.sort((a, b) => a.rang - b.rang || a.matiere.localeCompare(b.matiere, "fr") || parTitre(a, b));
+  }
+
+  // Construit toutes les cartes dans l'ordre demandé. Les filtres se contentent ensuite
+  // de masquer des cartes, pour ne pas recharger les aperçus à chaque frappe.
+  function construireListe() {
+    if (observateur) observateur.disconnect();
+    if (chargeur) chargeur.disconnect();
+    cartes.clear();
+    liste.innerHTML = "";
+    const triees = trier(FICHES);
+
+    if (etat.tri === "degre") {
+      const groupes = [...CYCLES, { id: "autre", nom: "Autres fiches", detail: "", teinte: 220 }];
+      groupes.forEach(c => {
+        const membres = triees.filter(f => (CYCLE_DE[f.niveaux[0]] || { id: "autre" }).id === c.id);
+        if (!membres.length) return;
+        const section = document.createElement("section");
+        section.className = "groupe t";
+        section.style.setProperty("--h", c.teinte);
+        section.dataset.groupe = c.id;
+        section.setAttribute("aria-labelledby", `groupe-${c.id}`);
+        section.innerHTML = `<h3 class="groupe-titre" id="groupe-${c.id}">${esc(c.nom)}${c.detail ? ` <small>${esc(c.detail)}</small>` : ""}</h3><ul class="grille" role="list"></ul>`;
+        const ul = section.querySelector("ul");
+        membres.forEach(f => { const li = carte(f, 4); cartes.set(f.id, li); ul.append(li); });
+        liste.append(section);
+      });
+    } else {
+      const ul = document.createElement("ul");
+      ul.className = "grille";
+      ul.setAttribute("role", "list");
+      triees.forEach(f => { const li = carte(f, 3); cartes.set(f.id, li); ul.append(li); });
+      liste.append(ul);
+    }
+  }
+
+  function appliquerFiltres() {
+    if (!brutes) return;   // catalogue absent : le message d'erreur reste affiché
+    let nb = 0;
+    FICHES.forEach(f => {
+      const ok = correspond(f);
+      cartes.get(f.id).hidden = !ok;
+      if (ok) nb++;
+    });
+    liste.querySelectorAll(".groupe").forEach(s => { s.hidden = !s.querySelector(".grille > li:not([hidden])"); });
+
+    const filtre = etat.niveau || etat.matiere || etat.q.trim();
+    const total = FICHES.length;
+    $("#resultat").textContent = filtre
+      ? `${nb ? pluriel(nb, "fiche", "fiches") : "Aucune fiche"} sur ${total}`
+      : (total ? pluriel(total, "fiche", "fiches") : "");
+    $("#reinitialiser").hidden = !filtre;
+
+    $("#vide").hidden = nb > 0;
+    $("#vide-reinitialiser").hidden = !filtre;
+    if (!nb) {
+      let texte = "Essayez un autre degré, une autre matière ou un autre mot.";
+      if (!total) texte = "Aucune fiche n’est encore publiée. Revenez bientôt !";
+      else if (etat.niveau && !etat.q.trim()) {
+        const m = etat.matiere.toLocaleLowerCase("fr");
+        const deMatiere = m ? (/^[aeiouyhàâéèêîïôû]/.test(m) ? ` d’${m}` : ` de ${m}`) : "";
+        const pourNiveau = { SEC2: " au secondaire II", UNI: " pour la haute école et l’université" }[etat.niveau] || ` pour la ${etat.niveau}`;
+        texte = `Il n’y a pas encore de fiche${deMatiere}${pourNiveau}. De nouvelles fiches arrivent régulièrement !`;
+      }
+      $("#vide-texte").textContent = texte;
+    }
+    majFrise();
+    majMatieres();
+    majAdresse();
+  }
+
+  function reinitialiser() {
+    etat.niveau = ""; etat.matiere = ""; etat.q = "";
+    $("#recherche").value = "";
+    appliquerFiltres();
+    $("#fiches").focus();   // le bouton cliqué vient d'être masqué : on garde le focus dans la liste
+  }
+
+  /* ---------- Chiffres clés ---------- */
+  function majChiffres() {
+    const matieres = new Set(FICHES.map(f => f.matiere)).size;
+    const derniere = FICHES.reduce((max, f) => (f.date && (!max || f.date > max) ? f.date : max), null);
+    $("#chiffres").innerHTML = [
+      `<li><b>${FICHES.length}</b> ${FICHES.length > 1 ? "fiches" : "fiche"}</li>`,
+      `<li><b>${matieres}</b> ${matieres > 1 ? "matières" : "matière"}</li>`,
+      `<li><b>${FICHES.filter(f => f.corrige).length}</b> avec corrigé</li>`,
+      derniere ? `<li>Mise à jour le ${esc(formatDate.format(derniere))}</li>` : "",
+    ].join("");
+  }
+
+  /* ---------- Licence et téléchargement ---------- */
+  const dialogue = $("#licence");
+  const btnAccepter = $("#licence-accepter");
+  const btnAnnuler = $("#licence-annuler");
+  let ouvreur = null;
+  let message = null;
+
+  function afficherMessage(texte) {
+    const el = $("#message");
+    el.textContent = texte;
+    el.classList.add("visible");
+    clearTimeout(message);
+    message = setTimeout(() => el.classList.remove("visible"), 6000);
+  }
+
+  function telecharger() {
+    window.location.assign(URL_ZIP);
+    afficherMessage("Merci ! Le téléchargement de l’archive va commencer.");
+  }
+
+  function ouvrirLicence(pourTelecharger) {
+    if (typeof dialogue.showModal !== "function") {   // très vieux navigateurs
+      if (!pourTelecharger) { window.open("https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr", "_blank", "noopener"); return; }
+      if (window.confirm("Ces exercices sont sous licence CC BY-NC-SA 4.0 : utilisation commerciale et revente interdites. Acceptez-vous ces conditions ?")) telecharger();
+      return;
+    }
+    btnAccepter.hidden = !pourTelecharger;
+    $("#licence-note").hidden = !pourTelecharger;
+    btnAnnuler.textContent = pourTelecharger ? "Annuler" : "Fermer";
+    $("#licence-titre").textContent = pourTelecharger ? "Avant de télécharger" : "Licence des exercices";
+    dialogue.returnValue = "";
+    $("#texte-licence").scrollTop = 0;
+    dialogue.showModal();
+    $("#licence-titre").focus();
+  }
+
+  // Les deux boutons ferment la boîte (formulaire method="dialog") ; seul « J'accepte » lance le téléchargement
+  btnAccepter.addEventListener("click", telecharger);
+  // Un clic à côté de la boîte (sur le fond assombri) l'annule, mais pas une sélection de texte relâchée sur le fond
+  let appuiSurFond = false;
+  dialogue.addEventListener("pointerdown", e => { appuiSurFond = e.target === dialogue; });
+  dialogue.addEventListener("click", e => {
+    if (appuiSurFond && e.target === dialogue) dialogue.close("annuler");
+    appuiSurFond = false;
+  });
+  // Rendre le focus au bouton qui a ouvert la boîte (Safari ne donne pas le focus aux boutons cliqués)
+  dialogue.addEventListener("close", () => { if (ouvreur && ouvreur.isConnected) ouvreur.focus(); ouvreur = null; });
+
+  document.querySelectorAll("[data-telecharger]").forEach(b => b.addEventListener("click", () => { ouvreur = b; ouvrirLicence(true); }));
+  const btnLire = $("#lire-licence");
+  btnLire.addEventListener("click", () => { ouvreur = btnLire; ouvrirLicence(false); });
+
+  /* ---------- Événements ---------- */
+  frise.addEventListener("click", e => {
+    const b = e.target.closest(".degre");
+    if (!b) return;
+    const n = b.dataset.niveau;
+    etat.niveau = etat.niveau === n ? "" : n;
+    appliquerFiltres();
+  });
+  zoneMatieres.addEventListener("click", e => {
+    const b = e.target.closest(".matiere-btn");
+    if (!b) return;
+    const m = b.dataset.matiere;
+    etat.matiere = etat.matiere === m ? "" : m;
+    appliquerFiltres();
+    zoneMatieres.querySelector(`[data-matiere="${CSS.escape(m)}"]`)?.focus();
+  });
+  const champ = $("#recherche");
+  champ.value = etat.q;
+  champ.addEventListener("input", () => { etat.q = champ.value; appliquerFiltres(); });
+  champ.addEventListener("keydown", e => { if (e.key === "Escape" && champ.value) { e.preventDefault(); champ.value = ""; etat.q = ""; appliquerFiltres(); } });
+  const tri = $("#tri");
+  tri.value = etat.tri;
+  tri.addEventListener("change", () => { etat.tri = tri.value; construireListe(); appliquerFiltres(); });
+  $("#reinitialiser").addEventListener("click", reinitialiser);
+  $("#vide-reinitialiser").addEventListener("click", reinitialiser);
+
+  /* ---------- Démarrage ---------- */
+  construireFrise();
+  if (!brutes) {
+    $("#resultat").textContent = "";
+    $("#vide").hidden = false;
+    $("#vide").querySelector("h3").textContent = "Le catalogue n’a pas pu être chargé";
+    $("#vide-texte").textContent = "Le fichier catalogue.js est introuvable. Régénérez-le avec outils/generer_catalogue.py.";
+    $("#vide-reinitialiser").hidden = true;
+    majFrise(); majMatieres();
+    return;
+  }
+  majChiffres();
+  construireListe();
+  appliquerFiltres();
+
+  // Sur téléphone, la frise défile : montrer le degré choisi, sinon le premier degré qui a des fiches
+  function montrerDansFrise() {
+    const bouton = frise.querySelector(".degre[aria-pressed='true']:not([data-niveau=''])")
+      || frise.querySelector(".degre:not(.vide):not([data-niveau=''])");
+    if (!bouton) return;
+    const f = frise.getBoundingClientRect();
+    const b = bouton.getBoundingClientRect();
+    if (b.left >= f.left && b.right <= f.right) return;   // déjà visible
+    frise.scrollLeft += (b.left - f.left) - (frise.clientWidth - b.width) / 2;
+  }
+  montrerDansFrise();
+  if (document.fonts) document.fonts.ready.then(montrerDansFrise);   // les largeurs changent quand Lexend arrive
+})();
+</script>
+</body>
+</html>

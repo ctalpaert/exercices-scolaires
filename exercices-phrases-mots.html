@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les mots et les phrases</title>
+<meta name="description" content="Remettre en ordre les mots d’une phrase, corriger des mots inversés et trouver l’intrus en comptant les lettres.">
+<meta name="keywords" content="phrase, mots, ordre des mots, majuscule, point, compter les lettres, intrus">
+<meta name="exercice:matiere" content="Français">
+<meta name="exercice:niveau" content="4P">
+<meta name="exercice:ajout" content="2026-10-03">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+
+  :root {
+    color-scheme: light;
+    --ink: #1f2933;
+    --purple: #5146e5;
+    --purple-soft: #f2f1fe;
+    --pink: #d6528c;
+    --green: #3fa45b;
+    --orange: #ec9a2f;
+    --answer: #e03131;
+    --rule: #8c7a5c;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #e9edf1; }
+
+  body {
+    margin: 0;
+    font-family: "Lexend", "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Feuille A4 : une feuille par exercice */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 10mm auto;
+    padding: 7mm 9mm 4mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+  }
+
+  /* En-tête */
+  .head {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 4mm;
+    padding: 3mm 6mm;
+    border: .5mm solid var(--purple);
+    border-radius: 4mm;
+    background: var(--purple-soft);
+  }
+  .head h1 { margin: 0; font-size: 18pt; font-weight: 700; color: var(--purple); white-space: nowrap; }
+  .stars { font-size: 15pt; letter-spacing: 1.5mm; color: #444; }
+  .ident { justify-self: end; display: grid; gap: 3mm; font-size: 9pt; font-weight: 500; }
+  .ident div { white-space: nowrap; display: flex; align-items: flex-end; justify-content: flex-end; gap: 2mm; }
+  .ident i { width: 38mm; border-bottom: .35mm dotted var(--ink); }
+  .badge {
+    display: none;
+    position: absolute;
+    top: -3mm;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: .8mm 4mm;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #fff;
+    background: var(--answer);
+    border-radius: 3mm;
+  }
+
+  /* Bloc d'exercice : occupe toute la hauteur libre de la feuille */
+  .ex {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 7mm;
+    padding: 6mm 6mm 5mm;
+    border: .45mm solid var(--border);
+    border-radius: 4mm;
+  }
+  .tab {
+    position: absolute;
+    top: -3.6mm;
+    left: -.45mm;
+    padding: 1.2mm 4mm;
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 3mm;
+  }
+  .consigne { margin: 0; font-size: 12pt; font-weight: 500; line-height: 1.45; }
+  .tip { margin: 2mm 0 0; font-size: 9.5pt; color: #5c6670; }
+
+  .ex1 { --accent: var(--pink); --border: #efb2cb; }
+  .ex2 { --accent: var(--green); --border: #a9dab6; }
+  .ex3 { --accent: var(--orange); --border: #f3c888; }
+
+  /* Réponses du corrigé : masquées tant que le corrigé n'est pas affiché */
+  .ans { visibility: hidden; color: var(--answer); }
+  body.corrige .ans { visibility: visible; }
+  body.corrige .badge { display: inline-block; }
+
+  .num {
+    flex: none;
+    width: 8mm;
+    height: 8mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11pt;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* Lignes d'écriture, avec une ligne d'aide en pointillés */
+  .wline {
+    position: relative;
+    height: 17mm;
+    padding: 0 3mm 1.5mm;
+    display: flex;
+    align-items: flex-end;
+    font-size: 19pt;
+    font-weight: 500;
+    line-height: 1;
+    border-bottom: .4mm solid var(--rule);
+  }
+  .wline::before {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: 0;
+    right: 0;
+    border-top: .3mm dashed #d9cfbd;
+  }
+
+  /* Exercice 1 : trois phrases, chacune avec ses étiquettes dispersées et sa ligne */
+  .s-list { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6mm; margin-top: 5mm; }
+  .s-block { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+  /* Une couleur par phrase : une fois découpées, les étiquettes ne se mélangent pas */
+  .s-block.c1 { --bg: #fde6ef; --line: #e98bb2; --zone: #fff7fa; --zone-line: #f6cadb; }
+  .s-block.c2 { --bg: #e3f0fc; --line: #6aa8e0; --zone: #f5f9fe; --zone-line: #c9def3; }
+  .s-block.c3 { --bg: #fdf0c9; --line: #e8a93a; --zone: #fffbf0; --zone-line: #f3dca6; }
+  .s-block .num { position: absolute; top: -3mm; left: -3mm; z-index: 1; width: 7.5mm; height: 7.5mm; font-size: 10pt; background: var(--line); }
+  .s-block .wline { flex: none; height: 15mm; }
+  .scatter {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    background: var(--zone);
+    border: .35mm solid var(--zone-line);
+    border-radius: 3mm;
+  }
+  .tag {
+    position: absolute;
+    padding: 2.5mm 4.5mm;
+    font-size: 20pt;
+    font-weight: 600;
+    line-height: 1.1;
+    white-space: nowrap;
+    background: var(--bg);
+    border: .5mm dashed var(--line);
+    border-radius: 2.5mm;
+    transform: rotate(var(--rot, 0deg));
+  }
+  .ord {
+    display: none;
+    position: absolute;
+    top: -3.2mm;
+    right: -3.2mm;
+    width: 6.5mm;
+    height: 6.5mm;
+    align-items: center;
+    justify-content: center;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #fff;
+    background: var(--answer);
+    border-radius: 50%;
+  }
+  body.corrige .ord { display: flex; }
+  /* Repli si le placement aléatoire échoue : étiquettes alignées, déjà mélangées */
+  .scatter.flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    gap: 3mm 6mm;
+    padding: 3mm;
+  }
+  .scatter.flow .tag { position: relative; }
+
+  /* Exercice 2 : mots inversés */
+  .example {
+    align-self: flex-start;
+    margin: 3mm 0 0;
+    padding: 2mm 4mm;
+    font-size: 11pt;
+    font-weight: 500;
+    color: #2b7a43;
+    background: #e4f6e9;
+    border: .35mm dashed #8fd0a2;
+    border-radius: 2mm;
+  }
+  .example mark { padding: 0 .8mm; color: inherit; background: #bfe8cb; border-radius: 1mm; }
+  .items { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+  .mixed { display: flex; align-items: center; gap: 3mm; }
+  .sentence {
+    flex: 1;
+    margin: 0;
+    padding: 3.5mm 5mm;
+    font-size: 20pt;
+    font-weight: 600;
+    background: #effaf2;
+    border: .35mm solid #c3e8cd;
+    border-radius: 3mm;
+  }
+  body.corrige .sw { text-decoration: underline wavy var(--answer); text-decoration-thickness: .4mm; text-underline-offset: 1.5mm; }
+  .items .wline { margin: 6mm 0 0 11mm; }
+
+  /* Exercice 3 : l'intrus */
+  .rows { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; }
+  .row {
+    position: relative;
+    padding: 5mm 2mm 4mm;
+    background: #fff8ec;
+    border: .3mm solid #f5d49e;
+    border-radius: 3mm;
+  }
+  .row .num { position: absolute; top: -3mm; left: -3mm; width: 7.5mm; height: 7.5mm; font-size: 10pt; }
+  .cells { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5mm; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 3mm; }
+  .w {
+    padding: 1.2mm 2mm;
+    font-size: 16pt;
+    font-weight: 600;
+    letter-spacing: .25mm;
+    white-space: nowrap;
+    border: .55mm solid transparent;
+    border-radius: 50%;
+  }
+  .count {
+    width: 9mm;
+    height: 9mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12pt;
+    font-weight: 700;
+    background: #fff;
+    border: .4mm solid #e8a93a;
+    border-radius: 50%;
+  }
+  body.corrige .odd .w { border-color: var(--answer); }
+  .row.demo { margin-top: 5mm; background: #fff; border: .35mm dashed #f3c888; }
+  .demo .ans { visibility: visible; color: #b86e0b; }
+  .demo .odd .w { border-color: var(--orange); }
+  .demo-label {
+    position: absolute;
+    top: -2.8mm;
+    left: 4mm;
+    padding: .5mm 2.5mm;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #b86e0b;
+    background: #fde5bb;
+    border-radius: 2mm;
+  }
+
+  footer {
+    margin-top: auto;
+    padding-top: 2mm;
+    text-align: center;
+    font-size: 8.5pt;
+    font-weight: 500;
+    color: #8b82dd;
+  }
+
+  /* Boutons (écran uniquement) */
+  .toolbar {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .toolbar button {
+    padding: 8px 16px;
+    font: inherit;
+    font-size: 14px;
+    color: #fff;
+    background: #1c7ed6;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .toolbar button.secondary { color: #1c7ed6; background: #fff; box-shadow: inset 0 0 0 1.5px #1c7ed6; }
+
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; height: 296mm; box-shadow: none; break-after: page; }
+    .page:last-of-type { break-after: auto; }
+    .toolbar { display: none; }
+  }
+
+  /* Lien vers la liste de tous les exercices (écran uniquement) */
+  .retour {
+    position: fixed;
+    top: 12px;
+    left: 16px;
+    padding: 8px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: #1864ab;
+    text-decoration: none;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1.5px #1864ab;
+  }
+  .retour:hover { background: #e7f5ff; }
+  @media print { .retour { display: none; } }
+
+  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  .page { position: relative; }
+  .page::after {
+    content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.2mm;
+    font: 6.5pt/1 "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: #7b8591;
+    text-align: center;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<a class="retour" href="index.html">← Tous les exercices</a>
+
+<div class="toolbar">
+  <button type="button" onclick="window.print()">Imprimer</button>
+  <button type="button" class="secondary" id="btn-new">🎲 Nouveaux exercices</button>
+  <button type="button" class="secondary" id="btn-corrige" aria-pressed="false">Afficher le corrigé</button>
+</div>
+
+<!-- Page 1 : la phrase en désordre -->
+<main class="page">
+  <header class="head">
+    <h1>✂️ Les phrases en désordre</h1>
+    <div class="stars" aria-hidden="true">☆☆☆</div>
+    <span class="badge">Corrigé</span>
+    <div class="ident">
+      <div>Prénom : <i></i></div>
+      <div>Date : <i></i></div>
+    </div>
+  </header>
+
+  <section class="ex ex1">
+    <span class="tab">Exercice 1</span>
+    <p class="consigne">🧩 Les mots de chaque phrase sont tout mélangés ! Remets les étiquettes dans le bon ordre, puis écris la phrase sur la ligne.</p>
+    <p class="tip">💡 La <b>majuscule</b> commence la phrase, le <b>point</b> la termine. ✂️ Tu peux aussi découper les étiquettes.</p>
+    <div class="s-list" id="ex1-list"></div>
+  </section>
+
+  <footer>Bravo pour ton travail ! 🌟</footer>
+</main>
+
+<!-- Page 2 : les mots inversés -->
+<main class="page">
+  <header class="head">
+    <h1>🔄 Les mots inversés</h1>
+    <div class="stars" aria-hidden="true">☆☆☆</div>
+    <span class="badge">Corrigé</span>
+    <div class="ident">
+      <div>Prénom : <i></i></div>
+      <div>Date : <i></i></div>
+    </div>
+  </header>
+
+  <section class="ex ex2">
+    <span class="tab">Exercice 2</span>
+    <p class="consigne">🔄 Dans chaque phrase, <b>deux mots</b> ont échangé leur place. Recopie la phrase en remettant les mots dans le bon ordre.</p>
+    <p class="example">Exemple : Le <mark>court</mark> <mark>chien</mark> vite. ➜ Le chien court vite.</p>
+    <div class="items" id="ex2-list"></div>
+  </section>
+
+  <footer>Bravo pour ton travail ! 🌟</footer>
+</main>
+
+<!-- Page 3 : l'intrus -->
+<main class="page">
+  <header class="head">
+    <h1>🔍 Trouve l'intrus</h1>
+    <div class="stars" aria-hidden="true">☆☆☆</div>
+    <span class="badge">Corrigé</span>
+    <div class="ident">
+      <div>Prénom : <i></i></div>
+      <div>Date : <i></i></div>
+    </div>
+  </header>
+
+  <section class="ex ex3">
+    <span class="tab">Exercice 3</span>
+    <p class="consigne">🔢 Compte les lettres de chaque mot et écris le nombre dans la bulle. Puis <b>entoure l'intrus</b> : le mot qui n'a pas le même nombre de lettres que les autres.</p>
+    <div class="row demo" id="ex3-demo"></div>
+    <div class="rows" id="ex3-rows"></div>
+  </section>
+
+  <footer>Bravo pour ton travail ! 🌟</footer>
+</main>
+
+<script>
+  // Exercice 1 : phrases de 5 ou 6 mots, sans apostrophe
+  const EX1_SENTENCES = [
+    "Le petit chat boit du lait.",
+    "Maman prépare un gâteau au chocolat.",
+    "Le chien joue avec la balle.",
+    "Les oiseaux chantent dans le jardin.",
+    "Noa lit une belle histoire.",
+    "Le lapin mange une carotte.",
+    "Papa lave la voiture rouge.",
+    "Le soleil brille dans le ciel.",
+    "Le poisson nage dans le bocal.",
+    "Les enfants jouent dans la cour.",
+    "Le singe grimpe dans un arbre.",
+    "Mamie tricote un bonnet pour Noa.",
+    "Le bébé dort dans son lit.",
+    "La sorcière vole sur son balai.",
+    "Le pirate cherche un trésor.",
+    "La petite souris mange du fromage.",
+    "Le loup a de grandes dents.",
+    "La vache donne du lait.",
+    "Le dragon crache du feu.",
+    "La maîtresse écrit au tableau.",
+    "Le train arrive à la gare."
+  ];
+
+  // Exercice 2 : phrases courtes de 4 à 6 mots
+  const EX2_SENTENCES = [
+    "Le chat dort sur le lit.",
+    "Tom mange une pomme.",
+    "La poule pond un œuf.",
+    "Le bébé boit son biberon.",
+    "Papa lit le journal.",
+    "Le chien aboie très fort.",
+    "La lune brille la nuit.",
+    "Mamie fait une tarte.",
+    "Le train roule très vite.",
+    "Noa range sa chambre.",
+    "Le loup court dans la forêt.",
+    "Il pleut sur la ville.",
+    "Le canard nage dans la mare.",
+    "Je mets mon manteau.",
+    "Le clown fait rire les enfants.",
+    "La fée a une baguette.",
+    "Lili joue avec sa poupée.",
+    "Le cheval saute la barrière.",
+    "Les fleurs sentent bon."
+  ];
+
+  // Exercice 3 : mots simples, le nombre de lettres est calculé automatiquement
+  const EX3_WORDS = [
+    "lit", "roi", "riz", "nez", "bol", "sac", "feu", "jeu", "zoo", "ami", "mur", "mer", "ver", "bus", "jus",
+    "ski", "nid", "dos", "âne", "thé", "cou", "lac", "sol", "fil", "pot", "fée", "clé", "blé", "pie",
+    "chat", "loup", "lune", "ours", "vélo", "lion", "pain", "robe", "rose", "kiwi", "moto", "nuit", "lait", "bébé",
+    "dent", "main", "pied", "bain", "café", "chou", "cube", "fête", "jupe", "lama", "page", "roue", "seau", "four", "gare",
+    "pomme", "lapin", "sapin", "neige", "tigre", "vache", "ville", "fleur", "livre", "arbre", "table", "poule", "train",
+    "avion", "chien", "fusée", "zèbre", "singe", "pluie", "robot", "panda", "koala", "crabe", "tasse", "porte", "ferme",
+    "plage", "sucre", "école", "orage",
+    "bateau", "soleil", "tortue", "fraise", "maison", "mouton", "girafe", "cheval", "citron", "jardin", "ballon",
+    "canard", "valise", "salade", "camion", "oiseau", "renard", "cerise", "mouche", "cadeau", "étoile", "banane",
+    "tomate", "castor", "souris", "crayon", "cochon", "requin", "dragon", "orange", "cahier", "fourmi", "chaton", "gâteau",
+    "poisson", "carotte", "chapeau", "chameau", "dauphin", "biscuit", "abeille", "chemise", "fromage", "voiture",
+    "cuisine", "tambour", "guitare", "trousse", "château"
+  ];
+
+  const BLOCK_COLORS = ["c1", "c2", "c3"];
+  const MM = 96 / 25.4; // pixels CSS par millimètre
+
+  const rand = n => Math.floor(Math.random() * n);
+  const shuffle = list => {
+    const a = list.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = rand(i + 1);
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  const sample = (list, k) => shuffle(list).slice(0, k);
+  const letterCount = w => [...w.normalize("NFC")].length;
+
+  // Exercice 1 : trois phrases découpées en étiquettes, jamais dans l'ordre de départ
+  function buildEx1() {
+    document.getElementById("ex1-list").innerHTML = sample(EX1_SENTENCES, 3)
+      .map((sentence, n) => {
+        const words = sentence.split(" ");
+        let order;
+        do order = shuffle(words.map((_, i) => i)); while (order.every((v, i) => v === i));
+        const tags = order
+          .map(i => `<span class="tag" data-i="${i}">${words[i]}<span class="ord">${i + 1}</span></span>`)
+          .join("");
+        return `<div class="s-block ${BLOCK_COLORS[n]}"><span class="num">${n + 1}</span><div class="scatter">${tags}</div>`
+          + `<div class="wline"><span class="ans">${sentence}</span></div></div>`;
+      })
+      .join("");
+    placeAllTags();
+  }
+
+  // Pose les étiquettes au hasard dans la zone, sans chevauchement et bien réparties
+  function placeTags(zone) {
+    const tags = [...zone.querySelectorAll(".tag")];
+    zone.classList.remove("flow");
+    tags.forEach(t => { t.style.left = t.style.top = ""; });
+
+    const W = zone.clientWidth, H = zone.clientHeight;
+    const edge = 3 * MM, gap = 4 * MM;
+    const sizes = tags.map(t => ({ w: t.offsetWidth, h: t.offsetHeight }));
+    // Les plus grandes étiquettes d'abord : elles trouvent plus facilement leur place
+    const bySize = sizes.map((_, k) => k).sort((a, b) => sizes[b].w - sizes[a].w);
+    // Lire les étiquettes de haut en bas, de gauche à droite ou ligne par ligne ne doit pas donner la phrase
+    const inOrder = (boxes, key) => boxes
+      .map((b, k) => [key(b), +tags[k].dataset.i])
+      .sort((a, b) => a[0] - b[0])
+      .every(([, i], n) => i === n);
+    const byLine = b => (b.y + b.h / 2 < H / 2 ? 0 : W) + b.x;
+
+    for (let attempt = 0; attempt < 200; attempt++) {
+      const boxes = [];
+      for (const k of bySize) {
+        const { w, h } = sizes[k];
+        const placed = boxes.filter(Boolean);
+        let best = null, bestScore = -1;
+        for (let c = 0; c < 80; c++) {
+          const x = edge + Math.random() * (W - w - 2 * edge);
+          const y = edge + Math.random() * (H - h - 2 * edge);
+          const free = placed.every(b => x + w + gap <= b.x || b.x + b.w + gap <= x || y + h + gap <= b.y || b.y + b.h + gap <= y);
+          if (!free) continue;
+          // On garde l'emplacement le plus éloigné des étiquettes déjà posées
+          const score = Math.min(Infinity, ...placed.map(b => Math.hypot(x + w / 2 - b.x - b.w / 2, y + h / 2 - b.y - b.h / 2)));
+          if (score > bestScore) [best, bestScore] = [{ x, y, w, h }, score];
+        }
+        if (!best) break;
+        boxes[k] = best;
+      }
+      if (boxes.filter(Boolean).length < tags.length || [b => b.y, b => b.x, byLine].some(key => inOrder(boxes, key))) continue;
+
+      tags.forEach((t, k) => {
+        t.style.left = `${boxes[k].x / W * 100}%`;
+        t.style.top = `${boxes[k].y / H * 100}%`;
+        t.style.setProperty("--rot", `${(Math.random() * 10 - 5).toFixed(1)}deg`);
+      });
+      return;
+    }
+    zone.classList.add("flow");
+  }
+
+  const placeAllTags = () => document.querySelectorAll(".scatter").forEach(placeTags);
+
+  // Exercice 2 : on échange deux mots voisins, en laissant le premier (majuscule) et le dernier (point) en place
+  function buildEx2() {
+    document.getElementById("ex2-list").innerHTML = sample(EX2_SENTENCES, 3)
+      .map((sentence, n) => {
+        const words = sentence.split(" ");
+        const spots = [];
+        for (let i = 1; i < words.length - 2; i++) if (words[i] !== words[i + 1]) spots.push(i);
+        const i = spots[rand(spots.length)];
+        const mixed = words.map((w, k) => (k === i || k === i + 1 ? `<span class="sw">${w}</span>` : w));
+        [mixed[i], mixed[i + 1]] = [mixed[i + 1], mixed[i]];
+        return `<div class="item"><div class="mixed"><span class="num">${n + 1}</span><p class="sentence">${mixed.join(" ")}</p></div>`
+          + `<div class="wline"><span class="ans">${sentence}</span></div></div>`;
+      })
+      .join("");
+  }
+
+  // Exercice 3 : quatre mots de `len` lettres et un intrus d'une lettre de plus ou de moins
+  function oddOneOut(len, used) {
+    const pool = n => shuffle(EX3_WORDS.filter(w => letterCount(w) === n && !used.has(w)));
+    const oddLens = [len - 1, len + 1].filter(n => n >= 3 && pool(n).length > 0);
+    const same = pool(len).slice(0, 4);
+    const odd = pool(oddLens[rand(oddLens.length)])[0];
+    [...same, odd].forEach(w => used.add(w));
+    return shuffle([...same.map(w => ({ w, odd: false })), { w: odd, odd: true }]);
+  }
+
+  const cells = row => `<div class="cells">${row
+    .map(({ w, odd }) => `<div class="cell${odd ? " odd" : ""}"><span class="w">${w}</span><span class="count"><span class="ans">${letterCount(w)}</span></span></div>`)
+    .join("")}</div>`;
+
+  function buildEx3() {
+    const used = new Set();
+    document.getElementById("ex3-demo").innerHTML = `<span class="demo-label">Exemple</span>${cells(oddOneOut(3, used))}`;
+    // Des mots de plus en plus longs
+    document.getElementById("ex3-rows").innerHTML = [3, 4, 5, 6]
+      .map((len, n) => `<div class="row"><span class="num">${n + 1}</span>${cells(oddOneOut(len, used))}</div>`)
+      .join("");
+  }
+
+  function generate() {
+    buildEx1();
+    buildEx2();
+    buildEx3();
+  }
+
+  document.getElementById("btn-new").addEventListener("click", generate);
+  document.getElementById("btn-corrige").addEventListener("click", e => {
+    const on = document.body.classList.toggle("corrige");
+    e.currentTarget.setAttribute("aria-pressed", on);
+    e.currentTarget.textContent = on ? "Masquer le corrigé" : "Afficher le corrigé";
+  });
+
+  generate();
+  // La taille des étiquettes dépend de la police : on les replace une fois Lexend chargée
+  if (document.fonts) document.fonts.load('600 20pt "Lexend"').then(placeAllTags, () => {});
+</script>
+
+</body>
+</html>

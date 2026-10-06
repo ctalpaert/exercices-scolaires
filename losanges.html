@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les losanges</title>
+<meta name="description" content="Reconnaître six losanges (carré, aplati, debout, penché, couché, fin) grâce au codage des côtés de même longueur.">
+<meta name="keywords" content="géométrie, losange, côtés égaux, angle droit, codage">
+<meta name="exercice:matiere" content="Mathématiques">
+<meta name="exercice:niveau" content="4P">
+<meta name="exercice:ajout" content="2026-09-30">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+
+  :root {
+    color-scheme: light;
+    --ink: #1f2933;
+    --rule: #cfd6dd;
+    --model-bg: #f3f6f9;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #e9edf1; }
+
+  body {
+    margin: 0;
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Feuille A4 */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 10mm auto;
+    padding: 12mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+  }
+
+  header { text-align: center; }
+  h1 { margin: 0; font-size: 24pt; letter-spacing: .3pt; }
+  header p { margin: 2mm 0 0; font-size: 12pt; }
+
+  /* Légende du codage */
+  .legend {
+    margin: 3mm 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 7mm;
+    font-size: 10pt;
+  }
+  .legend li { display: flex; align-items: center; gap: 1.8mm; }
+  .legend svg { width: 7mm; height: 5mm; }
+
+  /* Les six figures */
+  .grid {
+    flex: 1;
+    min-height: 0;
+    margin-top: 5mm;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 6mm;
+  }
+
+  .card {
+    margin: 0;
+    padding: 4mm 5mm 5mm;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    border: .35mm solid var(--rule);
+    border-radius: 4mm;
+    break-inside: avoid;
+  }
+
+  .figure { flex: 1; min-height: 0; position: relative; }
+  .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* Ligne sur laquelle l'élève écrit le nom */
+  .line { flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+
+  .shape { stroke-width: 4; stroke-linejoin: round; }
+  .s1 { fill: #ffe08a; stroke: #b8860b; }
+  .s2 { fill: #ffb3c1; stroke: #c2185b; }
+  .s3 { fill: #a5d8ff; stroke: #1c7ed6; }
+  .s4 { fill: #b2f2bb; stroke: #2f9e44; }
+  .s5 { fill: #d0bfff; stroke: #6741d9; }
+  .s6 { fill: #ffd8a8; stroke: #e8590c; }
+
+  /* Codage : traits (côtés égaux), carré (angle droit) */
+  .mark {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Liste modèle */
+  .model {
+    margin-top: 6mm;
+    padding: 3.5mm 5mm 4mm;
+    border: .35mm solid var(--rule);
+    border-radius: 4mm;
+    background: var(--model-bg);
+  }
+  .model h2 { margin: 0 0 2.5mm; font-size: 11pt; font-weight: normal; text-align: center; }
+  .model ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5mm 4mm;
+  }
+  .model li { text-align: center; font-size: 16pt; font-weight: bold; white-space: nowrap; }
+
+  .print-btn {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    padding: 8px 16px;
+    font: inherit;
+    font-size: 14px;
+    color: #fff;
+    background: #1c7ed6;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; height: 296mm; box-shadow: none; }
+    .print-btn { display: none; }
+  }
+
+  /* Lien vers la liste de tous les exercices (écran uniquement) */
+  .retour {
+    position: fixed;
+    top: 12px;
+    left: 16px;
+    padding: 8px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: #1864ab;
+    text-decoration: none;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1.5px #1864ab;
+  }
+  .retour:hover { background: #e7f5ff; }
+  @media print { .retour { display: none; } }
+
+  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  .page { position: relative; }
+  .page::after {
+    content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.2mm;
+    font: 6.5pt/1 "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: #7b8591;
+    text-align: center;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<a class="retour" href="index.html">← Tous les exercices</a>
+
+<button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
+
+<main class="page">
+  <header>
+    <h1>Les losanges</h1>
+    <p>Un losange a 4 côtés de même longueur. Observe chaque losange, puis écris son nom sur la ligne.</p>
+    <ul class="legend" aria-label="Codage">
+      <li>
+        <svg viewBox="0 0 28 20" aria-hidden="true">
+          <path class="mark" d="M2,14 L26,14" stroke-width="2"/>
+          <path class="mark" d="M14,7 L14,19"/>
+        </svg>
+        côtés de même longueur
+      </li>
+      <li>
+        <svg viewBox="0 0 28 20" aria-hidden="true">
+          <path class="mark" d="M6,2 L6,18 L24,18" stroke-width="2"/>
+          <path class="mark" d="M6,9 L13,9 L13,18"/>
+        </svg>
+        angle droit
+      </li>
+    </ul>
+  </header>
+
+  <div class="grid">
+    <!-- 1. Losange debout : grande diagonale verticale -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 1">
+          <polygon class="shape s1" points="100,9 136,65 100,121 64,65"/>
+          <path class="mark" d="M113.4,40 L122.6,34 M113.4,90 L122.6,96 M86.6,90 L77.4,96 M86.6,40 L77.4,34"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 2. Losange couché : grande diagonale horizontale -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 2">
+          <polygon class="shape s2" points="14,65 100,15 186,65 100,115"/>
+          <path class="mark" d="M59.8,44.8 L54.2,35.2 M140.2,44.8 L145.8,35.2 M140.2,85.2 L145.8,94.8 M59.8,85.2 L54.2,94.8"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 3. Losange penché : posé sur un côté -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 3">
+          <polygon class="shape s3" points="31,104.8 123,104.8 169,25.2 77,25.2"/>
+          <path class="mark" d="M77,110.3 L77,99.3 M150.8,67.8 L141.2,62.2 M123,19.7 L123,30.7 M49.2,62.2 L58.8,67.8"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 4. Losange carré : 4 angles droits (le carré est un losange particulier) -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 4">
+          <polygon class="shape s4" points="100,9 156,65 100,121 44,65"/>
+          <path class="mark" d="M124.1,40.9 L131.9,33.1 M124.1,89.1 L131.9,96.9 M75.9,89.1 L68.1,96.9 M75.9,40.9 L68.1,33.1"/>
+          <path class="mark" d="M92.9,16.1 L100,23.1 L107.1,16.1 M148.9,57.9 L141.9,65 L148.9,72.1 M107.1,113.9 L100,106.9 L92.9,113.9 M51.1,72.1 L58.1,65 L51.1,57.9"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 5. Losange fin : très étroit, debout -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 5">
+          <polygon class="shape s5" points="100,7 119,65 100,123 81,65"/>
+          <path class="mark" d="M104.3,37.7 L114.7,34.3 M104.3,92.3 L114.7,95.7 M95.7,92.3 L85.3,95.7 M95.7,37.7 L85.3,34.3"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+
+    <!-- 6. Losange aplati : très plat, couché -->
+    <figure class="card">
+      <div class="figure">
+        <svg viewBox="0 0 200 130" role="img" aria-label="Figure 6">
+          <polygon class="shape s6" points="8,65 100,42 192,65 100,88"/>
+          <path class="mark" d="M55.3,58.8 L52.7,48.2 M144.7,58.8 L147.3,48.2 M144.7,71.2 L147.3,81.8 M55.3,71.2 L52.7,81.8"/>
+        </svg>
+      </div>
+      <div class="line"></div>
+    </figure>
+  </div>
+
+  <section class="model" aria-labelledby="model-title">
+    <h2 id="model-title">Pour t'aider, voici le nom des losanges :</h2>
+    <ul>
+      <li>Losange carré</li>
+      <li>Losange aplati</li>
+      <li>Losange debout</li>
+      <li>Losange penché</li>
+      <li>Losange couché</li>
+      <li>Losange fin</li>
+    </ul>
+  </section>
+</main>
+
+</body>
+</html>

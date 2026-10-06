@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L’alphabet et les voyelles</title>
+<meta name="description" content="Trouver la lettre d’avant et d’après, entourer les voyelles, ranger des mots dans l’ordre alphabétique, avec un défi pour finir.">
+<meta name="keywords" content="alphabet, lettres, voyelles, consonnes, ordre alphabétique">
+<meta name="exercice:matiere" content="Français">
+<meta name="exercice:niveau" content="4P">
+<meta name="exercice:ajout" content="2026-09-30">
+<link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+
+  :root {
+    color-scheme: light;
+    --ink: #1f2933;
+    --purple: #5146e5;
+    --purple-soft: #f2f1fe;
+    --pink: #d6528c;
+    --green: #3fa45b;
+    --orange: #ec9a2f;
+    --answer: #e03131;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { background: #e9edf1; }
+
+  body {
+    margin: 0;
+    font-family: "Lexend", "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Feuille A4 */
+  .page {
+    width: 210mm;
+    height: 297mm;
+    margin: 10mm auto;
+    padding: 7mm 9mm 4mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+  }
+
+  /* En-tête */
+  .head {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 4mm;
+    padding: 3mm 6mm;
+    border: .5mm solid var(--purple);
+    border-radius: 4mm;
+    background: var(--purple-soft);
+  }
+  .head h1 { margin: 0; font-size: 18pt; font-weight: 700; color: var(--purple); white-space: nowrap; }
+  .stars { font-size: 15pt; letter-spacing: 1.5mm; color: #444; }
+  .ident { justify-self: end; display: grid; gap: 3mm; font-size: 9pt; font-weight: 500; }
+  .ident div { white-space: nowrap; display: flex; align-items: flex-end; justify-content: flex-end; gap: 2mm; }
+  .ident i { width: 38mm; border-bottom: .35mm dotted var(--ink); }
+  .badge {
+    display: none;
+    position: absolute;
+    top: -3mm;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: .8mm 4mm;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #fff;
+    background: var(--answer);
+    border-radius: 3mm;
+  }
+
+  /* Bande alphabet */
+  .alphabet {
+    margin: 3.5mm 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(26, minmax(0, 1fr));
+    gap: 1.1mm;
+  }
+  .alphabet li {
+    height: 9mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #5b3a00;
+    background: #fdf0c9;
+    border: .4mm solid #e8a93a;
+    border-radius: 1.5mm;
+  }
+
+  /* Blocs d'exercice */
+  .ex {
+    position: relative;
+    margin-top: 5.5mm;
+    padding: 5mm 5mm 3.5mm;
+    border: .45mm solid var(--border);
+    border-radius: 4mm;
+  }
+  .tab {
+    position: absolute;
+    top: -3.4mm;
+    left: -.45mm;
+    padding: 1.2mm 4mm;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 3mm;
+  }
+  .consigne { margin: 0; font-size: 10pt; font-weight: 500; }
+  .consigne small { font-size: 8pt; font-weight: 400; }
+
+  .ex1 { --accent: var(--pink); --border: #efb2cb; }
+  .ex2 { --accent: var(--green); --border: #a9dab6; }
+  .ex3 { --accent: var(--orange); --border: #f3c888; }
+  .defi { --accent: var(--purple); --border: #c7c2f4; }
+
+  /* Réponses du corrigé : masquées tant que le corrigé n'est pas affiché */
+  .ans { visibility: hidden; color: var(--answer); }
+  body.corrige .ans { visibility: visible; }
+  body.corrige .badge { display: inline-block; }
+
+  /* Exercice 1 : lettre d'avant, lettre d'après */
+  .example {
+    display: inline-block;
+    margin: 2.5mm 0 0;
+    padding: 1.5mm 3.5mm;
+    font-size: 9pt;
+    font-weight: 600;
+    color: #b3386c;
+    background: #fde6ef;
+    border: .35mm dashed #f1a5c3;
+    border-radius: 2mm;
+  }
+  .seq-grid {
+    margin-top: 2.5mm;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.8mm;
+  }
+  .seq {
+    height: 13mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2mm;
+    background: #f4f3fe;
+    border: .3mm solid #dcd9f8;
+    border-radius: 2.5mm;
+  }
+  .box {
+    width: 8.6mm;
+    height: 8.6mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13pt;
+    font-weight: 700;
+    background: #fff;
+    border: .45mm solid var(--purple);
+    border-radius: 1.8mm;
+  }
+  .box.given { color: #fff; background: var(--purple); }
+  .arrow { font-size: 12pt; font-weight: 700; color: #9a92ee; }
+
+  /* Exercice 2 : entourer les voyelles */
+  .vowels {
+    margin: 2.5mm 0 0;
+    display: flex;
+    align-items: center;
+    gap: 1mm;
+    font-size: 9pt;
+    font-weight: 600;
+  }
+  .vowels span {
+    width: 6.6mm;
+    height: 6.6mm;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8.5pt;
+    font-weight: 700;
+    color: #fff;
+    background: #82d196;
+    border: .4mm solid var(--green);
+    border-radius: 50%;
+  }
+  .vowels span:first-child { margin-left: 1mm; }
+  .word-grid {
+    margin-top: 2.5mm;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.8mm;
+  }
+  .word {
+    height: 13mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #effaf2;
+    border: .3mm solid #c3e8cd;
+    border-radius: 2.5mm;
+  }
+  .word span {
+    width: 6.3mm;
+    height: 8.4mm;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15pt;
+    font-weight: 700;
+    border: .45mm solid transparent;
+    border-radius: 50%;
+  }
+  body.corrige .word .v { border-color: var(--answer); }
+
+  /* Exercice 3 et défi : ordre alphabétique */
+  .sort-grid {
+    margin-top: 2.5mm;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2mm;
+  }
+  .sort-card {
+    padding: 2.5mm 3.5mm 2.5mm;
+    background: #fff8ec;
+    border: .3mm solid #f5d49e;
+    border-radius: 2.5mm;
+  }
+  .chips { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5mm; }
+  .chip {
+    padding: .9mm 2.4mm;
+    font-size: 10pt;
+    font-weight: 600;
+    color: #7a4800;
+    background: #fde5bb;
+    border-radius: 1.5mm;
+  }
+  .defi .chip { color: var(--ink); background: #fde4ee; }
+  .lines { margin: 1mm 0 0; padding: 0; list-style: none; }
+  .lines li { height: 6.8mm; display: flex; align-items: flex-end; gap: 2mm; }
+  .num {
+    flex: none;
+    width: 4.4mm;
+    height: 4.4mm;
+    margin-bottom: .4mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7pt;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .write {
+    flex: 1;
+    padding-left: 1.5mm;
+    font-size: 11pt;
+    line-height: 1;
+    border-bottom: .3mm dotted #8c7a5c;
+  }
+  .defi .chips { margin-top: 2mm; }
+  .defi .lines {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6mm;
+    margin-top: 1.5mm;
+  }
+
+  footer {
+    margin-top: auto;
+    padding-top: 2mm;
+    text-align: center;
+    font-size: 8.5pt;
+    font-weight: 500;
+    color: #8b82dd;
+  }
+
+  /* Boutons (écran uniquement) */
+  .toolbar {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .toolbar button {
+    padding: 8px 16px;
+    font: inherit;
+    font-size: 14px;
+    color: #fff;
+    background: #1c7ed6;
+    border: 0;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .toolbar button.secondary { color: #1c7ed6; background: #fff; box-shadow: inset 0 0 0 1.5px #1c7ed6; }
+
+  @media print {
+    html, body { background: #fff; }
+    .page { margin: 0; height: 296mm; box-shadow: none; }
+    .toolbar { display: none; }
+  }
+
+  /* Lien vers la liste de tous les exercices (écran uniquement) */
+  .retour {
+    position: fixed;
+    top: 12px;
+    left: 16px;
+    padding: 8px 14px;
+    font: inherit;
+    font-size: 14px;
+    color: #1864ab;
+    text-decoration: none;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: inset 0 0 0 1.5px #1864ab;
+  }
+  .retour:hover { background: #e7f5ff; }
+  @media print { .retour { display: none; } }
+
+  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  .page { position: relative; }
+  .page::after {
+    content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1.2mm;
+    font: 6.5pt/1 "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+    color: #7b8591;
+    text-align: center;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<a class="retour" href="index.html">← Tous les exercices</a>
+
+<div class="toolbar">
+  <button type="button" onclick="window.print()">Imprimer</button>
+  <button type="button" class="secondary" id="btn-new">🎲 Nouveaux exercices</button>
+  <button type="button" class="secondary" id="btn-corrige" aria-pressed="false">Afficher le corrigé</button>
+</div>
+
+<main class="page">
+  <header class="head">
+    <h1>🔤 L’alphabet et les voyelles</h1>
+    <div class="stars" aria-hidden="true">☆☆☆</div>
+    <span class="badge">Corrigé</span>
+    <div class="ident">
+      <div>Prénom : <i></i></div>
+      <div>Date : <i></i></div>
+    </div>
+  </header>
+
+  <ol class="alphabet" id="alphabet" aria-label="L'alphabet"></ol>
+
+  <section class="ex ex1">
+    <span class="tab">Exercice 1</span>
+    <p class="consigne">✏️ Complète chaque suite avec la lettre <b>d'avant</b> et la lettre <b>d'après</b>. Aide-toi de l'alphabet ci-dessus !</p>
+    <p class="example" id="ex1-example"></p>
+    <div class="seq-grid" id="ex1-grid"></div>
+  </section>
+
+  <section class="ex ex2">
+    <span class="tab">Exercice 2</span>
+    <p class="consigne">⭕ Entoure toutes les <b>voyelles</b> dans chaque mot.</p>
+    <p class="vowels">Les voyelles :<span>A</span><span>E</span><span>I</span><span>O</span><span>U</span><span>Y</span></p>
+    <div class="word-grid" id="ex2-grid"></div>
+  </section>
+
+  <section class="ex ex3">
+    <span class="tab">Exercice 3</span>
+    <p class="consigne">📋 Recopie chaque liste de mots dans l'<b>ordre alphabétique</b>.</p>
+    <div class="sort-grid" id="ex3-grid"></div>
+  </section>
+
+  <section class="ex defi">
+    <span class="tab">Défi 🏆</span>
+    <p class="consigne">Range ces mots dans l'ordre alphabétique. <small>Ils commencent tous pareil : regarde bien la 3<sup>e</sup> lettre !</small></p>
+    <div class="chips" id="defi-chips"></div>
+    <ol class="lines" id="defi-lines"></ol>
+  </section>
+
+  <footer>Bravo pour ton travail ! 🌟</footer>
+</main>
+
+<script>
+  const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+  const VOWELS = new Set("AEIOUY");
+
+  // Mots de l'exercice 2 (majuscules, sans accent, 8 lettres au plus)
+  const WORDS_VOWELS = [
+    "CHAT", "LUNE", "TORTUE", "FRAISE", "SOLEIL", "POMME", "TOMATE", "LAPIN", "CANARD", "MOUTON",
+    "CHEVAL", "ROBOT", "CITRON", "JARDIN", "BATEAU", "NUAGE", "ORANGE", "BANANE", "MAISON", "POULE",
+    "SAPIN", "LIVRE", "TIGRE", "PIRATE", "BALLON", "GIRAFE", "CAROTTE", "POISSON", "DOMINO", "KIWI",
+    "PIZZA", "VALISE", "SALADE", "CAMION", "OISEAU", "MOTO", "AVION", "LOUP", "OURS", "ARBRE",
+    "FLEUR", "TAPIS", "CHIEN", "SOURIS", "RENARD", "HIBOU", "PANDA", "KOALA", "LION", "VACHE",
+    "FOURMI", "CERISE", "MOUCHE", "CADEAU", "PAPILLON", "CHOCOLAT", "BISCUIT", "CASTOR", "TRAIN", "PORTE"
+  ];
+  // Mots avec un Y : un par série, pour ne pas oublier cette voyelle
+  const WORDS_Y = ["STYLO", "PYJAMA", "CRAYON", "YAOURT", "YOYO", "CYGNE"];
+
+  // Mots de l'exercice 3 : on ne compare que la première lettre
+  const WORDS_ABC = [
+    "arbre", "avion", "abeille", "ballon", "bateau", "banane", "chat", "citron", "cerise", "dragon",
+    "domino", "dauphin", "fleur", "fusée", "fraise", "gâteau", "girafe", "guitare", "hibou", "hérisson",
+    "igloo", "jardin", "jouet", "kiwi", "koala", "lapin", "lune", "livre", "maison", "mouton",
+    "moto", "nuage", "nid", "orange", "ours", "oiseau", "pomme", "poisson", "panda", "quille",
+    "renard", "robot", "requin", "sapin", "soleil", "souris", "tomate", "tortue", "train", "usine",
+    "vélo", "valise", "vache", "wagon", "yaourt", "zèbre", "zoo"
+  ];
+
+  // Défi : mêmes deux premières lettres, troisième lettre toujours différente
+  const DEFI_FAMILIES = [
+    ["bateau", "ballon", "banane", "bague", "baignoire", "barbe"],
+    ["canard", "camion", "carotte", "cadeau", "cabane", "castor"],
+    ["chat", "cheval", "chien", "chocolat"],
+    ["pomme", "poule", "poisson", "porte", "poche", "pont"],
+    ["papillon", "panda", "parapluie", "patin", "palmier", "pain"],
+    ["maison", "marteau", "manteau", "maman", "matin", "malle"],
+    ["table", "tapis", "tasse", "tarte", "taureau", "tambour"],
+    ["soleil", "souris", "sorcière", "sofa", "soda"],
+    ["moto", "mouton", "montre", "morceau", "moineau"],
+    ["robot", "rose", "route", "roi", "rocher"],
+    ["fraise", "frite", "fromage", "fruit", "frelon"],
+    ["bol", "bonbon", "botte", "bouche", "bois"],
+    ["pirate", "piano", "pizza", "pieuvre", "pigeon"]
+  ];
+
+  const rand = n => Math.floor(Math.random() * n);
+  const shuffle = list => {
+    const a = list.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = rand(i + 1);
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  const sample = (list, k) => shuffle(list).slice(0, k);
+  const plain = w => w.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  const byAlpha = (a, b) => a.localeCompare(b, "fr");
+  const isSorted = list => list.every((w, i) => i === 0 || byAlpha(list[i - 1], w) <= 0);
+
+  // Mélange jusqu'à obtenir une liste qui n'est pas déjà dans l'ordre alphabétique
+  function unsorted(list) {
+    let a = shuffle(list);
+    while (isSorted(a)) a = shuffle(list);
+    return a;
+  }
+
+  // `count` lettres entre B et Y, jamais voisines, pour que l'une ne donne pas la réponse d'une autre
+  function spacedLetters(count) {
+    const slots = [...Array(24 - (count - 1)).keys()];
+    return sample(slots, count)
+      .sort((a, b) => a - b)
+      .map((slot, i) => ALPHABET[slot + i + 1]);
+  }
+
+  // Groupes de mots dont les premières lettres sont toutes différentes
+  function buildGroups(pool, groupCount, size) {
+    const groups = [];
+    for (const word of shuffle(pool)) {
+      let group = groups.find(g => g.length < size && !g.some(w => plain(w)[0] === plain(word)[0]));
+      if (!group && groups.length < groupCount) groups.push(group = []);
+      if (group) group.push(word);
+      if (groups.length === groupCount && groups.every(g => g.length === size)) break;
+    }
+    return groups.map(unsorted);
+  }
+
+  const lines = words => words
+    .map((w, i) => `<li><span class="num">${i + 1}</span><span class="write"><span class="ans">${w}</span></span></li>`)
+    .join("");
+
+  const chips = words => words.map(w => `<span class="chip">${w}</span>`).join("");
+
+  function generate() {
+    const used = new Set();
+    const markUsed = words => words.forEach(w => used.add(plain(w)));
+    const unused = list => list.filter(w => !used.has(plain(w)));
+
+    // Défi
+    const defi = unsorted(sample(DEFI_FAMILIES[rand(DEFI_FAMILIES.length)], 3));
+    markUsed(defi);
+    document.getElementById("defi-chips").innerHTML = chips(defi);
+    document.getElementById("defi-lines").innerHTML = lines([...defi].sort(byAlpha));
+
+    // Exercice 3
+    const groups = buildGroups(unused(WORDS_ABC), 4, 3);
+    markUsed(groups.flat());
+    document.getElementById("ex3-grid").innerHTML = groups
+      .map(g => `<div class="sort-card"><div class="chips">${chips(g)}</div><ol class="lines">${lines([...g].sort(byAlpha))}</ol></div>`)
+      .join("");
+
+    // Exercice 2
+    const words = shuffle([...sample(unused(WORDS_Y), 1), ...sample(unused(WORDS_VOWELS), 5)]);
+    document.getElementById("ex2-grid").innerHTML = words
+      .map(w => `<div class="word" aria-label="${w}">${[...w].map(c => `<span${VOWELS.has(c) ? ' class="v"' : ""}>${c}</span>`).join("")}</div>`)
+      .join("");
+
+    // Exercice 1 : la première lettre sert d'exemple
+    const [example, ...letters] = shuffle(spacedLetters(7));
+    const around = l => [ALPHABET[ALPHABET.indexOf(l) - 1], ALPHABET[ALPHABET.indexOf(l) + 1]];
+    const [exBefore, exAfter] = around(example);
+    document.getElementById("ex1-example").textContent = `Exemple : ${exBefore} › ${example} › ${exAfter}`;
+    document.getElementById("ex1-grid").innerHTML = letters
+      .map(l => {
+        const [before, after] = around(l);
+        return `<div class="seq"><span class="box"><span class="ans">${before}</span></span><span class="arrow">›</span>`
+          + `<span class="box given">${l}</span><span class="arrow">›</span><span class="box"><span class="ans">${after}</span></span></div>`;
+      })
+      .join("");
+  }
+
+  document.getElementById("alphabet").innerHTML = ALPHABET.map(l => `<li>${l}</li>`).join("");
+
+  document.getElementById("btn-new").addEventListener("click", generate);
+  document.getElementById("btn-corrige").addEventListener("click", e => {
+    const on = document.body.classList.toggle("corrige");
+    e.currentTarget.setAttribute("aria-pressed", on);
+    e.currentTarget.textContent = on ? "Masquer le corrigé" : "Afficher le corrigé";
+  });
+
+  generate();
+</script>
+
+</body>
+</html>
