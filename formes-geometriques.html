@@ -126,10 +126,17 @@
   }
   .model li { text-align: center; font-size: 17pt; font-weight: bold; }
 
-  .print-btn {
+  /* Buttons (screen only) */
+  .toolbar {
     position: fixed;
     top: 12px;
     right: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .toolbar button {
     padding: 8px 16px;
     font: inherit;
     font-size: 14px;
@@ -139,11 +146,12 @@
     border-radius: 6px;
     cursor: pointer;
   }
+  .toolbar button.secondary { color: #1c7ed6; background: #fff; box-shadow: inset 0 0 0 1.5px #1c7ed6; }
 
   @media print {
     html, body { background: #fff; }
     .page { margin: 0; height: 296mm; box-shadow: none; }
-    .print-btn { display: none; }
+    .toolbar { display: none; }
   }
 
   /* Link to the list of all worksheets (screen only) */
@@ -182,7 +190,10 @@
 
 <a class="back-link" href="index.html">← Tous les exercices</a>
 
-<button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
+<div class="toolbar">
+  <button type="button" onclick="window.print()">Imprimer</button>
+  <button type="button" class="secondary" id="btn-clear">Effacer mes réponses</button>
+</div>
 
 <main class="page">
   <header>
@@ -273,6 +284,76 @@
     const fields = [...document.querySelectorAll(".answer-input")];
     fields[fields.indexOf(e.target) + 1]?.focus();
   });
+
+  // ---- Saved work: answers (and drawn questions) stay in this browser; index.html lists them ----
+  // Key: path of the worksheet from the site root, as in catalog.js ("arbres.html", "Arbres/x.html"),
+  // found from the back link: same key on GitHub Pages (even without ".html"), on a local server or from disk
+  const storageKey = (() => {
+    try {
+      const root = decodeURIComponent(new URL(".", document.querySelector(".back-link").href).pathname);
+      let path = decodeURIComponent(location.pathname);
+      path = path.startsWith(root) ? path.slice(root.length) : path.slice(path.lastIndexOf("/") + 1);
+      return `exercices-scolaires:${path.endsWith(".html") ? path : `${path}.html`}`;
+    } catch (e) { return null; }
+  })();
+  const storage = (() => { try { return storageKey ? window.localStorage : null; } catch (e) { return null; } })();
+  // Preview in index.html (#preview, or any same-origin frame): show the saved work, never change it
+  const readOnly = location.hash === "#preview" || !!window.frameElement;
+  let lastJson = null;   // last value read or written here, to notice changes made elsewhere
+
+  function readWork() {
+    if (!storage) return null;
+    try {
+      lastJson = storage.getItem(storageKey);
+      const work = JSON.parse(lastJson);
+      return work && work.v === 1 && Array.isArray(work.fields) ? work : null;
+    } catch (e) { return null; }   // storage blocked, or not JSON
+  }
+
+  function writeWork(work) {
+    if (readOnly || !storage) return;
+    try {
+      const json = work ? JSON.stringify({ v: 1, updated: new Date().toISOString(), ...work }) : null;
+      if (json) storage.setItem(storageKey, json);
+      else storage.removeItem(storageKey);
+      lastJson = json;
+    } catch (e) { /* storage full or blocked: the worksheet works as before */ }
+  }
+
+  const answerFields = () => [...document.querySelectorAll(".answer-input")];
+  const hasAnswers = () => answerFields().some(f => f.value.trim());
+  const answerList = () => answerFields().map(f => [f.getAttribute("aria-label"), f.value]);
+
+  // Each field takes back the first unused saved answer with the same aria-label,
+  // so the answers survive a field added or removed elsewhere in the worksheet
+  function restoreAnswers(work) {
+    const saved = (work ? work.fields : []).filter(a => Array.isArray(a) && typeof a[0] === "string" && typeof a[1] === "string");
+    answerFields().forEach(f => {
+      const k = saved.findIndex(([label]) => label === f.getAttribute("aria-label"));
+      f.value = k < 0 ? "" : saved.splice(k, 1)[0][1];
+    });
+  }
+
+  const saveWork = () => writeWork(hasAnswers() ? { fields: answerList() } : null);
+  const loadWork = () => restoreAnswers(readWork());
+
+  document.addEventListener("input", e => { if (e.target.classList.contains("answer-input")) saveWork(); });
+  document.getElementById("btn-clear").addEventListener("click", () => {
+    if (hasAnswers() && !confirm("Effacer toutes tes réponses ?")) return;
+    answerFields().forEach(f => { f.value = ""; });
+    saveWork();
+  });
+  // Saved work changed in another tab, or in the dialog of index.html
+  window.addEventListener("storage", e => {
+    if (storage && e.storageArea === storage && (e.key === storageKey || e.key === null)) loadWork();
+  });
+  // Back on this page from the back/forward cache: take the changes made in the meantime
+  window.addEventListener("pageshow", e => {
+    if (!e.persisted || !storage) return;
+    try { if (storage.getItem(storageKey) !== lastJson) loadWork(); } catch (err) { /* storage blocked */ }
+  });
+
+  loadWork();
 </script>
 
 </body>

@@ -387,6 +387,7 @@
   <button type="button" onclick="window.print()">Imprimer</button>
   <button type="button" class="secondary" id="btn-new">🎲 Nouveaux exercices</button>
   <button type="button" class="secondary" id="btn-answers" aria-pressed="false">Afficher le corrigé</button>
+  <button type="button" class="secondary" id="btn-clear">Effacer mes réponses</button>
 </div>
 
 <main class="page">
@@ -516,16 +517,24 @@
     return groups.map(unsorted);
   }
 
+  // Imported work is untrusted: every drawn string is escaped before going into the HTML
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const isText = (s, max) => typeof s === "string" && s.length > 0 && s.length <= max;
+  const isList = (a, n, ok) => Array.isArray(a) && a.length === n && a.every(ok);
+
   // Transparent keyboard input field, laid over the area where the pupil writes
-  const answerInput = (label, extra = "") => `<input class="answer-input" type="text" aria-label="${label}"${extra}`
+  // (label escaped: it may contain a drawn word)
+  const answerInput = (label, extra = "") => `<input class="answer-input" type="text" aria-label="${esc(label)}"${extra}`
     + ` autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
 
   const lines = (words, list) => words
-    .map((w, i) => `<li><span class="num">${i + 1}</span><span class="write"><span class="ans">${w}</span>${answerInput(`${list}, mot ${i + 1}`)}</span></li>`)
+    .map((w, i) => `<li><span class="num">${i + 1}</span><span class="write"><span class="ans">${esc(w)}</span>${answerInput(`${list}, mot ${i + 1}`)}</span></li>`)
     .join("");
 
-  const chips = words => words.map(w => `<span class="chip">${w}</span>`).join("");
+  const chips = words => words.map(w => `<span class="chip">${esc(w)}</span>`).join("");
 
+  // Every random choice of the worksheet, as plain data (saved with the answers).
+  // Arrays are in display order; the draw order matters, because words used once are not drawn again
   function generate() {
     const used = new Set();
     const markUsed = words => words.forEach(w => used.add(plain(w)));
@@ -534,39 +543,62 @@
     // Challenge
     const challenge = unsorted(sample(CHALLENGE_FAMILIES[rand(CHALLENGE_FAMILIES.length)], 3));
     markUsed(challenge);
+
+    // Exercise 3
+    const sortLists = buildGroups(unused(WORDS_ABC), 4, 3);
+    markUsed(sortLists.flat());
+
+    // Exercise 2
+    const vowelWords = shuffle([...sample(unused(WORDS_Y), 1), ...sample(unused(WORDS_VOWELS), 5)]);
+
+    // Exercise 1: the first letter is the example
+    const letters = shuffle(spacedLetters(7));
+
+    return { letters, vowelWords, sortLists, challenge };
+  }
+
+  // Build the worksheet from a draw: no random choice here, the answers are derived from it
+  function render({ letters, vowelWords, sortLists, challenge }) {
+    // Challenge
     document.getElementById("challenge-chips").innerHTML = chips(challenge);
     document.getElementById("challenge-lines").innerHTML = lines([...challenge].sort(byAlpha), "Défi");
 
     // Exercise 3
-    const groups = buildGroups(unused(WORDS_ABC), 4, 3);
-    markUsed(groups.flat());
-    document.getElementById("ex3-grid").innerHTML = groups
+    document.getElementById("ex3-grid").innerHTML = sortLists
       .map((g, n) => `<div class="sort-card"><div class="chips">${chips(g)}</div><ol class="lines">${lines([...g].sort(byAlpha), `Liste ${n + 1}`)}</ol></div>`)
       .join("");
 
     // Exercise 2
-    const words = shuffle([...sample(unused(WORDS_Y), 1), ...sample(unused(WORDS_VOWELS), 5)]);
-    document.getElementById("ex2-grid").innerHTML = words
-      .map(w => `<div class="word" aria-label="${w}">${[...w].map(c => `<span${VOWELS.has(c) ? ' class="v"' : ""}>${c}</span>`).join("")}</div>`)
+    document.getElementById("ex2-grid").innerHTML = vowelWords
+      .map(w => `<div class="word" aria-label="${esc(w)}">${[...w].map(c => `<span${VOWELS.has(c) ? ' class="v"' : ""}>${esc(c)}</span>`).join("")}</div>`)
       .join("");
 
     // Exercise 1: the first letter is the example
-    const [example, ...letters] = shuffle(spacedLetters(7));
+    const [example, ...others] = letters;
     const around = l => [ALPHABET[ALPHABET.indexOf(l) - 1], ALPHABET[ALPHABET.indexOf(l) + 1]];
     const [exBefore, exAfter] = around(example);
-    document.getElementById("ex1-example").textContent = `Exemple : ${exBefore} › ${example} › ${exAfter}`;
-    document.getElementById("ex1-grid").innerHTML = letters
+    document.getElementById("ex1-example").textContent = `Exemple : ${exBefore} › ${example} › ${exAfter}`;
+    document.getElementById("ex1-grid").innerHTML = others
       .map(l => {
         const [before, after] = around(l);
         return `<div class="seq"><span class="box"><span class="ans">${before}</span>${answerInput(`Lettre avant ${l}`, ' maxlength="1"')}</span><span class="arrow">›</span>`
-          + `<span class="box given">${l}</span><span class="arrow">›</span><span class="box"><span class="ans">${after}</span>${answerInput(`Lettre après ${l}`, ' maxlength="1"')}</span></div>`;
+          + `<span class="box given">${esc(l)}</span><span class="arrow">›</span><span class="box"><span class="ans">${after}</span>${answerInput(`Lettre après ${l}`, ' maxlength="1"')}</span></div>`;
       })
       .join("");
   }
 
+  // Saved work may come from an imported file: check it before use.
+  // Words are not compared with the word lists, so a saved draw still opens after a list changes
+  function isValidDraw(d) {
+    const word = w => isText(w, 20);
+    // Letters from B to Y, all different: around() needs a letter before and after
+    const letter = (l, k, a) => typeof l === "string" && /^[B-Y]$/.test(l) && a.indexOf(l) === k;
+    return !!d && isList(d.letters, 7, letter) && isList(d.vowelWords, 6, word)
+      && isList(d.sortLists, 4, g => isList(g, 3, word)) && isList(d.challenge, 3, word);
+  }
+
   document.getElementById("alphabet").innerHTML = ALPHABET.map(l => `<li>${l}</li>`).join("");
 
-  document.getElementById("btn-new").addEventListener("click", generate);
   document.getElementById("btn-answers").addEventListener("click", e => {
     const on = document.body.classList.toggle("show-answers");
     e.currentTarget.setAttribute("aria-pressed", on);
@@ -580,7 +612,96 @@
     fields[fields.indexOf(e.target) + 1]?.focus();
   });
 
-  generate();
+  // ---- Saved work: answers (and drawn questions) stay in this browser; index.html lists them ----
+  // Key: path of the worksheet from the site root, as in catalog.js ("arbres.html", "Arbres/x.html"),
+  // found from the back link: same key on GitHub Pages (even without ".html"), on a local server or from disk
+  const storageKey = (() => {
+    try {
+      const root = decodeURIComponent(new URL(".", document.querySelector(".back-link").href).pathname);
+      let path = decodeURIComponent(location.pathname);
+      path = path.startsWith(root) ? path.slice(root.length) : path.slice(path.lastIndexOf("/") + 1);
+      return `exercices-scolaires:${path.endsWith(".html") ? path : `${path}.html`}`;
+    } catch (e) { return null; }
+  })();
+  const storage = (() => { try { return storageKey ? window.localStorage : null; } catch (e) { return null; } })();
+  // Preview in index.html (#preview, or any same-origin frame): show the saved work, never change it
+  const readOnly = location.hash === "#preview" || !!window.frameElement;
+  let lastJson = null;   // last value read or written here, to notice changes made elsewhere
+
+  function readWork() {
+    if (!storage) return null;
+    try {
+      lastJson = storage.getItem(storageKey);
+      const work = JSON.parse(lastJson);
+      return work && work.v === 1 && Array.isArray(work.fields) ? work : null;
+    } catch (e) { return null; }   // storage blocked, or not JSON
+  }
+
+  function writeWork(work) {
+    if (readOnly || !storage) return;
+    try {
+      const json = work ? JSON.stringify({ v: 1, updated: new Date().toISOString(), ...work }) : null;
+      if (json) storage.setItem(storageKey, json);
+      else storage.removeItem(storageKey);
+      lastJson = json;
+    } catch (e) { /* storage full or blocked: the worksheet works as before */ }
+  }
+
+  const answerFields = () => [...document.querySelectorAll(".answer-input")];
+  const hasAnswers = () => answerFields().some(f => f.value.trim());
+  const answerList = () => answerFields().map(f => [f.getAttribute("aria-label"), f.value]);
+
+  // Each field takes back the first unused saved answer with the same aria-label,
+  // so the answers survive a field added or removed elsewhere in the worksheet
+  function restoreAnswers(work) {
+    const saved = (work ? work.fields : []).filter(a => Array.isArray(a) && typeof a[0] === "string" && typeof a[1] === "string");
+    answerFields().forEach(f => {
+      const k = saved.findIndex(([label]) => label === f.getAttribute("aria-label"));
+      f.value = k < 0 ? "" : saved.splice(k, 1)[0][1];
+    });
+  }
+
+  // Random worksheet: the questions drawn are saved with the answers
+  const DRAW_VERSION = 1;   // change it when the shape or meaning of the draw changes: older saves get new questions
+  let draw = null;          // the questions on screen, as plain data (see generate())
+  const saveWork = () => writeWork({ fields: answerList(), draw, drawVersion: DRAW_VERSION });
+
+  // Saved questions and answers come back; without usable saved questions, new ones are drawn and saved at once
+  function loadWork() {
+    const work = readWork();
+    const saved = work && work.drawVersion === DRAW_VERSION && isValidDraw(work.draw) ? work.draw : null;
+    if (saved && JSON.stringify(saved) !== JSON.stringify(draw)) {
+      try { render(saved); draw = saved; } catch (e) { draw = null; }
+    }
+    if (!draw) {
+      render(draw = generate());
+      saveWork();
+    } else restoreAnswers(saved && work);   // deleted elsewhere: same questions, empty answers
+  }
+
+  document.getElementById("btn-new").addEventListener("click", () => {
+    if (hasAnswers() && !confirm("Tes réponses seront effacées. Tirer de nouveaux exercices ?")) return;
+    render(draw = generate());
+    saveWork();
+  });
+
+  document.addEventListener("input", e => { if (e.target.classList.contains("answer-input")) saveWork(); });
+  document.getElementById("btn-clear").addEventListener("click", () => {
+    if (hasAnswers() && !confirm("Effacer toutes tes réponses ?")) return;
+    answerFields().forEach(f => { f.value = ""; });
+    saveWork();
+  });
+  // Saved work changed in another tab, or in the dialog of index.html
+  window.addEventListener("storage", e => {
+    if (storage && e.storageArea === storage && (e.key === storageKey || e.key === null)) loadWork();
+  });
+  // Back on this page from the back/forward cache: take the changes made in the meantime
+  window.addEventListener("pageshow", e => {
+    if (!e.persisted || !storage) return;
+    try { if (storage.getItem(storageKey) !== lastJson) loadWork(); } catch (err) { /* storage blocked */ }
+  });
+
+  loadWork();
 </script>
 
 </body>

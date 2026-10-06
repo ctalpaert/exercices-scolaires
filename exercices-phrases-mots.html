@@ -390,6 +390,7 @@
   <button type="button" onclick="window.print()">Imprimer</button>
   <button type="button" class="secondary" id="btn-new">🎲 Nouveaux exercices</button>
   <button type="button" class="secondary" id="btn-answers" aria-pressed="false">Afficher le corrigé</button>
+  <button type="button" class="secondary" id="btn-clear">Effacer mes réponses</button>
 </div>
 
 <!-- Page 1: the jumbled sentences -->
@@ -538,30 +539,109 @@
   const sample = (list, k) => shuffle(list).slice(0, k);
   const letterCount = w => [...w.normalize("NFC")].length;
 
+  // Imported work is untrusted: every drawn string is escaped before going into the HTML
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const isText = (s, max) => typeof s === "string" && s.length > 0 && s.length <= max;
+  const isList = (a, n, ok) => Array.isArray(a) && a.length === n && a.every(ok);
+
   // Transparent keyboard input field, laid over the area where the pupil writes
-  const answerInput = (label, extra = "") => `<input class="answer-input" type="text" aria-label="${label}"${extra}`
+  // (label escaped: it may contain a drawn word)
+  const answerInput = (label, extra = "") => `<input class="answer-input" type="text" aria-label="${esc(label)}"${extra}`
     + ` autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
 
-  // Exercise 1: three sentences cut into tags, never in the original order
-  function buildEx1() {
-    document.getElementById("ex1-list").innerHTML = sample(EX1_SENTENCES, 3)
-      .map((sentence, n) => {
-        const words = sentence.split(" ");
-        let order;
-        do order = shuffle(words.map((_, i) => i)); while (order.every((v, i) => v === i));
-        const tags = order
-          .map(i => `<span class="tag" data-i="${i}">${words[i]}<span class="ord">${i + 1}</span></span>`)
-          .join("");
-        return `<div class="s-block ${BLOCK_COLORS[n]}"><span class="num">${n + 1}</span><div class="scatter">${tags}</div>`
-          + `<div class="wline"><span class="ans">${sentence}</span>${answerInput(`Phrase ${n + 1} remise en ordre`)}</div></div>`;
-      })
-      .join("");
-    placeAllTags();
+  // Tag sizes depend on the font: positions found before Lexend is ready are provisional
+  let fontReady = !document.fonts || document.fonts.check('600 20pt "Lexend"');
+  const provisional = new Set();   // zones whose tags were placed before the font was ready
+  let layoutDropped = false;       // saved tag positions were wrong: the tags were placed again, to be saved
+
+  // Every random choice of the worksheet, as plain data (saved with the answers).
+  // The tag positions (`layout`) are added when the tags are placed, in render()
+  function generate() {
+    // Exercise 1: three sentences cut into tags, never in the original order
+    const ex1 = sample(EX1_SENTENCES, 3).map(sentence => {
+      const ids = sentence.split(" ").map((_, i) => i);
+      let order;
+      do order = shuffle(ids); while (order.every((v, i) => v === i));
+      return { sentence, order, layout: null };
+    });
+
+    // Exercise 2: swap two neighbouring words, leaving the first (capital letter) and the last (full stop) in place
+    const ex2 = sample(EX2_SENTENCES, 3).map(sentence => {
+      const words = sentence.split(" ");
+      const spots = [];
+      for (let i = 1; i < words.length - 2; i++) if (words[i] !== words[i + 1]) spots.push(i);
+      return { sentence, swap: spots[rand(spots.length)] };
+    });
+
+    // Exercise 3: the example row, then longer and longer words; no word comes twice
+    const used = new Set();
+    const ex3 = [3, 3, 4, 5, 6].map(len => oddOneOut(len, used));
+
+    return { ex1, ex2, ex3 };
   }
 
-  // Place the tags at random in the area, without overlap and well spread out
+  // Exercise 3: four words of `len` letters and an odd one out with one letter more or less
+  function oddOneOut(len, used) {
+    const pool = n => shuffle(EX3_WORDS.filter(w => letterCount(w) === n && !used.has(w)));
+    const oddLens = [len - 1, len + 1].filter(n => n >= 3 && pool(n).length > 0);
+    const same = pool(len).slice(0, 4);
+    const odd = pool(oddLens[rand(oddLens.length)])[0];
+    [...same, odd].forEach(w => used.add(w));
+    const words = shuffle([...same, odd]);
+    return { words, odd: words.indexOf(odd) };
+  }
+
+  // `withInput`: false for the example, whose answers are already written
+  const cells = ({ words, odd }, withInput) => `<div class="cells">${words
+    .map((w, k) => `<div class="cell${k === odd ? " odd" : ""}"><span class="w">${esc(w)}</span><span class="count"><span class="ans">${letterCount(w)}</span>`
+      + `${withInput ? answerInput(`Nombre de lettres du mot ${w}`, ' maxlength="2" inputmode="numeric"') : ""}</span></div>`)
+    .join("")}</div>`;
+
+  // Build the worksheet from a draw: no random choice here, the answers are derived from it.
+  // Only tags without saved positions are placed (at random) now
+  function render(d) {
+    provisional.clear();   // the zones are built again
+
+    // Exercise 1: one coloured block per sentence, tags in the drawn order
+    document.getElementById("ex1-list").innerHTML = d.ex1
+      .map(({ sentence, order }, n) => {
+        const words = sentence.split(" ");
+        const tags = order
+          .map(i => `<span class="tag" data-i="${i}">${esc(words[i])}<span class="ord">${i + 1}</span></span>`)
+          .join("");
+        return `<div class="s-block ${BLOCK_COLORS[n]}"><span class="num">${n + 1}</span><div class="scatter">${tags}</div>`
+          + `<div class="wline"><span class="ans">${esc(sentence)}</span>${answerInput(`Phrase ${n + 1} remise en ordre`)}</div></div>`;
+      })
+      .join("");
+    document.querySelectorAll(".scatter").forEach((zone, n) => {
+      const block = d.ex1[n];
+      if (block.layout) applyLayout(zone, block.layout);
+      else placeZone(zone, block);
+    });
+
+    // Exercise 2: the two swapped words are marked for the answer key
+    document.getElementById("ex2-list").innerHTML = d.ex2
+      .map(({ sentence, swap: i }, n) => {
+        const mixed = sentence.split(" ").map((w, k) => (k === i || k === i + 1 ? `<span class="sw">${esc(w)}</span>` : esc(w)));
+        [mixed[i], mixed[i + 1]] = [mixed[i + 1], mixed[i]];
+        return `<div class="item"><div class="mixed"><span class="num">${n + 1}</span><p class="sentence">${mixed.join(" ")}</p></div>`
+          + `<div class="wline"><span class="ans">${esc(sentence)}</span>${answerInput(`Phrase ${n + 1} corrigée`)}</div></div>`;
+      })
+      .join("");
+
+    // Exercise 3: the first row is the example
+    const [demo, ...rows] = d.ex3;
+    document.getElementById("ex3-demo").innerHTML = `<span class="demo-label">Exemple</span>${cells(demo, false)}`;
+    document.getElementById("ex3-rows").innerHTML = rows
+      .map((row, n) => `<div class="row"><span class="num">${n + 1}</span>${cells(row, true)}</div>`)
+      .join("");
+  }
+
+  // Find random spots for the tags of a zone, without overlap and well spread out.
+  // Returns [left %, top %, rotation in degrees] per tag (in DOM order), or "flow" when no spot is found
   function placeTags(zone) {
     const tags = [...zone.querySelectorAll(".tag")];
+    // The tags are measured in absolute position
     zone.classList.remove("flow");
     tags.forEach(t => { t.style.left = t.style.top = ""; });
 
@@ -597,66 +677,81 @@
       }
       if (boxes.filter(Boolean).length < tags.length || [b => b.y, b => b.x, byLine].some(key => inOrder(boxes, key))) continue;
 
-      tags.forEach((t, k) => {
-        t.style.left = `${boxes[k].x / W * 100}%`;
-        t.style.top = `${boxes[k].y / H * 100}%`;
-        t.style.setProperty("--rot", `${(Math.random() * 10 - 5).toFixed(1)}deg`);
-      });
-      return;
+      const pct = (v, total) => +(v / total * 100).toFixed(2);
+      return boxes.map(b => [pct(b.x, W), pct(b.y, H), +(Math.random() * 10 - 5).toFixed(1)]);
     }
-    zone.classList.add("flow");
+    return "flow";
   }
 
-  const placeAllTags = () => document.querySelectorAll(".scatter").forEach(placeTags);
-
-  // Exercise 2: swap two neighbouring words, leaving the first (capital letter) and the last (full stop) in place
-  function buildEx2() {
-    document.getElementById("ex2-list").innerHTML = sample(EX2_SENTENCES, 3)
-      .map((sentence, n) => {
-        const words = sentence.split(" ");
-        const spots = [];
-        for (let i = 1; i < words.length - 2; i++) if (words[i] !== words[i + 1]) spots.push(i);
-        const i = spots[rand(spots.length)];
-        const mixed = words.map((w, k) => (k === i || k === i + 1 ? `<span class="sw">${w}</span>` : w));
-        [mixed[i], mixed[i + 1]] = [mixed[i + 1], mixed[i]];
-        return `<div class="item"><div class="mixed"><span class="num">${n + 1}</span><p class="sentence">${mixed.join(" ")}</p></div>`
-          + `<div class="wline"><span class="ans">${sentence}</span>${answerInput(`Phrase ${n + 1} corrigée`)}</div></div>`;
-      })
-      .join("");
+  // Show the tags of a zone at their positions ([left %, top %, rotation in degrees] per tag),
+  // or in rows ("flow"), without rotation
+  function applyLayout(zone, layout) {
+    const flow = layout === "flow";
+    zone.classList.toggle("flow", flow);
+    zone.querySelectorAll(".tag").forEach((t, k) => {
+      t.style.left = flow ? "" : `${layout[k][0]}%`;
+      t.style.top = flow ? "" : `${layout[k][1]}%`;
+      t.style.setProperty("--rot", flow ? "0deg" : `${layout[k][2]}deg`);
+    });
   }
 
-  // Exercise 3: four words of `len` letters and an odd one out with one letter more or less
-  function oddOneOut(len, used) {
-    const pool = n => shuffle(EX3_WORDS.filter(w => letterCount(w) === n && !used.has(w)));
-    const oddLens = [len - 1, len + 1].filter(n => n >= 3 && pool(n).length > 0);
-    const same = pool(len).slice(0, 4);
-    const odd = pool(oddLens[rand(oddLens.length)])[0];
-    [...same, odd].forEach(w => used.add(w));
-    return shuffle([...same.map(w => ({ w, odd: false })), { w: odd, odd: true }]);
+  // Place the tags of one sentence and keep their positions in the draw
+  function placeZone(zone, block) {
+    block.layout = placeTags(zone);
+    applyLayout(zone, block.layout);
+    if (!fontReady) provisional.add(zone);
   }
 
-  // `withInput`: false for the example, whose answers are already written
-  const cells = (row, withInput) => `<div class="cells">${row
-    .map(({ w, odd }) => `<div class="cell${odd ? " odd" : ""}"><span class="w">${w}</span><span class="count"><span class="ans">${letterCount(w)}</span>`
-      + `${withInput ? answerInput(`Nombre de lettres du mot ${w}`, ' maxlength="2" inputmode="numeric"') : ""}</span></div>`)
-    .join("")}</div>`;
-
-  function buildEx3() {
-    const used = new Set();
-    document.getElementById("ex3-demo").innerHTML = `<span class="demo-label">Exemple</span>${cells(oddOneOut(3, used), false)}`;
-    // Longer and longer words
-    document.getElementById("ex3-rows").innerHTML = [3, 4, 5, 6]
-      .map((len, n) => `<div class="row"><span class="num">${n + 1}</span>${cells(oddOneOut(len, used), true)}</div>`)
-      .join("");
+  // True when tags overlap or stick out of their zone (positions saved with another font)
+  function crowded(zone) {
+    if (zone.classList.contains("flow")) return false;
+    const boxes = [...zone.querySelectorAll(".tag")].map(t => [t.offsetLeft, t.offsetTop, t.offsetWidth, t.offsetHeight]);
+    return boxes.some(([x, y, w, h], k) => x < 0 || y < 0 || x + w > zone.clientWidth || y + h > zone.clientHeight
+      || boxes.slice(k + 1).some(([x2, y2, w2, h2]) => x < x2 + w2 && x2 < x + w && y < y2 + h2 && y2 < y + h));
   }
 
-  function generate() {
-    buildEx1();
-    buildEx2();
-    buildEx3();
+  // Once Lexend is ready: place again the tags placed before it, and those whose saved positions no longer fit.
+  // Other saved positions are kept; the draw is saved only if something moved
+  function whenFontReady() {
+    fontReady = true;
+    let moved = false;
+    document.querySelectorAll(".scatter").forEach((zone, n) => {
+      if (!provisional.has(zone) && !crowded(zone)) return;
+      placeZone(zone, draw.ex1[n]);
+      moved = true;
+    });
+    provisional.clear();
+    if (moved || layoutDropped) saveWork();   // never writes in a preview
+    layoutDropped = false;
   }
 
-  document.getElementById("btn-new").addEventListener("click", generate);
+  const isIndex = (i, n) => Number.isInteger(i) && i >= 0 && i < n;
+  const inRange = (v, min, max) => Number.isFinite(v) && v >= min && v <= max;
+  const isLayout = (l, n) => l === "flow"
+    || isList(l, n, p => isList(p, 3, Number.isFinite) && inRange(p[0], 0, 100) && inRange(p[1], 0, 100) && inRange(p[2], -5, 5));
+
+  // Saved work may come from an imported file: check it before use.
+  // Sentences and words are not compared with the lists, so a saved draw still opens after a list changes
+  function isValidDraw(d) {
+    const sentence = s => isText(s, 80);
+    const ok = !!d
+      // Exercise 1: `order` is a permutation of the words of the sentence
+      && isList(d.ex1, 3, b => sentence(b?.sentence)
+        && isList(b.order, b.sentence.split(" ").length, (i, k, a) => isIndex(i, a.length) && a.indexOf(i) === k))
+      // Exercise 2: the first and the last word stay in place
+      && isList(d.ex2, 3, b => sentence(b?.sentence)
+        && Number.isInteger(b.swap) && b.swap >= 1 && b.swap <= b.sentence.split(" ").length - 3)
+      // Exercise 3: the example row and 4 rows of 5 words
+      && isList(d.ex3, 5, r => isList(r?.words, 5, w => isText(w, 15)) && isIndex(r.odd, 5));
+    // Tag positions only change the look: wrong ones are dropped, and the tags are placed again
+    if (ok) d.ex1.forEach(b => {
+      if (isLayout(b.layout, b.order.length)) return;
+      b.layout = null;
+      layoutDropped = true;
+    });
+    return ok;
+  }
+
   document.getElementById("btn-answers").addEventListener("click", e => {
     const on = document.body.classList.toggle("show-answers");
     e.currentTarget.setAttribute("aria-pressed", on);
@@ -670,9 +765,99 @@
     fields[fields.indexOf(e.target) + 1]?.focus();
   });
 
-  generate();
-  // Tag sizes depend on the font: place them again once Lexend has loaded
-  if (document.fonts) document.fonts.load('600 20pt "Lexend"').then(placeAllTags, () => {});
+  // ---- Saved work: answers (and drawn questions) stay in this browser; index.html lists them ----
+  // Key: path of the worksheet from the site root, as in catalog.js ("arbres.html", "Arbres/x.html"),
+  // found from the back link: same key on GitHub Pages (even without ".html"), on a local server or from disk
+  const storageKey = (() => {
+    try {
+      const root = decodeURIComponent(new URL(".", document.querySelector(".back-link").href).pathname);
+      let path = decodeURIComponent(location.pathname);
+      path = path.startsWith(root) ? path.slice(root.length) : path.slice(path.lastIndexOf("/") + 1);
+      return `exercices-scolaires:${path.endsWith(".html") ? path : `${path}.html`}`;
+    } catch (e) { return null; }
+  })();
+  const storage = (() => { try { return storageKey ? window.localStorage : null; } catch (e) { return null; } })();
+  // Preview in index.html (#preview, or any same-origin frame): show the saved work, never change it
+  const readOnly = location.hash === "#preview" || !!window.frameElement;
+  let lastJson = null;   // last value read or written here, to notice changes made elsewhere
+
+  function readWork() {
+    if (!storage) return null;
+    try {
+      lastJson = storage.getItem(storageKey);
+      const work = JSON.parse(lastJson);
+      return work && work.v === 1 && Array.isArray(work.fields) ? work : null;
+    } catch (e) { return null; }   // storage blocked, or not JSON
+  }
+
+  function writeWork(work) {
+    if (readOnly || !storage) return;
+    try {
+      const json = work ? JSON.stringify({ v: 1, updated: new Date().toISOString(), ...work }) : null;
+      if (json) storage.setItem(storageKey, json);
+      else storage.removeItem(storageKey);
+      lastJson = json;
+    } catch (e) { /* storage full or blocked: the worksheet works as before */ }
+  }
+
+  const answerFields = () => [...document.querySelectorAll(".answer-input")];
+  const hasAnswers = () => answerFields().some(f => f.value.trim());
+  const answerList = () => answerFields().map(f => [f.getAttribute("aria-label"), f.value]);
+
+  // Each field takes back the first unused saved answer with the same aria-label,
+  // so the answers survive a field added or removed elsewhere in the worksheet
+  function restoreAnswers(work) {
+    const saved = (work ? work.fields : []).filter(a => Array.isArray(a) && typeof a[0] === "string" && typeof a[1] === "string");
+    answerFields().forEach(f => {
+      const k = saved.findIndex(([label]) => label === f.getAttribute("aria-label"));
+      f.value = k < 0 ? "" : saved.splice(k, 1)[0][1];
+    });
+  }
+
+  // Random worksheet: the questions drawn are saved with the answers
+  const DRAW_VERSION = 1;   // change it when the shape or meaning of the draw changes: older saves get new questions
+  let draw = null;          // the questions on screen, as plain data (see generate())
+  const saveWork = () => writeWork({ fields: answerList(), draw, drawVersion: DRAW_VERSION });
+
+  // Saved questions and answers come back; without usable saved questions, new ones are drawn and saved at once
+  function loadWork() {
+    const work = readWork();
+    const saved = work && work.drawVersion === DRAW_VERSION && isValidDraw(work.draw) ? work.draw : null;
+    if (saved && JSON.stringify(saved) !== JSON.stringify(draw)) {
+      try { render(saved); draw = saved; } catch (e) { draw = null; }
+    }
+    if (!draw) {
+      render(draw = generate());
+      saveWork();
+    } else restoreAnswers(saved && work);   // deleted elsewhere: same questions, empty answers
+  }
+
+  document.getElementById("btn-new").addEventListener("click", () => {
+    if (hasAnswers() && !confirm("Tes réponses seront effacées. Tirer de nouveaux exercices ?")) return;
+    render(draw = generate());
+    saveWork();
+  });
+
+  document.addEventListener("input", e => { if (e.target.classList.contains("answer-input")) saveWork(); });
+  document.getElementById("btn-clear").addEventListener("click", () => {
+    if (hasAnswers() && !confirm("Effacer toutes tes réponses ?")) return;
+    answerFields().forEach(f => { f.value = ""; });
+    saveWork();
+  });
+  // Saved work changed in another tab, or in the dialog of index.html
+  window.addEventListener("storage", e => {
+    if (storage && e.storageArea === storage && (e.key === storageKey || e.key === null)) loadWork();
+  });
+  // Back on this page from the back/forward cache: take the changes made in the meantime
+  window.addEventListener("pageshow", e => {
+    if (!e.persisted || !storage) return;
+    try { if (storage.getItem(storageKey) !== lastJson) loadWork(); } catch (err) { /* storage blocked */ }
+  });
+
+  loadWork();
+  // Tag sizes depend on the font: check the tag positions once Lexend has loaded
+  if (fontReady) whenFontReady();
+  else document.fonts.load('600 20pt "Lexend"').then(whenFontReady, whenFontReady);
 </script>
 
 </body>

@@ -26,7 +26,7 @@ OUTPUT = ROOT / "catalog.js"
 EXCLUDED_FILES = {"index.html"}
 EXCLUDED_DIRS = {"tools", "node_modules"}
 
-# School levels in French-speaking Switzerland, in order. Keep in sync with LEVELS in index.html.
+# School levels in French-speaking Switzerland, in order. Keep in sync with CYCLES in index.html (LEVELS there is built from it).
 LEVELS = ["1P", "2P", "3P", "4P", "5P", "6P", "7P", "8P", "9S", "10S", "11S", "SEC2", "UNI"]
 
 # Known subjects, as written in the pages. Keep in sync with SUBJECTS in index.html.
@@ -41,6 +41,11 @@ SUBJECTS = {
 
 VALID_FILENAME = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*\.html$")
 TEMPLATE_PLACEHOLDER = re.compile(r"\[[^\]]+\]")   # "[Titre de la fiche]" left from the template
+
+# Saved work (see CLAUDE.md, "Exercices enregistrés"): storage-key prefix and preview guard
+# of the localStorage script that every worksheet with answer fields carries
+SAVED_WORK_MARKER = "exercices-scolaires:"
+PREVIEW_MARKER = "#preview"
 
 
 class WorksheetReader(HTMLParser):
@@ -166,6 +171,18 @@ def read_worksheet(path, warn):
     for name, value in [("title", title), ("description", description)]:
         if "'" in value:
             warn(f"{name}: replace the straight apostrophe ' with the typographic apostrophe ’")
+
+    # Answer fields made by JavaScript (answerInput()) are invisible to the parser: search the raw text
+    if "answer-input" in text:
+        missing = []
+        if SAVED_WORK_MARKER not in text:
+            missing.append(f'the saved-work script (storage key "{SAVED_WORK_MARKER}…")')
+        if PREVIEW_MARKER not in text:
+            missing.append(f'the read-only "{PREVIEW_MARKER}" guard')
+        if "btn-clear" not in reader.ids:
+            missing.append('a static button with id="btn-clear"')
+        if missing:
+            warn("answer fields (.answer-input) without " + ", ".join(missing) + " (see CLAUDE.md)")
 
     return {
         "file": relative,
