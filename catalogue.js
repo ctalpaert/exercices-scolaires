@@ -133,34 +133,9 @@ window.CATALOGUE = [
     "aleatoire": false
   },
   {
-    "fichier": "Arbres/exercices-arbres.html",
+    "fichier": "arbres.html",
     "titre": "L’arbre et la forêt",
-    "description": "Quatre exercices sur une seule page : les parties de l’arbre, conifère ou feuillu, la feuille et le fruit, vivant ou non vivant.",
-    "matiere": "Sciences de la nature",
-    "niveaux": [
-      "4P"
-    ],
-    "mots_cles": [
-      "arbre",
-      "forêt",
-      "conifère",
-      "feuillu",
-      "feuille",
-      "fruit",
-      "écorce",
-      "racines",
-      "vivant",
-      "non vivant"
-    ],
-    "ajout": "2026-10-02",
-    "pages": 1,
-    "corrige": true,
-    "aleatoire": false
-  },
-  {
-    "fichier": "Arbres/exercices-arbres-2-pages.html",
-    "titre": "L’arbre et la forêt – grand format",
-    "description": "Les quatre exercices sur l’arbre et la forêt en grand format, sur deux pages, avec plus de place pour écrire.",
+    "description": "Quatre exercices sur deux pages : les parties de l’arbre, conifère ou feuillu, la feuille et le fruit, vivant ou non vivant.",
     "matiere": "Sciences de la nature",
     "niveaux": [
       "4P"
