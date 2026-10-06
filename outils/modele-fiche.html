@@ -117,10 +117,33 @@
   body.corrige .ans { visibility: visible; }
   body.corrige .badge { display: inline-block; }
 
+  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
+     Le texte tapé s'imprime ; il est masqué quand le corrigé est affiché. */
+  .saisie {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: #1864ab;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 1.5mm;
+    outline: none;
+  }
+  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  body.corrige .saisie { visibility: hidden; }
+  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+
   /* Lignes d'écriture */
   .lines { margin: 3mm 0 0; padding: 0; list-style: none; }
   .lines li { height: 10mm; display: flex; align-items: flex-end; gap: 3mm; font-size: 12pt; }
-  .write { flex: 1; padding-left: 1.5mm; line-height: 1; border-bottom: .3mm dotted #8c7a5c; }
+  .write { position: relative; flex: 1; padding-left: 1.5mm; line-height: 1; border-bottom: .3mm dotted #8c7a5c; }
+  .write .saisie { height: 8mm; padding: 1.5mm 0 0 1.5mm; text-align: left; }
 
   footer {
     margin-top: auto;
@@ -217,9 +240,10 @@
   <section class="ex ex1">
     <span class="tab">Exercice 1</span>
     <p class="consigne">✏️ [Consigne courte, à l’impératif, en tutoyant l’élève. Mettre le mot important en <b>gras</b>.]</p>
+    <!-- Chaque zone d'écriture reçoit un champ .saisie (aria-label = ce qu'on y écrit) -->
     <ol class="lines">
-      <li>[Question 1] <span class="write"><span class="ans">[réponse]</span></span></li>
-      <li>[Question 2] <span class="write"><span class="ans">[réponse]</span></span></li>
+      <li>[Question 1] <span class="write"><span class="ans">[réponse]</span><input class="saisie" type="text" aria-label="[Réponse 1]" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></span></li>
+      <li>[Question 2] <span class="write"><span class="ans">[réponse]</span><input class="saisie" type="text" aria-label="[Réponse 2]" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></span></li>
     </ol>
   </section>
 
@@ -236,6 +260,13 @@
     const on = document.body.classList.toggle("corrige");
     e.currentTarget.setAttribute("aria-pressed", on);
     e.currentTarget.textContent = on ? "Masquer le corrigé" : "Afficher le corrigé";
+  });
+  // Entrée passe au champ de saisie suivant, comme Tab
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    e.preventDefault();
+    const champs = [...document.querySelectorAll(".saisie")];
+    champs[champs.indexOf(e.target) + 1]?.focus();
   });
 </script>
 

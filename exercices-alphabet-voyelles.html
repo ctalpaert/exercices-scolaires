@@ -137,6 +137,28 @@
   body.corrige .ans { visibility: visible; }
   body.corrige .badge { display: inline-block; }
 
+  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
+     Le texte tapé s'imprime ; il est masqué quand le corrigé est affiché. */
+  .saisie {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: #1864ab;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 1.5mm;
+    outline: none;
+  }
+  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  body.corrige .saisie { visibility: hidden; }
+  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+
   /* Exercice 1 : lettre d'avant, lettre d'après */
   .example {
     display: inline-block;
@@ -166,6 +188,7 @@
     border-radius: 2.5mm;
   }
   .box {
+    position: relative;
     width: 8.6mm;
     height: 8.6mm;
     display: flex;
@@ -271,12 +294,14 @@
     border-radius: 50%;
   }
   .write {
+    position: relative;
     flex: 1;
     padding-left: 1.5mm;
     font-size: 11pt;
     line-height: 1;
     border-bottom: .3mm dotted #8c7a5c;
   }
+  .write .saisie { height: 6.8mm; padding: 1.2mm 0 0 1.5mm; text-align: left; }
   .defi .chips { margin-top: 2mm; }
   .defi .lines {
     display: grid;
@@ -491,8 +516,12 @@
     return groups.map(unsorted);
   }
 
-  const lines = words => words
-    .map((w, i) => `<li><span class="num">${i + 1}</span><span class="write"><span class="ans">${w}</span></span></li>`)
+  // Champ de saisie au clavier, transparent, posé sur la zone où l'élève écrit
+  const saisie = (label, extra = "") => `<input class="saisie" type="text" aria-label="${label}"${extra}`
+    + ` autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
+
+  const lines = (words, list) => words
+    .map((w, i) => `<li><span class="num">${i + 1}</span><span class="write"><span class="ans">${w}</span>${saisie(`${list}, mot ${i + 1}`)}</span></li>`)
     .join("");
 
   const chips = words => words.map(w => `<span class="chip">${w}</span>`).join("");
@@ -506,13 +535,13 @@
     const defi = unsorted(sample(DEFI_FAMILIES[rand(DEFI_FAMILIES.length)], 3));
     markUsed(defi);
     document.getElementById("defi-chips").innerHTML = chips(defi);
-    document.getElementById("defi-lines").innerHTML = lines([...defi].sort(byAlpha));
+    document.getElementById("defi-lines").innerHTML = lines([...defi].sort(byAlpha), "Défi");
 
     // Exercice 3
     const groups = buildGroups(unused(WORDS_ABC), 4, 3);
     markUsed(groups.flat());
     document.getElementById("ex3-grid").innerHTML = groups
-      .map(g => `<div class="sort-card"><div class="chips">${chips(g)}</div><ol class="lines">${lines([...g].sort(byAlpha))}</ol></div>`)
+      .map((g, n) => `<div class="sort-card"><div class="chips">${chips(g)}</div><ol class="lines">${lines([...g].sort(byAlpha), `Liste ${n + 1}`)}</ol></div>`)
       .join("");
 
     // Exercice 2
@@ -529,8 +558,8 @@
     document.getElementById("ex1-grid").innerHTML = letters
       .map(l => {
         const [before, after] = around(l);
-        return `<div class="seq"><span class="box"><span class="ans">${before}</span></span><span class="arrow">›</span>`
-          + `<span class="box given">${l}</span><span class="arrow">›</span><span class="box"><span class="ans">${after}</span></span></div>`;
+        return `<div class="seq"><span class="box"><span class="ans">${before}</span>${saisie(`Lettre avant ${l}`, ' maxlength="1"')}</span><span class="arrow">›</span>`
+          + `<span class="box given">${l}</span><span class="arrow">›</span><span class="box"><span class="ans">${after}</span>${saisie(`Lettre après ${l}`, ' maxlength="1"')}</span></div>`;
       })
       .join("");
   }
@@ -542,6 +571,13 @@
     const on = document.body.classList.toggle("corrige");
     e.currentTarget.setAttribute("aria-pressed", on);
     e.currentTarget.textContent = on ? "Masquer le corrigé" : "Afficher le corrigé";
+  });
+  // Entrée passe au champ de saisie suivant, comme Tab
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    e.preventDefault();
+    const champs = [...document.querySelectorAll(".saisie")];
+    champs[champs.indexOf(e.target) + 1]?.focus();
   });
 
   generate();

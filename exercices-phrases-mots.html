@@ -119,6 +119,28 @@
   body.corrige .ans { visibility: visible; }
   body.corrige .badge { display: inline-block; }
 
+  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
+     Le texte tapé s'imprime ; il est masqué quand le corrigé est affiché. */
+  .saisie {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: #1864ab;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 1.5mm;
+    outline: none;
+  }
+  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  body.corrige .saisie { visibility: hidden; }
+  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+
   .num {
     flex: none;
     width: 8mm;
@@ -153,6 +175,7 @@
     right: 0;
     border-top: .3mm dashed #d9cfbd;
   }
+  .wline .saisie { height: 10mm; padding: 0 3mm; text-align: left; }
 
   /* Exercice 1 : trois phrases, chacune avec ses étiquettes dispersées et sa ligne */
   .s-list { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 6mm; margin-top: 5mm; }
@@ -260,6 +283,7 @@
     border-radius: 50%;
   }
   .count {
+    position: relative;
     width: 9mm;
     height: 9mm;
     display: flex;
@@ -271,6 +295,7 @@
     border: .4mm solid #e8a93a;
     border-radius: 50%;
   }
+  .count .saisie { border-radius: 50%; }
   body.corrige .odd .w { border-color: var(--answer); }
   .row.demo { margin-top: 5mm; background: #fff; border: .35mm dashed #f3c888; }
   .demo .ans { visibility: visible; color: #b86e0b; }
@@ -513,6 +538,10 @@
   const sample = (list, k) => shuffle(list).slice(0, k);
   const letterCount = w => [...w.normalize("NFC")].length;
 
+  // Champ de saisie au clavier, transparent, posé sur la zone où l'élève écrit
+  const saisie = (label, extra = "") => `<input class="saisie" type="text" aria-label="${label}"${extra}`
+    + ` autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
+
   // Exercice 1 : trois phrases découpées en étiquettes, jamais dans l'ordre de départ
   function buildEx1() {
     document.getElementById("ex1-list").innerHTML = sample(EX1_SENTENCES, 3)
@@ -524,7 +553,7 @@
           .map(i => `<span class="tag" data-i="${i}">${words[i]}<span class="ord">${i + 1}</span></span>`)
           .join("");
         return `<div class="s-block ${BLOCK_COLORS[n]}"><span class="num">${n + 1}</span><div class="scatter">${tags}</div>`
-          + `<div class="wline"><span class="ans">${sentence}</span></div></div>`;
+          + `<div class="wline"><span class="ans">${sentence}</span>${saisie(`Phrase ${n + 1} remise en ordre`)}</div></div>`;
       })
       .join("");
     placeAllTags();
@@ -591,7 +620,7 @@
         const mixed = words.map((w, k) => (k === i || k === i + 1 ? `<span class="sw">${w}</span>` : w));
         [mixed[i], mixed[i + 1]] = [mixed[i + 1], mixed[i]];
         return `<div class="item"><div class="mixed"><span class="num">${n + 1}</span><p class="sentence">${mixed.join(" ")}</p></div>`
-          + `<div class="wline"><span class="ans">${sentence}</span></div></div>`;
+          + `<div class="wline"><span class="ans">${sentence}</span>${saisie(`Phrase ${n + 1} corrigée`)}</div></div>`;
       })
       .join("");
   }
@@ -606,16 +635,18 @@
     return shuffle([...same.map(w => ({ w, odd: false })), { w: odd, odd: true }]);
   }
 
-  const cells = row => `<div class="cells">${row
-    .map(({ w, odd }) => `<div class="cell${odd ? " odd" : ""}"><span class="w">${w}</span><span class="count"><span class="ans">${letterCount(w)}</span></span></div>`)
+  // `avecSaisie` : faux pour l'exemple, dont les réponses sont déjà écrites
+  const cells = (row, avecSaisie) => `<div class="cells">${row
+    .map(({ w, odd }) => `<div class="cell${odd ? " odd" : ""}"><span class="w">${w}</span><span class="count"><span class="ans">${letterCount(w)}</span>`
+      + `${avecSaisie ? saisie(`Nombre de lettres du mot ${w}`, ' maxlength="2" inputmode="numeric"') : ""}</span></div>`)
     .join("")}</div>`;
 
   function buildEx3() {
     const used = new Set();
-    document.getElementById("ex3-demo").innerHTML = `<span class="demo-label">Exemple</span>${cells(oddOneOut(3, used))}`;
+    document.getElementById("ex3-demo").innerHTML = `<span class="demo-label">Exemple</span>${cells(oddOneOut(3, used), false)}`;
     // Des mots de plus en plus longs
     document.getElementById("ex3-rows").innerHTML = [3, 4, 5, 6]
-      .map((len, n) => `<div class="row"><span class="num">${n + 1}</span>${cells(oddOneOut(len, used))}</div>`)
+      .map((len, n) => `<div class="row"><span class="num">${n + 1}</span>${cells(oddOneOut(len, used), true)}</div>`)
       .join("");
   }
 
@@ -630,6 +661,13 @@
     const on = document.body.classList.toggle("corrige");
     e.currentTarget.setAttribute("aria-pressed", on);
     e.currentTarget.textContent = on ? "Masquer le corrigé" : "Afficher le corrigé";
+  });
+  // Entrée passe au champ de saisie suivant, comme Tab
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    e.preventDefault();
+    const champs = [...document.querySelectorAll(".saisie")];
+    champs[champs.indexOf(e.target) + 1]?.focus();
   });
 
   generate();

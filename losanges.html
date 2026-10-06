@@ -88,7 +88,29 @@
   .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   /* Ligne sur laquelle l'élève écrit le nom */
-  .line { flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+  .line { position: relative; flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+
+  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
+     Le texte tapé s'imprime. */
+  .saisie {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: #1864ab;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 1.5mm;
+    outline: none;
+  }
+  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+  .line .saisie { height: 10mm; font-size: 15pt; }
 
   .shape { stroke-width: 4; stroke-linejoin: round; }
   .s1 { fill: #ffe08a; stroke: #b8860b; }
@@ -215,7 +237,7 @@
           <path class="mark" d="M113.4,40 L122.6,34 M113.4,90 L122.6,96 M86.6,90 L77.4,96 M86.6,40 L77.4,34"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 2. Losange couché : grande diagonale horizontale -->
@@ -226,7 +248,7 @@
           <path class="mark" d="M59.8,44.8 L54.2,35.2 M140.2,44.8 L145.8,35.2 M140.2,85.2 L145.8,94.8 M59.8,85.2 L54.2,94.8"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 3. Losange penché : posé sur un côté -->
@@ -237,7 +259,7 @@
           <path class="mark" d="M77,110.3 L77,99.3 M150.8,67.8 L141.2,62.2 M123,19.7 L123,30.7 M49.2,62.2 L58.8,67.8"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 4. Losange carré : 4 angles droits (le carré est un losange particulier) -->
@@ -249,7 +271,7 @@
           <path class="mark" d="M92.9,16.1 L100,23.1 L107.1,16.1 M148.9,57.9 L141.9,65 L148.9,72.1 M107.1,113.9 L100,106.9 L92.9,113.9 M51.1,72.1 L58.1,65 L51.1,57.9"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 5. Losange fin : très étroit, debout -->
@@ -260,7 +282,7 @@
           <path class="mark" d="M104.3,37.7 L114.7,34.3 M104.3,92.3 L114.7,95.7 M95.7,92.3 L85.3,95.7 M95.7,37.7 L85.3,34.3"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 6. Losange aplati : très plat, couché -->
@@ -271,7 +293,7 @@
           <path class="mark" d="M55.3,58.8 L52.7,48.2 M144.7,58.8 L147.3,48.2 M144.7,71.2 L147.3,81.8 M55.3,71.2 L52.7,81.8"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
   </div>
 
@@ -287,6 +309,16 @@
     </ul>
   </section>
 </main>
+
+<script>
+  // Entrée passe au champ de saisie suivant, comme Tab
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    e.preventDefault();
+    const champs = [...document.querySelectorAll(".saisie")];
+    champs[champs.indexOf(e.target) + 1]?.focus();
+  });
+</script>
 
 </body>
 </html>

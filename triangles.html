@@ -88,7 +88,29 @@
   .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   /* Ligne sur laquelle l'élève écrit le nom */
-  .line { flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+  .line { position: relative; flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+
+  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
+     Le texte tapé s'imprime. */
+  .saisie {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: #1864ab;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 1.5mm;
+    outline: none;
+  }
+  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+  .line .saisie { height: 10mm; font-size: 15pt; }
 
   .shape { stroke-width: 4; stroke-linejoin: round; }
   .s1 { fill: #ffe08a; stroke: #b8860b; }
@@ -222,7 +244,7 @@
           <path class="mark" d="M100,125 L100,113 M136.7,61.4 L126.3,67.4 M63.3,61.4 L73.7,67.4"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 2. Triangle rectangle : un angle droit -->
@@ -233,7 +255,7 @@
           <path class="mark" d="M39,113 L39,102 L28,102"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 3. Triangle isocèle : 2 côtés égaux -->
@@ -244,7 +266,7 @@
           <path class="mark" d="M115.4,67.1 L126.6,62.9 M73.4,62.9 L84.6,67.1"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 4. Triangle obtusangle : un angle obtus -->
@@ -255,7 +277,7 @@
           <path class="mark" d="M57.9,52.8 A15,15 0 0 0 84.1,49"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 5. Triangle rectangle isocèle : un angle droit et 2 côtés égaux -->
@@ -267,7 +289,7 @@
           <path class="mark" d="M55.8,62.8 L64.2,71.2 M135.8,71.2 L144.2,62.8"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 6. Triangle quelconque : 3 côtés différents, pas d'angle droit -->
@@ -277,7 +299,7 @@
           <polygon class="shape s6" points="22,104 174,116 118,12"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
   </div>
 
@@ -293,6 +315,16 @@
     </ul>
   </section>
 </main>
+
+<script>
+  // Entrée passe au champ de saisie suivant, comme Tab
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    e.preventDefault();
+    const champs = [...document.querySelectorAll(".saisie")];
+    champs[champs.indexOf(e.target) + 1]?.focus();
+  });
+</script>
 
 </body>
 </html>

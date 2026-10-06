@@ -1082,10 +1082,10 @@
     const cadre = li.querySelector("iframe");
     cadre.addEventListener("load", () => {
       try {
-        // Même origine (GitHub Pages) : on retire les boutons et la marge grise de la fiche
+        // Même origine (GitHub Pages) : on retire les boutons, les champs de saisie et la marge grise de la fiche
         const doc = cadre.contentDocument;
         const style = doc.createElement("style");
-        style.textContent = ".toolbar,.print-btn,.retour{display:none!important}html,body{background:#fff!important;overflow:hidden!important}.page{margin:0!important;box-shadow:none!important}";
+        style.textContent = ".toolbar,.print-btn,.retour,.saisie{display:none!important}html,body{background:#fff!important;overflow:hidden!important}.page{margin:0!important;box-shadow:none!important}";
         doc.head.append(style);
       } catch (e) { /* ouvert depuis le disque : aperçu tel quel */ }
       feuille.classList.add("chargee");

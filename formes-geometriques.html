@@ -75,7 +75,29 @@
   .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
   /* Ligne sur laquelle l'élève écrit le nom */
-  .line { flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+  .line { position: relative; flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+
+  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
+     Le texte tapé s'imprime. */
+  .saisie {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    color: #1864ab;
+    text-align: center;
+    background: transparent;
+    border: 0;
+    border-radius: 1.5mm;
+    outline: none;
+  }
+  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+  .line .saisie { height: 10mm; font-size: 15pt; }
 
   .shape { stroke-width: 4; stroke-linejoin: round; }
   .s1 { fill: #ffe08a; stroke: #b8860b; }
@@ -176,7 +198,7 @@
           <polygon class="shape s1" points="100,8 20,122 180,122"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 2. Losange -->
@@ -186,7 +208,7 @@
           <polygon class="shape s2" points="100,10 185,65 100,120 15,65"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 3. Rectangle -->
@@ -196,7 +218,7 @@
           <rect class="shape s3" x="15" y="20" width="170" height="90"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 4. Carré -->
@@ -206,7 +228,7 @@
           <rect class="shape s4" x="48" y="13" width="104" height="104"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 5. Forme convexe : pentagone irrégulier -->
@@ -216,7 +238,7 @@
           <polygon class="shape s5" points="50,14 142,22 180,72 112,118 20,90"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 6. Forme concave : pointe de flèche -->
@@ -226,7 +248,7 @@
           <polygon class="shape s6" points="100,10 180,118 100,72 20,118"/>
         </svg>
       </div>
-      <div class="line"></div>
+      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
   </div>
 
@@ -242,6 +264,16 @@
     </ul>
   </section>
 </main>
+
+<script>
+  // Entrée passe au champ de saisie suivant, comme Tab
+  document.addEventListener("keydown", e => {
+    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    e.preventDefault();
+    const champs = [...document.querySelectorAll(".saisie")];
+    champs[champs.indexOf(e.target) + 1]?.focus();
+  });
+</script>
 
 </body>
 </html>
