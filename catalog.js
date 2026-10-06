@@ -68,7 +68,7 @@ window.CATALOG = [
   {
     "file": "formes-geometriques.html",
     "title": "Les formes géométriques",
-    "description": "Observer six figures et écrire leur nom : triangle, losange, rectangle, carré, forme convexe et forme concave.",
+    "description": "Observer six figures et écrire leur nom : triangle, losange, rectangle, carré, forme convexe et forme non-convexe.",
     "subject": "Mathématiques",
     "levels": [
       "4P"
@@ -82,7 +82,7 @@ window.CATALOG = [
       "rectangle",
       "losange",
       "convexe",
-      "concave"
+      "non convexe",
     ],
     "added": "2026-09-29",
     "pages": 1,
