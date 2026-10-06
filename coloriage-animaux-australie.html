@@ -6,9 +6,9 @@
 <title>Animaux d’Australie à colorier</title>
 <meta name="description" content="Quatre animaux d’Australie à colorier : le wallaby, le koala, le requin et le dauphin.">
 <meta name="keywords" content="coloriage, animaux, Australie, wallaby, koala, requin, dauphin">
-<meta name="exercice:matiere" content="Arts visuels">
-<meta name="exercice:niveau" content="4P">
-<meta name="exercice:ajout" content="2026-09-29">
+<meta name="worksheet:subject" content="Arts visuels">
+<meta name="worksheet:level" content="4P">
+<meta name="worksheet:added" content="2026-09-29">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
 <style>
   @page { size: A4 portrait; margin: 0; }
@@ -27,7 +27,7 @@
     display: flex; justify-content: space-between; align-items: center;
     gap: 12px; font-size: 14px; color: #444;
   }
-  .toolbar .retour { position: static; }
+  .toolbar .back-link { position: static; }
   .toolbar button {
     font: inherit; padding: 8px 18px; border: 0; border-radius: 8px;
     background: #1a1a1a; color: #fff; cursor: pointer;
@@ -62,10 +62,10 @@
   footer div { flex: 1; display: flex; align-items: flex-end; gap: 2mm; }
   footer i { flex: 1; border-bottom: 1.5px dotted #1a1a1a; height: 1em; }
 
-  /* ---- dessins ---- */
+  /* ---- drawings ---- */
   svg { display: block; width: 100%; height: auto; }
   .w  { fill: #fff; stroke: none; }
-  .fr { fill: none; stroke: #1a1a1a; stroke-width: 3.5; }
+  .frame { fill: none; stroke: #1a1a1a; stroke-width: 3.5; }
   .o  { fill: #fff; stroke: #1a1a1a; stroke-width: 4.5; stroke-linejoin: round; stroke-linecap: round; }
   .l  { fill: none; stroke: #1a1a1a; stroke-width: 3.5; stroke-linejoin: round; stroke-linecap: round; }
   .k  { fill: #1a1a1a; stroke: none; }
@@ -78,8 +78,8 @@
     .page { margin: 0; box-shadow: none; height: 296mm; overflow: hidden; }
   }
 
-  /* Lien vers la liste de tous les exercices (écran uniquement) */
-  .retour {
+  /* Link to the list of all worksheets (screen only) */
+  .back-link {
     position: fixed;
     top: 12px;
     left: 16px;
@@ -92,10 +92,10 @@
     border-radius: 6px;
     box-shadow: inset 0 0 0 1.5px #1864ab;
   }
-  .retour:hover { background: #e7f5ff; }
-  @media print { .retour { display: none; } }
+  .back-link:hover { background: #e7f5ff; }
+  @media print { .back-link { display: none; } }
 
-  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  /* Author and license, printed in the bottom margin of each sheet */
   .page { position: relative; }
   .page::after {
     content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
@@ -113,7 +113,7 @@
 <body>
 
 <div class="toolbar">
-  <a class="retour" href="index.html">← Tous les exercices</a>
+  <a class="back-link" href="index.html">← Tous les exercices</a>
   <span>Format A4 portrait &middot; imprimer sans marges ni en-têtes de page</span>
   <button onclick="window.print()">Imprimer</button>
 </div>
@@ -136,34 +136,34 @@
         </defs>
         <rect class="w" x="4" y="4" width="392" height="392" rx="24"/>
         <g clip-path="url(#cp-w)">
-          <!-- soleil -->
+          <!-- sun -->
           <circle class="o" cx="325" cy="72" r="26"/>
           <path class="l" d="M360 72h12 M349.7 96.7l8.5 8.5 M325 107v12 M300.3 96.7l-8.5 8.5 M290 72h-12 M300.3 47.3l-8.5-8.5 M325 37V25 M349.7 47.3l8.5-8.5"/>
-          <!-- sol -->
+          <!-- ground -->
           <path class="o" d="M -20 350 C 60 340, 140 358, 220 348 S 350 340, 420 352 V 420 H -20 Z"/>
           <path class="l" d="M34 354 l-5 -20 M40 354 l0 -25 M46 354 l6 -20"/>
           <path class="l" d="M372 356 l-5 -18 M378 356 l0 -23 M384 356 l6 -18"/>
 
           <g transform="translate(-24 14)">
-            <!-- queue -->
+            <!-- tail -->
             <path class="o" d="M255 262 C 295 300, 340 312, 384 284 C 372 322, 320 342, 250 328 Z"/>
-            <!-- oreilles -->
+            <!-- ears -->
             <use href="#ear"   class="o" transform="translate(160 92) rotate(-12)"/>
             <use href="#earin" class="l" transform="translate(160 92) rotate(-12)"/>
             <use href="#ear"   class="o" transform="translate(192 96) rotate(16)"/>
             <use href="#earin" class="l" transform="translate(192 96) rotate(16)"/>
-            <!-- corps -->
+            <!-- body -->
             <path class="o" d="M175 120 C 150 170, 145 240, 170 300 C 185 325, 260 335, 275 300 C 305 235, 275 140, 190 108 Z"/>
             <ellipse class="o" cx="188" cy="215" rx="28" ry="70" transform="rotate(-6 188 215)"/>
-            <!-- grand pied -->
+            <!-- big foot -->
             <path class="o" d="M120 314 C 98 314, 96 346, 122 346 L 254 346 C 278 346, 282 316, 254 314 Z"/>
             <path class="l" d="M124 316 V 344 M142 315 V 345"/>
-            <!-- cuisse -->
+            <!-- thigh -->
             <ellipse class="o" cx="232" cy="268" rx="52" ry="60" transform="rotate(-15 232 268)"/>
-            <!-- petit bras -->
+            <!-- small arm -->
             <ellipse class="o" cx="152" cy="196" rx="12" ry="32" transform="rotate(30 152 196)"/>
             <circle  class="o" cx="135" cy="224" r="9"/>
-            <!-- tête -->
+            <!-- head -->
             <path class="o" d="M100 120 C 104 100, 130 78, 160 78 C 185 76, 205 95, 205 120 C 205 145, 185 158, 165 158 C 140 158, 112 146, 100 128 Z"/>
             <ellipse class="k" cx="103" cy="124" rx="9" ry="8"/>
             <circle  class="k" cx="138" cy="106" r="6.5"/>
@@ -171,7 +171,7 @@
             <path class="l" d="M106 133 C 120 143, 136 143, 150 135"/>
           </g>
         </g>
-        <rect class="fr" x="4" y="4" width="392" height="392" rx="24"/>
+        <rect class="frame" x="4" y="4" width="392" height="392" rx="24"/>
       </svg>
       <figcaption><strong>Le wallaby (walibi)</strong><span>Il saute sur ses grandes pattes.</span></figcaption>
     </figure>
@@ -188,24 +188,24 @@
         </defs>
         <rect class="w" x="4" y="4" width="392" height="392" rx="24"/>
         <g clip-path="url(#cp-k)">
-          <!-- feuilles d'eucalyptus dans les coins -->
+          <!-- eucalyptus leaves in the corners -->
           <use href="#leaf" transform="translate(-10 30) rotate(30) scale(1.4)"/>
           <use href="#leaf" transform="translate(-10 84) rotate(10) scale(1.2)"/>
           <use href="#leaf" transform="translate(410 30) rotate(150) scale(1.4)"/>
           <use href="#leaf" transform="translate(410 84) rotate(170) scale(1.2)"/>
-          <!-- feuilles sur la branche -->
+          <!-- leaves on the branch -->
           <use href="#leaf" transform="translate(40 306) rotate(-115)"/>
           <use href="#leaf" transform="translate(65 306) rotate(-95)"/>
           <use href="#leaf" transform="translate(360 306) rotate(-65)"/>
           <use href="#leaf" transform="translate(335 306) rotate(-85)"/>
-          <!-- branche -->
+          <!-- branch -->
           <path class="o" d="M -20 308 C 100 298, 300 298, 420 306 L 420 336 C 300 330, 100 330, -20 338 Z"/>
           <path class="l" d="M36 322h34 M304 318h40 M326 326h26"/>
 
-          <!-- corps -->
+          <!-- body -->
           <path class="o" d="M200 168 C 150 168, 112 210, 112 262 C 112 305, 150 322, 200 322 C 250 322, 288 305, 288 262 C 288 210, 250 168, 200 168 Z"/>
           <ellipse class="o" cx="200" cy="262" rx="44" ry="48"/>
-          <!-- bras et pattes -->
+          <!-- arms and legs -->
           <ellipse class="o" cx="126" cy="256" rx="22" ry="50" transform="rotate(14 126 256)"/>
           <ellipse class="o" cx="274" cy="256" rx="22" ry="50" transform="rotate(-14 274 256)"/>
           <ellipse class="o" cx="113" cy="306" rx="16" ry="10" transform="rotate(14 113 306)"/>
@@ -213,29 +213,29 @@
           <ellipse class="o" cx="155" cy="320" rx="32" ry="16"/>
           <ellipse class="o" cx="245" cy="320" rx="32" ry="16"/>
           <path class="l" d="M140 314 v 12 M155 316 v 12 M170 314 v 12 M230 314 v 12 M245 316 v 12 M260 314 v 12"/>
-          <!-- oreilles -->
+          <!-- ears -->
           <circle class="o" cx="118" cy="80" r="40"/>
           <circle class="o" cx="282" cy="80" r="40"/>
           <circle class="o" cx="118" cy="80" r="23"/>
           <circle class="o" cx="282" cy="80" r="23"/>
-          <!-- tête -->
+          <!-- head -->
           <circle class="o" cx="200" cy="130" r="72"/>
-          <!-- yeux -->
+          <!-- eyes -->
           <circle class="k" cx="166" cy="116" r="7"/>
           <circle class="k" cx="234" cy="116" r="7"/>
           <circle class="w" cx="168" cy="114" r="2.5"/>
           <circle class="w" cx="236" cy="114" r="2.5"/>
-          <!-- nez et bouche -->
+          <!-- nose and mouth -->
           <ellipse class="o" cx="200" cy="148" rx="24" ry="20"/>
           <path class="l" d="M190 141 q 6 -5 12 -3"/>
           <path class="l" d="M200 168 V 178 M200 178 C 194 190, 182 190, 176 182 M200 178 C 206 190, 218 190, 224 182"/>
         </g>
-        <rect class="fr" x="4" y="4" width="392" height="392" rx="24"/>
+        <rect class="frame" x="4" y="4" width="392" height="392" rx="24"/>
       </svg>
       <figcaption><strong>Le koala</strong><span>Il dort dans les eucalyptus.</span></figcaption>
     </figure>
 
-    <!-- ========== REQUIN ========== -->
+    <!-- ========== SHARK ========== -->
     <figure>
       <svg viewBox="0 0 400 400" role="img" aria-label="Requin à colorier">
         <defs>
@@ -243,30 +243,30 @@
         </defs>
         <rect class="w" x="4" y="4" width="392" height="392" rx="24"/>
         <g clip-path="url(#cp-s)">
-          <!-- algues -->
+          <!-- seaweed -->
           <path class="t1" d="M48 362 C 30 336, 64 320, 50 300"/>
           <path class="t2" d="M48 362 C 30 336, 64 320, 50 300"/>
           <path class="t1" d="M352 362 C 372 336, 336 318, 350 296"/>
           <path class="t2" d="M352 362 C 372 336, 336 318, 350 296"/>
           <path class="t1" d="M296 362 C 280 342, 310 328, 296 308"/>
           <path class="t2" d="M296 362 C 280 342, 310 328, 296 308"/>
-          <!-- sable -->
+          <!-- sand -->
           <path class="o" d="M -20 354 C 60 340, 140 366, 220 354 S 350 340, 420 356 V 420 H -20 Z"/>
-          <!-- bulles -->
+          <!-- bubbles -->
           <circle class="o" cx="334" cy="100" r="10"/>
           <circle class="o" cx="352" cy="72"  r="6"/>
           <circle class="o" cx="326" cy="58"  r="7"/>
-          <!-- petit poisson -->
+          <!-- small fish -->
           <path class="o" d="M118 72 L 96 56 L 96 88 Z"/>
           <ellipse class="o" cx="140" cy="72" rx="26" ry="16"/>
           <path class="l" d="M152 61 q -7 11 0 22"/>
           <circle class="k" cx="156" cy="68" r="3.2"/>
 
           <g transform="translate(10 -15)">
-            <!-- petites nageoires (derrière le corps) -->
+            <!-- small fins (behind the body) -->
             <path class="o" d="M140 170 C 128 152, 118 148, 108 146 C 108 160, 106 174, 104 187 Z"/>
             <path class="o" d="M138 244 C 126 256, 118 262, 106 266 C 106 254, 110 244, 116 236 Z"/>
-            <!-- corps + grande nageoire dorsale + queue -->
+            <!-- body + large dorsal fin + tail -->
             <path class="o" d="M365 215
               C 350 180, 305 160, 262 154
               C 245 118, 225 92, 200 72
@@ -278,26 +278,26 @@
               C 58 254, 74 238, 86 224
               C 130 240, 200 275, 270 275
               C 325 275, 358 250, 365 215 Z"/>
-            <!-- nageoire pectorale -->
+            <!-- pectoral fin -->
             <path class="o" d="M248 232 C 240 265, 215 300, 168 322 C 170 295, 180 265, 205 245 C 220 248, 235 246, 248 232 Z"/>
-            <!-- ouïes -->
+            <!-- gills -->
             <path class="l" d="M256 182 Q 249 198 256 214 M242 182 Q 235 198 242 214 M228 184 Q 221 198 228 212"/>
-            <!-- oeil -->
+            <!-- eye -->
             <circle class="k" cx="322" cy="194" r="8"/>
             <circle class="w" cx="324.5" cy="191.5" r="2.6"/>
-            <!-- bouche et dents -->
+            <!-- mouth and teeth -->
             <path class="l" d="M352 224 C 335 244, 305 246, 282 234"/>
             <path class="o" style="stroke-width:3" d="M331 234 L 337 248 L 344 237 Z"/>
             <path class="o" style="stroke-width:3" d="M313 241 L 319 254 L 326 242 Z"/>
             <path class="o" style="stroke-width:3" d="M295 240 L 301 253 L 308 241 Z"/>
           </g>
         </g>
-        <rect class="fr" x="4" y="4" width="392" height="392" rx="24"/>
+        <rect class="frame" x="4" y="4" width="392" height="392" rx="24"/>
       </svg>
       <figcaption><strong>Le requin</strong><span>Il nage dans l'océan.</span></figcaption>
     </figure>
 
-    <!-- ========== DAUPHIN ========== -->
+    <!-- ========== DOLPHIN ========== -->
     <figure>
       <svg viewBox="0 0 400 400" role="img" aria-label="Dauphin à colorier">
         <defs>
@@ -305,22 +305,22 @@
         </defs>
         <rect class="w" x="4" y="4" width="392" height="392" rx="24"/>
         <g clip-path="url(#cp-d)">
-          <!-- soleil -->
+          <!-- sun -->
           <circle class="o" cx="68" cy="68" r="28"/>
           <path class="l" d="M106 68h14 M94.9 94.9l9.9 9.9 M68 106v14 M41.1 94.9l-9.9 9.9 M30 68H16 M41.1 41.1l-9.9-9.9 M68 30V16 M94.9 41.1l9.9-9.9"/>
-          <!-- nuage -->
+          <!-- cloud -->
           <path class="o" transform="translate(12 -16)" d="M285 92 C 268 92, 262 70, 282 64 C 288 42, 324 40, 332 60 C 354 54, 372 76, 356 92 Z"/>
-          <!-- mer -->
+          <!-- sea -->
           <path class="o" d="M -25 346 q 25 -22 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 V 420 H -25 Z"/>
           <path class="l" d="M -50 378 q 25 -22 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0 t 50 0"/>
-          <!-- gouttes -->
+          <!-- drops -->
           <ellipse class="o" cx="330" cy="298" rx="5" ry="7.5"/>
           <ellipse class="o" cx="352" cy="318" rx="4" ry="6"/>
           <ellipse class="o" cx="300" cy="316" rx="4" ry="6"/>
           <ellipse class="o" cx="370" cy="290" rx="3.5" ry="5.5"/>
 
           <g transform="translate(-20 -8) rotate(8 215 200)">
-            <!-- corps + nageoire dorsale + queue -->
+            <!-- body + dorsal fin + tail -->
             <path class="o" d="M50 225
               C 62 216, 88 214, 104 204
               C 112 176, 150 148, 200 148
@@ -335,17 +335,17 @@
               C 315 262, 275 286, 228 284
               C 180 282, 138 266, 108 242
               C 92 240, 66 236, 50 225 Z"/>
-            <!-- ventre -->
+            <!-- belly -->
             <path class="l" d="M130 218 C 185 244, 280 246, 350 226"/>
-            <!-- nageoire pectorale -->
+            <!-- pectoral fin -->
             <path class="o" d="M176 248 C 170 280, 186 308, 220 322 C 214 298, 218 270, 236 252 C 218 258, 196 256, 176 248 Z"/>
-            <!-- sourire et oeil -->
+            <!-- smile and eye -->
             <path class="l" d="M52 224 C 76 224, 100 226, 130 218"/>
             <circle class="k" cx="136" cy="198" r="7.5"/>
             <circle class="w" cx="138.5" cy="195.5" r="2.5"/>
           </g>
         </g>
-        <rect class="fr" x="4" y="4" width="392" height="392" rx="24"/>
+        <rect class="frame" x="4" y="4" width="392" height="392" rx="24"/>
       </svg>
       <figcaption><strong>Le dauphin</strong><span>Il saute au-dessus des vagues.</span></figcaption>
     </figure>

@@ -12,9 +12,9 @@ Téléchargez l'archive du dépôt (bouton « Télécharger tous les exercices e
 
 ## Ajouter une fiche
 
-1. Créer la page HTML à partir de `outils/modele-fiche.html`.
+1. Créer la page HTML à partir de `tools/modele-fiche.html`.
 2. Renseigner ses balises `<meta>` (description, matière, degré, date d'ajout).
-3. Copier les fichiers publiables vers le clone git (le catalogue est régénéré au passage) : `py outils/publier.py`
+3. Copier les fichiers publiables vers le clone git (le catalogue est régénéré au passage) : `py tools/publish.py`
 4. Dans le clone : commit, puis push sur `main`.
 
 Les conventions détaillées sont dans [CLAUDE.md](CLAUDE.md).

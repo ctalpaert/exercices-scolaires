@@ -6,9 +6,9 @@
 <title>Les triangles</title>
 <meta name="description" content="Nommer six triangles (équilatéral, isocèle, rectangle, obtusangle…) en lisant le codage des côtés et des angles.">
 <meta name="keywords" content="géométrie, triangle, isocèle, équilatéral, rectangle, obtusangle, quelconque, angle droit">
-<meta name="exercice:matiere" content="Mathématiques">
-<meta name="exercice:niveau" content="4P">
-<meta name="exercice:ajout" content="2026-09-30">
+<meta name="worksheet:subject" content="Mathématiques">
+<meta name="worksheet:level" content="4P">
+<meta name="worksheet:added" content="2026-09-30">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
 <style>
   @page { size: A4 portrait; margin: 0; }
@@ -32,7 +32,7 @@
     print-color-adjust: exact;
   }
 
-  /* Feuille A4 */
+  /* A4 sheet */
   .page {
     width: 210mm;
     height: 297mm;
@@ -49,7 +49,7 @@
   h1 { margin: 0; font-size: 24pt; letter-spacing: .3pt; }
   header p { margin: 2mm 0 0; font-size: 12pt; }
 
-  /* Légende du codage */
+  /* Marking legend */
   .legend {
     margin: 3mm 0 0;
     padding: 0;
@@ -62,7 +62,7 @@
   .legend li { display: flex; align-items: center; gap: 1.8mm; }
   .legend svg { width: 7mm; height: 5mm; }
 
-  /* Les six figures */
+  /* The six figures */
   .grid {
     flex: 1;
     min-height: 0;
@@ -87,12 +87,12 @@
   .figure { flex: 1; min-height: 0; position: relative; }
   .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-  /* Ligne sur laquelle l'élève écrit le nom */
+  /* Line on which the pupil writes the name */
   .line { position: relative; flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
 
-  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
-     Le texte tapé s'imprime. */
-  .saisie {
+  /* Keyboard input: a transparent field laid over each area where the pupil writes.
+     Typed text is printed. */
+  .answer-input {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -108,9 +108,9 @@
     border-radius: 1.5mm;
     outline: none;
   }
-  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
-  @media print { .saisie { background: none !important; box-shadow: none !important; } }
-  .line .saisie { height: 10mm; font-size: 15pt; }
+  .answer-input:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  @media print { .answer-input { background: none !important; box-shadow: none !important; } }
+  .line .answer-input { height: 10mm; font-size: 15pt; }
 
   .shape { stroke-width: 4; stroke-linejoin: round; }
   .s1 { fill: #ffe08a; stroke: #b8860b; }
@@ -120,7 +120,7 @@
   .s5 { fill: #d0bfff; stroke: #6741d9; }
   .s6 { fill: #ffd8a8; stroke: #e8590c; }
 
-  /* Codage : traits (côtés égaux), carré (angle droit), arc (angle obtus) */
+  /* Markings: ticks (equal sides), square (right angle), arc (obtuse angle) */
   .mark {
     fill: none;
     stroke: var(--ink);
@@ -129,7 +129,7 @@
     stroke-linejoin: round;
   }
 
-  /* Liste modèle */
+  /* List of names */
   .model {
     margin-top: 6mm;
     padding: 3.5mm 5mm 4mm;
@@ -168,8 +168,8 @@
     .print-btn { display: none; }
   }
 
-  /* Lien vers la liste de tous les exercices (écran uniquement) */
-  .retour {
+  /* Link to the list of all worksheets (screen only) */
+  .back-link {
     position: fixed;
     top: 12px;
     left: 16px;
@@ -182,10 +182,10 @@
     border-radius: 6px;
     box-shadow: inset 0 0 0 1.5px #1864ab;
   }
-  .retour:hover { background: #e7f5ff; }
-  @media print { .retour { display: none; } }
+  .back-link:hover { background: #e7f5ff; }
+  @media print { .back-link { display: none; } }
 
-  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  /* Author and license, printed in the bottom margin of each sheet */
   .page { position: relative; }
   .page::after {
     content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
@@ -202,7 +202,7 @@
 </head>
 <body>
 
-<a class="retour" href="index.html">← Tous les exercices</a>
+<a class="back-link" href="index.html">← Tous les exercices</a>
 
 <button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
 
@@ -236,7 +236,7 @@
   </header>
 
   <div class="grid">
-    <!-- 1. Triangle équilatéral : 3 côtés égaux -->
+    <!-- 1. Equilateral triangle: 3 equal sides -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 1">
@@ -244,10 +244,10 @@
           <path class="mark" d="M100,125 L100,113 M136.7,61.4 L126.3,67.4 M63.3,61.4 L73.7,67.4"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 2. Triangle rectangle : un angle droit -->
+    <!-- 2. Right triangle: one right angle -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 2">
@@ -255,10 +255,10 @@
           <path class="mark" d="M39,113 L39,102 L28,102"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 3. Triangle isocèle : 2 côtés égaux -->
+    <!-- 3. Isosceles triangle: 2 equal sides -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 3">
@@ -266,10 +266,10 @@
           <path class="mark" d="M115.4,67.1 L126.6,62.9 M73.4,62.9 L84.6,67.1"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 4. Triangle obtusangle : un angle obtus -->
+    <!-- 4. Obtuse triangle: one obtuse angle -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 4">
@@ -277,10 +277,10 @@
           <path class="mark" d="M57.9,52.8 A15,15 0 0 0 84.1,49"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 5. Triangle rectangle isocèle : un angle droit et 2 côtés égaux -->
+    <!-- 5. Right isosceles triangle: one right angle and 2 equal sides -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 5">
@@ -289,17 +289,17 @@
           <path class="mark" d="M55.8,62.8 L64.2,71.2 M135.8,71.2 L144.2,62.8"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 6. Triangle quelconque : 3 côtés différents, pas d'angle droit -->
+    <!-- 6. Scalene triangle: 3 different sides, no right angle -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 6">
           <polygon class="shape s6" points="22,104 174,116 118,12"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
   </div>
 
@@ -317,12 +317,12 @@
 </main>
 
 <script>
-  // Entrée passe au champ de saisie suivant, comme Tab
+  // Enter moves to the next input field, like Tab
   document.addEventListener("keydown", e => {
-    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    if (e.key !== "Enter" || !e.target.classList.contains("answer-input")) return;
     e.preventDefault();
-    const champs = [...document.querySelectorAll(".saisie")];
-    champs[champs.indexOf(e.target) + 1]?.focus();
+    const fields = [...document.querySelectorAll(".answer-input")];
+    fields[fields.indexOf(e.target) + 1]?.focus();
   });
 </script>
 

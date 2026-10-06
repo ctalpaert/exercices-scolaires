@@ -16,84 +16,84 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Lexend:wght@300..600&display=swap" rel="stylesheet">
 <style>
-  /* ============ Couleurs et typographie ============ */
+  /* ============ Colors and typography ============ */
   :root {
     color-scheme: light dark;
-    --papier: #fbf8f1;
-    --papier-2: #f3eee2;
-    --carte: #fffdf9;
-    --feuille: #ffffff;
-    --encre: #1d2230;
-    --encre-2: #555c6c;
-    --encre-3: #646a79;
-    --trait: #e4dccb;
-    --trait-fort: #cfc5ae;
-    --quadrillage: rgba(52, 81, 199, .08);
-    --bleu: #3451c7;
-    --bleu-fonce: #253c9e;
-    --bleu-pale: #e7ebfc;
-    --rouge: #c2255c;
-    --surligneur: #ffe46b;
-    --entete: rgba(251, 248, 241, .88);
-    --bord-champ: #948a75;
-    --ombre: 0 1px 2px rgba(29, 34, 48, .06), 0 12px 32px -16px rgba(29, 34, 48, .28);
-    --ombre-forte: 0 2px 4px rgba(29, 34, 48, .06), 0 22px 44px -18px rgba(29, 34, 48, .38);
-    --rayon: 18px;
-    --titre: "Fraunces", "Iowan Old Style", Georgia, serif;
-    --texte: "Lexend", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --paper: #fbf8f1;
+    --paper-2: #f3eee2;
+    --card: #fffdf9;
+    --sheet: #ffffff;
+    --ink: #1d2230;
+    --ink-2: #555c6c;
+    --ink-3: #646a79;
+    --line: #e4dccb;
+    --line-strong: #cfc5ae;
+    --grid-line: rgba(52, 81, 199, .08);
+    --blue: #3451c7;
+    --blue-dark: #253c9e;
+    --blue-pale: #e7ebfc;
+    --red: #c2255c;
+    --highlighter: #ffe46b;
+    --header-bg: rgba(251, 248, 241, .88);
+    --field-border: #948a75;
+    --shadow: 0 1px 2px rgba(29, 34, 48, .06), 0 12px 32px -16px rgba(29, 34, 48, .28);
+    --shadow-strong: 0 2px 4px rgba(29, 34, 48, .06), 0 22px 44px -18px rgba(29, 34, 48, .38);
+    --radius: 18px;
+    --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+    --font-body: "Lexend", "Segoe UI", system-ui, -apple-system, sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --papier: #14161c;
-      --papier-2: #1b1e26;
-      --carte: #1c1f28;
-      --feuille: #f4f1ea;
-      --encre: #ece8df;
-      --encre-2: #b3b5bf;
-      --encre-3: #9a9daa;
-      --trait: #2d313d;
-      --trait-fort: #3d4250;
-      --quadrillage: rgba(142, 162, 255, .07);
-      --bleu: #8ea2ff;
-      --bleu-fonce: #b4c1ff;
-      --bleu-pale: #262c47;
-      --rouge: #f06595;
-      --surligneur: rgba(255, 212, 59, .38);
-      --entete: rgba(20, 22, 28, .86);
-      --bord-champ: #6b7080;
-      --ombre: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px -16px rgba(0, 0, 0, .7);
-      --ombre-forte: 0 2px 4px rgba(0, 0, 0, .3), 0 22px 44px -18px rgba(0, 0, 0, .8);
+      --paper: #14161c;
+      --paper-2: #1b1e26;
+      --card: #1c1f28;
+      --sheet: #f4f1ea;
+      --ink: #ece8df;
+      --ink-2: #b3b5bf;
+      --ink-3: #9a9daa;
+      --line: #2d313d;
+      --line-strong: #3d4250;
+      --grid-line: rgba(142, 162, 255, .07);
+      --blue: #8ea2ff;
+      --blue-dark: #b4c1ff;
+      --blue-pale: #262c47;
+      --red: #f06595;
+      --highlighter: rgba(255, 212, 59, .38);
+      --header-bg: rgba(20, 22, 28, .86);
+      --field-border: #6b7080;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 12px 32px -16px rgba(0, 0, 0, .7);
+      --shadow-strong: 0 2px 4px rgba(0, 0, 0, .3), 0 22px 44px -18px rgba(0, 0, 0, .8);
     }
   }
 
-  /* Teintes par matière et par cycle : l'élément porte --h (0-360) */
+  /* Tints per subject and per cycle: the element sets --h (hue, 0-360) */
   .t {
-    --t-fond: hsl(var(--h) 70% 96%);
-    --t-trait: hsl(var(--h) 50% 82%);
-    --t-fort: hsl(var(--h) 60% 32%);
-    --t-vif: hsl(var(--h) 60% 48%);
+    --t-bg: hsl(var(--h) 70% 96%);
+    --t-line: hsl(var(--h) 50% 82%);
+    --t-strong: hsl(var(--h) 60% 32%);
+    --t-vivid: hsl(var(--h) 60% 48%);
   }
   @media (prefers-color-scheme: dark) {
     .t {
-      --t-fond: hsl(var(--h) 25% 22%);
-      --t-trait: hsl(var(--h) 22% 36%);
-      --t-fort: hsl(var(--h) 70% 85%);
-      --t-vif: hsl(var(--h) 55% 66%);
+      --t-bg: hsl(var(--h) 25% 22%);
+      --t-line: hsl(var(--h) 22% 36%);
+      --t-strong: hsl(var(--h) 70% 85%);
+      --t-vivid: hsl(var(--h) 55% 66%);
     }
   }
   @supports (color: oklch(0 0 0)) {
     .t {
-      --t-fond: oklch(.955 .03 var(--h));
-      --t-trait: oklch(.86 .07 var(--h));
-      --t-fort: oklch(.5 .15 var(--h));
-      --t-vif: oklch(.68 .16 var(--h));
+      --t-bg: oklch(.955 .03 var(--h));
+      --t-line: oklch(.86 .07 var(--h));
+      --t-strong: oklch(.5 .15 var(--h));
+      --t-vivid: oklch(.68 .16 var(--h));
     }
     @media (prefers-color-scheme: dark) {
       .t {
-        --t-fond: oklch(.3 .05 var(--h));
-        --t-trait: oklch(.43 .08 var(--h));
-        --t-fort: oklch(.86 .1 var(--h));
-        --t-vif: oklch(.72 .14 var(--h));
+        --t-bg: oklch(.3 .05 var(--h));
+        --t-line: oklch(.43 .08 var(--h));
+        --t-strong: oklch(.86 .1 var(--h));
+        --t-vivid: oklch(.72 .14 var(--h));
       }
     }
   }
@@ -103,34 +103,34 @@
   body {
     margin: 0;
     min-height: 100vh;
-    font-family: var(--texte);
+    font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.55;
-    color: var(--encre);
-    background: var(--papier);
+    color: var(--ink);
+    background: var(--paper);
     overflow-x: hidden;
   }
-  a { color: var(--bleu); text-underline-offset: .18em; }
-  a:hover { color: var(--bleu-fonce); }
+  a { color: var(--blue); text-underline-offset: .18em; }
+  a:hover { color: var(--blue-dark); }
   button, input, select { font: inherit; color: inherit; }
-  :focus-visible { outline: 3px solid var(--bleu); outline-offset: 2px; border-radius: 6px; }
+  :focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; border-radius: 6px; }
   [hidden] { display: none !important; }
-  .visuellement-cache {
+  .visually-hidden {
     position: absolute !important; width: 1px; height: 1px; overflow: hidden;
     clip-path: inset(50%); white-space: nowrap;
   }
-  .conteneur { width: min(1180px, 100% - 32px); margin-inline: auto; }
+  .container { width: min(1180px, 100% - 32px); margin-inline: auto; }
 
-  .evitement {
+  .skip-link {
     position: absolute; top: 8px; left: 8px; z-index: 100;
-    padding: 10px 16px; color: #fff; background: var(--bleu); border-radius: 10px;
+    padding: 10px 16px; color: #fff; background: var(--blue); border-radius: 10px;
     transform: translateY(-160%);
   }
-  .evitement:focus { transform: none; color: #fff; }
-  @media (prefers-color-scheme: dark) { .evitement, .evitement:focus { color: var(--papier); } }
+  .skip-link:focus { transform: none; color: #fff; }
+  @media (prefers-color-scheme: dark) { .skip-link, .skip-link:focus { color: var(--paper); } }
 
-  /* ============ Boutons ============ */
+  /* ============ Buttons ============ */
   .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: .55em;
     min-height: 46px; padding: 10px 22px;
@@ -139,458 +139,458 @@
     transition: background-color .15s, box-shadow .15s, transform .15s;
   }
   .btn svg { width: 1.15em; height: 1.15em; flex: none; }
-  .btn-primaire { color: #fff; background: var(--bleu); box-shadow: 0 6px 18px -8px var(--bleu); }
-  .btn-primaire:hover { color: #fff; background: var(--bleu-fonce); transform: translateY(-1px); }
-  .btn-secondaire { color: var(--encre); background: var(--carte); box-shadow: inset 0 0 0 1.5px var(--trait-fort); }
-  .btn-secondaire:hover { color: var(--encre); background: var(--papier-2); }
-  .btn-petit { min-height: 38px; padding: 7px 16px; font-size: .9rem; }
+  .btn-primary { color: #fff; background: var(--blue); box-shadow: 0 6px 18px -8px var(--blue); }
+  .btn-primary:hover { color: #fff; background: var(--blue-dark); transform: translateY(-1px); }
+  .btn-secondary { color: var(--ink); background: var(--card); box-shadow: inset 0 0 0 1.5px var(--line-strong); }
+  .btn-secondary:hover { color: var(--ink); background: var(--paper-2); }
+  .btn-small { min-height: 38px; padding: 7px 16px; font-size: .9rem; }
   @media (prefers-color-scheme: dark) {
-    .btn-primaire, .btn-primaire:hover { color: #10131c; }
+    .btn-primary, .btn-primary:hover { color: #10131c; }
   }
 
-  /* ============ En-tête ============ */
-  .entete {
+  /* ============ Header ============ */
+  .site-header {
     position: sticky; top: 0; z-index: 20;
-    background: var(--entete);
+    background: var(--header-bg);
     -webkit-backdrop-filter: saturate(1.4) blur(10px);
     backdrop-filter: saturate(1.4) blur(10px);
-    border-bottom: 1px solid var(--trait);
+    border-bottom: 1px solid var(--line);
   }
-  .entete .conteneur { display: flex; align-items: center; gap: 16px; min-height: 64px; }
-  .marque {
+  .site-header .container { display: flex; align-items: center; gap: 16px; min-height: 64px; }
+  .brand {
     display: inline-flex; align-items: center; gap: 10px;
-    font-family: var(--titre); font-size: 1.2rem; font-weight: 600;
-    color: var(--encre); text-decoration: none;
+    font-family: var(--font-display); font-size: 1.2rem; font-weight: 600;
+    color: var(--ink); text-decoration: none;
   }
-  .marque:hover { color: var(--encre); }
-  .marque svg { width: 30px; height: 30px; flex: none; }
-  .entete nav { margin-left: auto; display: flex; align-items: center; gap: 6px; }
-  .entete nav a { padding: 8px 12px; font-size: .92rem; color: var(--encre-2); text-decoration: none; border-radius: 999px; }
-  .entete nav a:hover { color: var(--encre); background: var(--papier-2); }
-  .entete .btn-petit .court { display: none; }
+  .brand:hover { color: var(--ink); }
+  .brand svg { width: 30px; height: 30px; flex: none; }
+  .site-header nav { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+  .site-header nav a { padding: 8px 12px; font-size: .92rem; color: var(--ink-2); text-decoration: none; border-radius: 999px; }
+  .site-header nav a:hover { color: var(--ink); background: var(--paper-2); }
+  .site-header .btn-small .short { display: none; }
   @media (max-width: 720px) {
-    .entete nav a { display: none; }
+    .site-header nav a { display: none; }
   }
   @media (max-width: 480px) {
-    .marque { font-size: 1.05rem; white-space: nowrap; }
-    .entete .btn-petit .long { display: none; }
-    .entete .btn-petit .court { display: inline; }
+    .brand { font-size: 1.05rem; white-space: nowrap; }
+    .site-header .btn-small .long { display: none; }
+    .site-header .btn-small .short { display: inline; }
   }
 
-  /* ============ Bandeau d'accueil ============ */
-  .accueil { position: relative; padding: clamp(36px, 7vw, 84px) 0 clamp(28px, 5vw, 56px); isolation: isolate; }
-  .accueil::before {
+  /* ============ Hero banner ============ */
+  .hero { position: relative; padding: clamp(36px, 7vw, 84px) 0 clamp(28px, 5vw, 56px); isolation: isolate; }
+  .hero::before {
     content: ""; position: absolute; inset: 0; z-index: -1;
     background-image:
-      linear-gradient(var(--quadrillage) 1px, transparent 1px),
-      linear-gradient(90deg, var(--quadrillage) 1px, transparent 1px);
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
     background-size: 26px 26px;
     background-position: center top;
     -webkit-mask-image: linear-gradient(#000 55%, transparent);
     mask-image: linear-gradient(#000 55%, transparent);
   }
-  .accueil .conteneur { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 5vw, 64px); }
-  .surtitre {
+  .hero .container { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 5vw, 64px); }
+  .eyebrow {
     display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px;
-    padding: 6px 14px 6px 10px; font-size: .85rem; font-weight: 500; color: var(--encre-2);
-    background: var(--carte); border: 1px solid var(--trait); border-radius: 999px;
+    padding: 6px 14px 6px 10px; font-size: .85rem; font-weight: 500; color: var(--ink-2);
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
   }
-  .surtitre::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--rouge); box-shadow: 0 0 0 4px color-mix(in srgb, var(--rouge) 18%, transparent); }
-  .accueil h1 {
-    margin: 0; font-family: var(--titre); font-weight: 650;
+  .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px color-mix(in srgb, var(--red) 18%, transparent); }
+  .hero h1 {
+    margin: 0; font-family: var(--font-display); font-weight: 650;
     font-size: clamp(2.15rem, 5.2vw, 3.7rem); line-height: 1.06; letter-spacing: -.015em;
     text-wrap: balance;
   }
-  .surligne {
+  .highlight {
     padding: 0 .08em;
-    background: linear-gradient(100deg, transparent .2em, var(--surligneur) .2em, var(--surligneur) calc(100% - .25em), transparent calc(100% - .25em)) 0 78% / 100% 38% no-repeat;
+    background: linear-gradient(100deg, transparent .2em, var(--highlighter) .2em, var(--highlighter) calc(100% - .25em), transparent calc(100% - .25em)) 0 78% / 100% 38% no-repeat;
     -webkit-box-decoration-break: clone; box-decoration-break: clone;
   }
-  .accroche { max-width: 36em; margin: 20px 0 0; font-size: clamp(1.02rem, 1.6vw, 1.15rem); font-weight: 300; color: var(--encre-2); text-wrap: pretty; }
+  .lead { max-width: 36em; margin: 20px 0 0; font-size: clamp(1.02rem, 1.6vw, 1.15rem); font-weight: 300; color: var(--ink-2); text-wrap: pretty; }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-  .chiffres { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 28px 0 0; padding: 0; list-style: none; font-size: .92rem; color: var(--encre-2); }
-  .chiffres b { font-family: var(--titre); font-size: 1.35rem; font-weight: 650; color: var(--encre); }
+  .stats { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 28px 0 0; padding: 0; list-style: none; font-size: .92rem; color: var(--ink-2); }
+  .stats b { font-family: var(--font-display); font-size: 1.35rem; font-weight: 650; color: var(--ink); }
   .illustration { width: 100%; max-width: 440px; justify-self: center; overflow: visible; }
-  .illustration .f-fond-1 { fill: #d3eed8; }
-  .illustration .f-fond-2 { fill: #d8e6fb; }
-  .illustration .f-avant { fill: var(--feuille); }
-  .illustration .f-bord { fill: none; stroke: var(--trait-fort); stroke-width: 1.5; }
-  .illustration .encre { fill: #1d2230; }
-  .illustration .ligne { stroke: #c9cfdc; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2 5; }
-  .illustration .bandeau { fill: #ecebfb; stroke: #6f63dd; stroke-width: 1.6; }
-  .illustration .titre-feuille { fill: #4a35c8; }
-  .illustration .case { fill: #fff; stroke: #5a48d1; stroke-width: 1.8; }
-  .illustration .case-pleine { fill: #5a48d1; }
-  .illustration .lettre { font: 700 15px var(--texte); fill: #1d2230; }
-  .illustration .lettre-blanche { font: 700 15px var(--texte); fill: #fff; }
+  .illustration .sheet-back-1 { fill: #d3eed8; }
+  .illustration .sheet-back-2 { fill: #d8e6fb; }
+  .illustration .sheet-front { fill: var(--sheet); }
+  .illustration .sheet-outline { fill: none; stroke: var(--line-strong); stroke-width: 1.5; }
+  .illustration .ink { fill: #1d2230; }
+  .illustration .dotted-line { stroke: #c9cfdc; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2 5; }
+  .illustration .banner { fill: #ecebfb; stroke: #6f63dd; stroke-width: 1.6; }
+  .illustration .sheet-title { fill: #4a35c8; }
+  .illustration .box { fill: #fff; stroke: #5a48d1; stroke-width: 1.8; }
+  .illustration .box-filled { fill: #5a48d1; }
+  .illustration .letter { font: 700 15px var(--font-body); fill: #1d2230; }
+  .illustration .letter-white { font: 700 15px var(--font-body); fill: #fff; }
   .illustration .triangle { fill: #f3e2a1; stroke: #b98a2c; stroke-width: 2.4; stroke-linejoin: round; }
-  .illustration .marque-trait { stroke: #1d2230; stroke-width: 2; stroke-linecap: round; }
-  .illustration .coche { fill: none; stroke: #e03131; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
-  .illustration .ombre-feuille { filter: drop-shadow(0 18px 22px rgba(29, 34, 48, .18)); }
+  .illustration .tick-marks { stroke: #1d2230; stroke-width: 2; stroke-linecap: round; }
+  .illustration .checkmark { fill: none; stroke: #e03131; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+  .illustration .sheet-shadow { filter: drop-shadow(0 18px 22px rgba(29, 34, 48, .18)); }
   @media (prefers-color-scheme: dark) {
-    .illustration .f-fond-1 { fill: #2f5a3c; }
-    .illustration .f-fond-2 { fill: #2c4467; }
-    .illustration .ombre-feuille { filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .5)); }
+    .illustration .sheet-back-1 { fill: #2f5a3c; }
+    .illustration .sheet-back-2 { fill: #2c4467; }
+    .illustration .sheet-shadow { filter: drop-shadow(0 18px 22px rgba(0, 0, 0, .5)); }
   }
   @media (max-width: 860px) {
-    .accueil .conteneur { grid-template-columns: minmax(0, 1fr); }
+    .hero .container { grid-template-columns: minmax(0, 1fr); }
     .illustration { display: none; }
   }
   @media (max-width: 480px) {
     .actions .btn { width: 100%; white-space: normal; text-align: center; }
   }
 
-  /* ============ Filtres ============ */
-  .filtres { padding: 8px 0 4px; }
-  .filtres h2, .fiches-entete h2 {
-    margin: 0; font-family: var(--titre); font-weight: 650; font-size: clamp(1.45rem, 2.6vw, 1.9rem); letter-spacing: -.01em;
+  /* ============ Filters ============ */
+  .filters { padding: 8px 0 4px; }
+  .filters h2, .worksheets-header h2 {
+    margin: 0; font-family: var(--font-display); font-weight: 650; font-size: clamp(1.45rem, 2.6vw, 1.9rem); letter-spacing: -.01em;
   }
-  .etiquette-filtre { display: block; margin: 0 0 10px; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--encre-3); }
+  .filter-label { display: block; margin: 0 0 10px; font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
 
-  /* Frise des degrés, de la 1P à l'université */
-  .frise-cadre {
+  /* Level timeline, from 1P to university */
+  .timeline-frame {
     position: relative; margin-top: 18px; padding: 18px 18px 16px;
-    background: var(--carte); border: 1px solid var(--trait); border-radius: var(--rayon); box-shadow: var(--ombre);
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
   }
-  .frise {
+  .timeline {
     display: flex; align-items: flex-end; gap: 14px;
     overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin;
     padding: 2px 2px 6px;
   }
   .cycle { flex: none; display: flex; flex-direction: column; gap: 8px; }
-  .cycle-nom { padding-left: 4px; font-size: .78rem; font-weight: 600; color: var(--t-fort); white-space: nowrap; }
-  .cycle-nom small { font-weight: 400; color: var(--encre-3); }
-  .cycle-degres { position: relative; display: flex; gap: 6px; padding: 5px; background: var(--t-fond); border-radius: 999px; }
-  .degre {
+  .cycle-name { padding-left: 4px; font-size: .78rem; font-weight: 600; color: var(--t-strong); white-space: nowrap; }
+  .cycle-name small { font-weight: 400; color: var(--ink-3); }
+  .cycle-levels { position: relative; display: flex; gap: 6px; padding: 5px; background: var(--t-bg); border-radius: 999px; }
+  .level {
     position: relative; flex: none;
     min-width: 46px; height: 40px; padding: 0 12px;
     display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-    font-size: .92rem; font-weight: 600; color: var(--t-fort, var(--encre));
-    background: var(--carte); border: 0; border-radius: 999px; cursor: pointer;
-    box-shadow: inset 0 0 0 1.5px var(--t-trait, var(--trait-fort));
+    font-size: .92rem; font-weight: 600; color: var(--t-strong, var(--ink));
+    background: var(--card); border: 0; border-radius: 999px; cursor: pointer;
+    box-shadow: inset 0 0 0 1.5px var(--t-line, var(--line-strong));
     transition: background-color .15s, color .15s, transform .15s;
   }
-  .degre:hover { transform: translateY(-1px); }
-  .degre.vide { color: var(--encre-3); font-weight: 400; background: transparent; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--t-trait, var(--trait)) 55%, transparent); }
-  .degre[aria-pressed="true"] { color: #fff; background: var(--t-fort, var(--bleu)); box-shadow: none; }
-  .degre .compte {
+  .level:hover { transform: translateY(-1px); }
+  .level.empty { color: var(--ink-3); font-weight: 400; background: transparent; box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--t-line, var(--line)) 55%, transparent); }
+  .level[aria-pressed="true"] { color: #fff; background: var(--t-strong, var(--blue)); box-shadow: none; }
+  .level .count {
     min-width: 20px; height: 20px; padding: 0 6px;
     display: inline-flex; align-items: center; justify-content: center;
-    font-size: .72rem; font-weight: 600; color: #fff; background: var(--t-fort, var(--bleu)); border-radius: 999px;
+    font-size: .72rem; font-weight: 600; color: #fff; background: var(--t-strong, var(--blue)); border-radius: 999px;
   }
-  .degre[aria-pressed="true"] .compte { color: var(--t-fort); background: #fff; }
-  .degre-tous { --t-fort: var(--encre); --t-trait: var(--trait-fort); --t-vif: var(--encre); align-self: flex-end; margin-bottom: 5px; }
+  .level[aria-pressed="true"] .count { color: var(--t-strong); background: #fff; }
+  .level-all { --t-strong: var(--ink); --t-line: var(--line-strong); --t-vivid: var(--ink); align-self: flex-end; margin-bottom: 5px; }
   @media (prefers-color-scheme: dark) {
-    .degre[aria-pressed="true"] { color: #10131c; background: var(--t-vif, var(--bleu)); }
-    .degre-tous[aria-pressed="true"] { color: var(--papier); }
-    .degre .compte { color: #10131c; background: var(--t-vif, var(--bleu)); }
-    .degre[aria-pressed="true"] .compte { color: #10131c; background: #fff; }
+    .level[aria-pressed="true"] { color: #10131c; background: var(--t-vivid, var(--blue)); }
+    .level-all[aria-pressed="true"] { color: var(--paper); }
+    .level .count { color: #10131c; background: var(--t-vivid, var(--blue)); }
+    .level[aria-pressed="true"] .count { color: #10131c; background: #fff; }
   }
-  .frise-fleche { margin: 10px 0 0; display: flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--encre-3); }
-  .frise-fleche::before {
+  .timeline-arrow { margin: 10px 0 0; display: flex; align-items: center; gap: 10px; font-size: .8rem; color: var(--ink-3); }
+  .timeline-arrow::before {
     content: ""; flex: 1; height: 3px; border-radius: 3px;
     background: linear-gradient(90deg, #ea8f5b, #5fb878, #5d97dc, #9a7ae0, #d9679b);
     opacity: .7;
   }
 
-  /* Matières et recherche */
-  .barre { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 24px; align-items: end; margin-top: 22px; }
-  .matieres { display: flex; flex-wrap: wrap; gap: 8px; }
-  .matiere-btn {
+  /* Subjects and search */
+  .filter-bar { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 24px; align-items: end; margin-top: 22px; }
+  .subjects { display: flex; flex-wrap: wrap; gap: 8px; }
+  .subject-btn {
     display: inline-flex; align-items: center; gap: 7px;
     min-height: 40px; padding: 6px 14px 6px 10px;
-    font-size: .92rem; font-weight: 500; color: var(--encre);
-    background: var(--carte); border: 0; border-radius: 999px; cursor: pointer;
-    box-shadow: inset 0 0 0 1.5px var(--trait);
+    font-size: .92rem; font-weight: 500; color: var(--ink);
+    background: var(--card); border: 0; border-radius: 999px; cursor: pointer;
+    box-shadow: inset 0 0 0 1.5px var(--line);
     transition: background-color .15s, box-shadow .15s;
   }
-  .matiere-btn:hover { box-shadow: inset 0 0 0 1.5px var(--t-trait, var(--trait-fort)); }
-  .matiere-btn .emoji { font-size: 1.05rem; line-height: 1; }
-  .matiere-btn .compte { font-size: .78rem; color: var(--encre-3); }
-  .matiere-btn[aria-pressed="true"] { color: var(--t-fort, var(--encre)); background: var(--t-fond, var(--papier-2)); box-shadow: inset 0 0 0 2px var(--t-fort, var(--encre)); }
-  .matiere-btn[aria-pressed="true"] .compte { color: inherit; }
-  .recherche { position: relative; width: min(340px, 100%); }
-  .recherche svg { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--encre-3); pointer-events: none; }
-  .recherche input {
+  .subject-btn:hover { box-shadow: inset 0 0 0 1.5px var(--t-line, var(--line-strong)); }
+  .subject-btn .emoji { font-size: 1.05rem; line-height: 1; }
+  .subject-btn .count { font-size: .78rem; color: var(--ink-3); }
+  .subject-btn[aria-pressed="true"] { color: var(--t-strong, var(--ink)); background: var(--t-bg, var(--paper-2)); box-shadow: inset 0 0 0 2px var(--t-strong, var(--ink)); }
+  .subject-btn[aria-pressed="true"] .count { color: inherit; }
+  .search { position: relative; width: min(340px, 100%); }
+  .search svg { position: absolute; left: 14px; top: 50%; width: 18px; height: 18px; transform: translateY(-50%); color: var(--ink-3); pointer-events: none; }
+  .search input {
     width: 100%; height: 46px; padding: 0 16px 0 42px;
-    background: var(--carte); border: 1.5px solid var(--bord-champ); border-radius: 999px;
+    background: var(--card); border: 1.5px solid var(--field-border); border-radius: 999px;
     transition: border-color .15s, box-shadow .15s;
   }
-  .recherche input::placeholder { color: var(--encre-3); }
-  .recherche input:focus { outline: none; border-color: var(--bleu); box-shadow: 0 0 0 4px color-mix(in srgb, var(--bleu) 18%, transparent); }
-  .recherche input::-webkit-search-cancel-button { display: none; }
+  .search input::placeholder { color: var(--ink-3); }
+  .search input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue) 18%, transparent); }
+  .search input::-webkit-search-cancel-button { display: none; }
   @media (max-width: 760px) {
-    .barre { grid-template-columns: 1fr; }
-    .recherche { width: 100%; order: -1; }
+    .filter-bar { grid-template-columns: 1fr; }
+    .search { width: 100%; order: -1; }
   }
 
-  /* ============ Liste des fiches ============ */
-  .fiches { padding: 40px 0 72px; }
-  .fiches:focus { outline: none; }
-  .fiches-entete { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; margin-bottom: 8px; }
-  .resultat { margin: 0; font-size: .95rem; color: var(--encre-2); }
-  .fiches-entete .outils { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  .lien-bouton {
-    padding: 6px 4px; font-size: .9rem; color: var(--bleu);
+  /* ============ Worksheet list ============ */
+  .worksheets { padding: 40px 0 72px; }
+  .worksheets:focus { outline: none; }
+  .worksheets-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px; margin-bottom: 8px; }
+  .results-count { margin: 0; font-size: .95rem; color: var(--ink-2); }
+  .worksheets-header .list-tools { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .link-button {
+    padding: 6px 4px; font-size: .9rem; color: var(--blue);
     background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: .18em;
   }
-  .tri { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--encre-2); }
-  .tri select {
-    height: 40px; padding: 0 34px 0 14px; color: var(--encre);
-    background: var(--carte) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23646a79' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center / 14px;
-    border: 1.5px solid var(--bord-champ); border-radius: 999px;
+  .sort { display: inline-flex; align-items: center; gap: 8px; font-size: .9rem; color: var(--ink-2); }
+  .sort select {
+    height: 40px; padding: 0 34px 0 14px; color: var(--ink);
+    background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%23646a79' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 12px center / 14px;
+    border: 1.5px solid var(--field-border); border-radius: 999px;
     -webkit-appearance: none; appearance: none; cursor: pointer;
   }
 
-  .groupe { margin-top: 34px; }
-  .groupe-titre {
+  .group { margin-top: 34px; }
+  .group-title {
     display: flex; align-items: center; gap: 12px; margin: 0 0 18px;
-    font-family: var(--titre); font-size: 1.3rem; font-weight: 600;
+    font-family: var(--font-display); font-size: 1.3rem; font-weight: 600;
   }
-  .groupe-titre::before { content: ""; width: 12px; height: 12px; border-radius: 4px; background: var(--t-vif); transform: rotate(45deg); flex: none; }
-  .groupe-titre small { font-family: var(--texte); font-size: .9rem; font-weight: 400; color: var(--encre-3); }
-  .groupe-titre::after { content: ""; flex: 1; height: 1px; background: var(--trait); }
+  .group-title::before { content: ""; width: 12px; height: 12px; border-radius: 4px; background: var(--t-vivid); transform: rotate(45deg); flex: none; }
+  .group-title small { font-family: var(--font-body); font-size: .9rem; font-weight: 400; color: var(--ink-3); }
+  .group-title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-  .grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 268px), 1fr)); gap: 22px; margin: 0; padding: 0; list-style: none; }
-  .fiche {
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 268px), 1fr)); gap: 22px; margin: 0; padding: 0; list-style: none; }
+  .card {
     position: relative; height: 100%;
     display: flex; flex-direction: column;
-    background: var(--carte); border: 1px solid var(--trait); border-radius: var(--rayon);
-    box-shadow: var(--ombre); overflow: hidden;
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
     transition: transform .2s, box-shadow .2s, border-color .2s;
   }
-  .fiche:hover { transform: translateY(-3px); box-shadow: var(--ombre-forte); border-color: var(--t-trait); }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-strong); border-color: var(--t-line); }
   @supports selector(:has(a)) {
-    .fiche:has(.fiche-lien:focus-visible) { outline: 3px solid var(--bleu); outline-offset: 3px; }
-    .fiche-lien:focus-visible { outline: none; }
+    .card:has(.card-link:focus-visible) { outline: 3px solid var(--blue); outline-offset: 3px; }
+    .card-link:focus-visible { outline: none; }
   }
 
-  /* Aperçu : la feuille A4 dépasse d'une pochette teintée */
-  .apercu {
+  /* Preview: the A4 sheet sticks out of a tinted sleeve */
+  .preview {
     position: relative; aspect-ratio: 4 / 3; padding: 18px 20px 0; overflow: hidden;
-    background-color: var(--t-fond);
-    background-image: radial-gradient(color-mix(in srgb, var(--t-trait) 70%, transparent) 1.2px, transparent 1.3px);
+    background-color: var(--t-bg);
+    background-image: radial-gradient(color-mix(in srgb, var(--t-line) 70%, transparent) 1.2px, transparent 1.3px);
     background-size: 14px 14px;
-    border-bottom: 1px solid var(--trait);
+    border-bottom: 1px solid var(--line);
   }
-  .feuille {
+  .sheet {
     position: relative; height: calc(100% + 40px); overflow: hidden;
     background: #fff; border-radius: 6px 6px 0 0;
     box-shadow: 0 1px 2px rgba(29, 34, 48, .08), 0 10px 26px -10px rgba(29, 34, 48, .35);
     transition: transform .25s;
   }
-  .fiche:hover .feuille { transform: translateY(-6px) rotate(-.6deg); }
-  .feuille iframe {
+  .card:hover .sheet { transform: translateY(-6px) rotate(-.6deg); }
+  .sheet iframe {
     position: absolute; top: 0; left: 0;
-    width: 794px; height: calc(100% / var(--echelle, .3));
+    width: 794px; height: calc(100% / var(--scale, .3));
     border: 0; background: #fff;
-    transform: scale(var(--echelle, .3)); transform-origin: 0 0;
+    transform: scale(var(--scale, .3)); transform-origin: 0 0;
     pointer-events: none; opacity: 0; transition: opacity .35s;
   }
-  .feuille.chargee iframe { opacity: 1; }
-  .feuille-attente {
+  .sheet.loaded iframe { opacity: 1; }
+  .sheet-placeholder {
     position: absolute; inset: 0; display: grid; place-items: center;
     background:
       repeating-linear-gradient(#fff 0 26px, #eef0f4 26px 27px) 0 70px / 100% calc(100% - 70px) no-repeat,
-      linear-gradient(var(--t-fond), var(--t-fond)) 18px 18px / calc(100% - 36px) 36px no-repeat;
+      linear-gradient(var(--t-bg), var(--t-bg)) 18px 18px / calc(100% - 36px) 36px no-repeat;
     transition: opacity .35s;
   }
-  .feuille-attente span { font-size: 2.6rem; filter: saturate(.85); transform: translateY(10px); }
-  .feuille.chargee .feuille-attente { opacity: 0; }
-  .ruban {
+  .sheet-placeholder span { font-size: 2.6rem; filter: saturate(.85); transform: translateY(10px); }
+  .sheet.loaded .sheet-placeholder { opacity: 0; }
+  .ribbon {
     position: absolute; top: 12px; right: 12px; z-index: 2;
     padding: 4px 10px; font-size: .74rem; font-weight: 600; letter-spacing: .02em;
-    color: #fff; background: var(--rouge); border-radius: 999px;
-    box-shadow: 0 4px 10px -4px var(--rouge);
+    color: #fff; background: var(--red); border-radius: 999px;
+    box-shadow: 0 4px 10px -4px var(--red);
   }
-  @media (prefers-color-scheme: dark) { .ruban { color: #10131c; } }
+  @media (prefers-color-scheme: dark) { .ribbon { color: #10131c; } }
 
-  .corps { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 16px 18px 18px; }
-  .etiquettes { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-  .pastille-matiere {
+  .card-body { flex: 1; display: flex; flex-direction: column; gap: 10px; padding: 16px 18px 18px; }
+  .tags { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .subject-pill {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 3px 10px 3px 8px; font-size: .8rem; font-weight: 500;
-    color: var(--t-fort); background: var(--t-fond); border-radius: 999px;
+    color: var(--t-strong); background: var(--t-bg); border-radius: 999px;
   }
-  .pastille-niveau {
+  .level-pill {
     padding: 2px 9px; font-size: .78rem; font-weight: 600;
-    color: var(--t-fort); border: 1.5px solid var(--t-trait); border-radius: 999px;
+    color: var(--t-strong); border: 1.5px solid var(--t-line); border-radius: 999px;
   }
-  .fiche h3, .fiche h4 { margin: 2px 0 0; font-family: var(--titre); font-size: 1.22rem; font-weight: 600; line-height: 1.22; letter-spacing: -.005em; text-wrap: balance; }
-  .fiche-lien { color: var(--encre); text-decoration: none; }
-  .fiche-lien::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: var(--rayon); }
-  .fiche-lien:hover { color: var(--encre); }
-  .fiche .description {
-    margin: 0; font-size: .92rem; font-weight: 300; color: var(--encre-2);
+  .card h3, .card h4 { margin: 2px 0 0; font-family: var(--font-display); font-size: 1.22rem; font-weight: 600; line-height: 1.22; letter-spacing: -.005em; text-wrap: balance; }
+  .card-link { color: var(--ink); text-decoration: none; }
+  .card-link::after { content: ""; position: absolute; inset: 0; z-index: 3; border-radius: var(--radius); }
+  .card-link:hover { color: var(--ink); }
+  .card .description {
+    margin: 0; font-size: .92rem; font-weight: 300; color: var(--ink-2);
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   }
-  .infos { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: auto 0 0; padding: 10px 0 0; list-style: none; font-size: .8rem; color: var(--encre-3); border-top: 1px dashed var(--trait); }
-  .infos li { display: inline-flex; align-items: center; gap: 5px; }
-  .infos svg { width: 14px; height: 14px; flex: none; }
+  .card-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: auto 0 0; padding: 10px 0 0; list-style: none; font-size: .8rem; color: var(--ink-3); border-top: 1px dashed var(--line); }
+  .card-meta li { display: inline-flex; align-items: center; gap: 5px; }
+  .card-meta svg { width: 14px; height: 14px; flex: none; }
 
-  .vide-etat {
+  .empty-state {
     margin-top: 28px; padding: 44px 24px; text-align: center;
-    background: var(--carte); border: 1.5px dashed var(--trait-fort); border-radius: var(--rayon);
+    background: var(--card); border: 1.5px dashed var(--line-strong); border-radius: var(--radius);
   }
-  .vide-etat .grand { font-size: 2.4rem; line-height: 1; }
-  .vide-etat h3 { margin: 12px 0 6px; font-family: var(--titre); font-size: 1.3rem; font-weight: 600; }
-  .vide-etat p { margin: 0 auto 18px; max-width: 34em; color: var(--encre-2); }
+  .empty-state .big-icon { font-size: 2.4rem; line-height: 1; }
+  .empty-state h3 { margin: 12px 0 6px; font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
+  .empty-state p { margin: 0 auto 18px; max-width: 34em; color: var(--ink-2); }
 
-  /* ============ Pied de page ============ */
-  .pied { padding: 44px 0 56px; background: var(--papier-2); border-top: 1px solid var(--trait); }
-  .pied .conteneur { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; }
-  .pied h2 { margin: 0 0 10px; font-family: var(--titre); font-size: 1.05rem; font-weight: 600; }
-  .pied p { margin: 0 0 10px; font-size: .9rem; color: var(--encre-2); }
-  .pied ul { margin: 0; padding: 0; list-style: none; font-size: .9rem; }
-  .pied li + li { margin-top: 6px; }
+  /* ============ Footer ============ */
+  .site-footer { padding: 44px 0 56px; background: var(--paper-2); border-top: 1px solid var(--line); }
+  .site-footer .container { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; }
+  .site-footer h2 { margin: 0 0 10px; font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+  .site-footer p { margin: 0 0 10px; font-size: .9rem; color: var(--ink-2); }
+  .site-footer ul { margin: 0; padding: 0; list-style: none; font-size: .9rem; }
+  .site-footer li + li { margin-top: 6px; }
   .badge-cc {
     display: inline-flex; align-items: center; gap: 6px; margin-bottom: 10px;
     padding: 4px 12px 4px 6px; font-size: .78rem; font-weight: 600; letter-spacing: .02em;
-    color: var(--encre); background: var(--carte); border: 1px solid var(--trait-fort); border-radius: 999px;
+    color: var(--ink); background: var(--card); border: 1px solid var(--line-strong); border-radius: 999px;
   }
   .badge-cc i {
     width: 20px; height: 20px; display: grid; place-items: center;
-    font: 700 .62rem/1 var(--texte); font-style: normal; color: var(--carte); background: var(--encre); border-radius: 50%;
+    font: 700 .62rem/1 var(--font-body); font-style: normal; color: var(--card); background: var(--ink); border-radius: 50%;
   }
-  @media (max-width: 820px) { .pied .conteneur { grid-template-columns: 1fr; gap: 26px; } }
+  @media (max-width: 820px) { .site-footer .container { grid-template-columns: 1fr; gap: 26px; } }
 
-  /* ============ Boîte de dialogue de la licence ============ */
-  dialog.licence {
+  /* ============ License dialog ============ */
+  dialog.license {
     width: min(780px, 100% - 24px); max-width: none; height: min(92vh, 900px); height: min(92dvh, 900px); max-height: none; padding: 0;
-    color: var(--encre); background: var(--carte);
-    border: 1px solid var(--trait); border-radius: 22px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .45);
+    color: var(--ink); background: var(--card);
+    border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .45);
     overflow: hidden;
   }
-  dialog.licence[open] { display: flex; animation: apparition .22s ease-out; }
-  dialog.licence::backdrop { background: rgba(18, 21, 30, .55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
-  @keyframes apparition { from { opacity: 0; transform: translateY(12px) scale(.98); } }
+  dialog.license[open] { display: flex; animation: dialog-in .22s ease-out; }
+  dialog.license::backdrop { background: rgba(18, 21, 30, .55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+  @keyframes dialog-in { from { opacity: 0; transform: translateY(12px) scale(.98); } }
   .dlg { display: flex; flex-direction: column; width: 100%; min-height: 0; margin: 0; }
-  .dlg-tete { padding: 26px 28px 0; }
-  .dlg-tete h2 { margin: 8px 0 8px; font-family: var(--titre); font-size: clamp(1.4rem, 3vw, 1.75rem); font-weight: 650; line-height: 1.15; }
-  .dlg-tete h2:focus { outline: none; }
-  .dlg-tete p { margin: 0; font-size: .95rem; color: var(--encre-2); }
-  .dlg-milieu { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 16px; padding: 18px 28px 0; overflow: auto; }
-  .resume { flex: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
-  .resume li { display: flex; gap: 10px; padding: 10px 12px; font-size: .83rem; line-height: 1.42; color: var(--encre-2); background: var(--t-fond); border-radius: 14px; }
-  .resume li b { display: block; margin-bottom: 1px; font-size: .9rem; font-weight: 600; color: var(--t-fort); }
-  .resume .ico { flex: none; width: 26px; height: 26px; display: grid; place-items: center; font-size: .85rem; background: var(--carte); border-radius: 50%; }
-  .texte-titre { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 4px 0 -6px; font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--encre-3); }
-  .texte-titre a { font-size: .82rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
-  .texte-licence {
+  .dlg-head { padding: 26px 28px 0; }
+  .dlg-head h2 { margin: 8px 0 8px; font-family: var(--font-display); font-size: clamp(1.4rem, 3vw, 1.75rem); font-weight: 650; line-height: 1.15; }
+  .dlg-head h2:focus { outline: none; }
+  .dlg-head p { margin: 0; font-size: .95rem; color: var(--ink-2); }
+  .dlg-body { flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 16px; padding: 18px 28px 0; overflow: auto; }
+  .summary { flex: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; list-style: none; }
+  .summary li { display: flex; gap: 10px; padding: 10px 12px; font-size: .83rem; line-height: 1.42; color: var(--ink-2); background: var(--t-bg); border-radius: 14px; }
+  .summary li b { display: block; margin-bottom: 1px; font-size: .9rem; font-weight: 600; color: var(--t-strong); }
+  .summary .icon { flex: none; width: 26px; height: 26px; display: grid; place-items: center; font-size: .85rem; background: var(--card); border-radius: 50%; }
+  .license-text-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 4px 0 -6px; font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  .license-text-heading a { font-size: .82rem; font-weight: 400; letter-spacing: 0; text-transform: none; }
+  .license-text {
     flex: 1 1 260px; min-height: 160px; overflow-y: auto; overscroll-behavior: contain;
-    padding: 18px 22px; font-size: .86rem; line-height: 1.6; color: var(--encre-2);
-    background: var(--papier); border: 1px solid var(--trait); border-radius: 14px;
-    scrollbar-width: thin; scrollbar-color: var(--trait-fort) transparent;
+    padding: 18px 22px; font-size: .86rem; line-height: 1.6; color: var(--ink-2);
+    background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+    scrollbar-width: thin; scrollbar-color: var(--line-strong) transparent;
   }
-  .texte-licence:focus-visible { outline-offset: -3px; }
-  .texte-licence h3 { margin: 0 0 12px; font-family: var(--titre); font-size: 1.05rem; font-weight: 600; color: var(--encre); }
-  .texte-licence h4 { margin: 20px 0 8px; font-size: .92rem; font-weight: 600; color: var(--encre); }
-  .texte-licence p { margin: 0 0 10px; }
-  .texte-licence ol, .texte-licence ul { margin: 0 0 10px; padding-left: 1.6em; }
-  .texte-licence li { margin: 4px 0; }
-  .texte-licence li > ol { margin-top: 6px; }
-  .texte-licence dfn { font-style: normal; font-weight: 600; color: var(--encre); }
-  .dlg-pied {
+  .license-text:focus-visible { outline-offset: -3px; }
+  .license-text h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--ink); }
+  .license-text h4 { margin: 20px 0 8px; font-size: .92rem; font-weight: 600; color: var(--ink); }
+  .license-text p { margin: 0 0 10px; }
+  .license-text ol, .license-text ul { margin: 0 0 10px; padding-left: 1.6em; }
+  .license-text li { margin: 4px 0; }
+  .license-text li > ol { margin-top: 6px; }
+  .license-text dfn { font-style: normal; font-weight: 600; color: var(--ink); }
+  .dlg-foot {
     flex: none; display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px;
-    margin-top: 18px; padding: 16px 28px 20px; border-top: 1px solid var(--trait); background: var(--papier-2);
+    margin-top: 18px; padding: 16px 28px 20px; border-top: 1px solid var(--line); background: var(--paper-2);
   }
-  .dlg-pied .note { flex: 1 1 15em; margin: 0; font-size: .8rem; line-height: 1.45; color: var(--encre-3); }
+  .dlg-foot .note { flex: 1 1 15em; margin: 0; font-size: .8rem; line-height: 1.45; color: var(--ink-3); }
   @media (max-width: 620px) {
-    dialog.licence { width: calc(100% - 16px); height: calc(100vh - 16px); height: calc(100dvh - 16px); border-radius: 18px; }
-    .dlg-tete { padding: 20px 18px 0; }
-    .dlg-milieu { padding: 14px 18px 0; }
-    .resume { grid-template-columns: 1fr; }
-    .texte-licence { min-height: 140px; padding: 14px 16px; }
-    .dlg-pied { padding: 14px 18px 18px; }
-    .dlg-pied .btn { flex: 1 1 100%; white-space: normal; text-align: center; }
-    .dlg-pied .note { display: none; }
+    dialog.license { width: calc(100% - 16px); height: calc(100vh - 16px); height: calc(100dvh - 16px); border-radius: 18px; }
+    .dlg-head { padding: 20px 18px 0; }
+    .dlg-body { padding: 14px 18px 0; }
+    .summary { grid-template-columns: 1fr; }
+    .license-text { min-height: 140px; padding: 14px 16px; }
+    .dlg-foot { padding: 14px 18px 18px; }
+    .dlg-foot .btn { flex: 1 1 100%; white-space: normal; text-align: center; }
+    .dlg-foot .note { display: none; }
   }
-  /* Petits écrans : toute la boîte défile, le texte de la licence garde une hauteur lisible
-     et les boutons restent visibles en bas */
+  /* Small screens: the whole dialog scrolls, the license text keeps a readable height
+     and the buttons stay visible at the bottom */
   @media (max-height: 700px), (max-width: 620px) {
     .dlg { overflow-y: auto; overscroll-behavior: contain; }
-    .dlg-milieu { flex: none; overflow: visible; }
-    .texte-licence { flex: none; height: min(55vh, 420px); height: min(55dvh, 420px); min-height: 140px; }
-    .dlg-pied { position: sticky; bottom: 0; }
+    .dlg-body { flex: none; overflow: visible; }
+    .license-text { flex: none; height: min(55vh, 420px); height: min(55dvh, 420px); min-height: 140px; }
+    .dlg-foot { position: sticky; bottom: 0; }
   }
 
   .message {
     position: fixed; left: 50%; bottom: 24px; z-index: 60;
     max-width: calc(100% - 32px); padding: 12px 20px;
-    font-size: .92rem; color: var(--papier); background: var(--encre); border-radius: 999px;
-    box-shadow: var(--ombre-forte);
+    font-size: .92rem; color: var(--paper); background: var(--ink); border-radius: 999px;
+    box-shadow: var(--shadow-strong);
     transform: translate(-50%, 140%); opacity: 0; transition: transform .3s, opacity .3s;
   }
   .message.visible { transform: translate(-50%, 0); opacity: 1; }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition-duration: 0s !important; animation: none !important; }
-    .fiche:hover, .fiche:hover .feuille, .btn-primaire:hover, .degre:hover { transform: none; }
+    .card:hover, .card:hover .sheet, .btn-primary:hover, .level:hover { transform: none; }
   }
 </style>
 </head>
 <body>
 
-<a class="evitement" href="#fiches">Aller directement aux fiches</a>
+<a class="skip-link" href="#fiches">Aller directement aux fiches</a>
 
-<header class="entete">
-  <div class="conteneur">
-    <a class="marque" href="./" aria-label="Exercices scolaires, accueil">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 3h13l6 6v20H7z" fill="var(--feuille)" stroke="var(--bleu)" stroke-width="2" stroke-linejoin="round"/><path d="M20 3v6h6" fill="none" stroke="var(--bleu)" stroke-width="2" stroke-linejoin="round"/><path d="M11 15h11M11 20h7" stroke="var(--bleu)" stroke-width="2" stroke-linecap="round"/><path d="M17 24l2.5 2.5L25 20" fill="none" stroke="var(--rouge)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="./" aria-label="Exercices scolaires, accueil">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 3h13l6 6v20H7z" fill="var(--sheet)" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/><path d="M20 3v6h6" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linejoin="round"/><path d="M11 15h11M11 20h7" stroke="var(--blue)" stroke-width="2" stroke-linecap="round"/><path d="M17 24l2.5 2.5L25 20" fill="none" stroke="var(--red)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>Exercices scolaires</span>
     </a>
     <nav aria-label="Liens utiles">
       <a href="#fiches">Les fiches</a>
       <a href="#a-propos">Licence</a>
       <a href="https://github.com/ctalpaert/exercices-scolaires">GitHub</a>
-      <button type="button" class="btn btn-secondaire btn-petit" data-telecharger aria-label="Tout télécharger (zip)">
+      <button type="button" class="btn btn-secondary btn-small" data-download aria-label="Tout télécharger (zip)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
-        <span class="long" aria-hidden="true">Tout télécharger (.zip)</span><span class="court" aria-hidden="true">Zip</span>
+        <span class="long" aria-hidden="true">Tout télécharger (.zip)</span><span class="short" aria-hidden="true">Zip</span>
       </button>
     </nav>
   </div>
 </header>
 
 <main>
-  <section class="accueil" aria-labelledby="titre-principal">
-    <div class="conteneur">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
       <div>
-        <p class="surtitre">Fiches à imprimer · format A4</p>
-        <h1 id="titre-principal">Des exercices pour <span class="surligne">apprendre</span>, de la&nbsp;1P à l’université.</h1>
-        <p class="accroche">Des fiches claires, gratuites et prêtes à imprimer, souvent avec leur corrigé. Choisissez un degré, une matière, ou cherchez simplement un mot.</p>
+        <p class="eyebrow">Fiches à imprimer · format A4</p>
+        <h1 id="hero-title">Des exercices pour <span class="highlight">apprendre</span>, de la&nbsp;1P à l’université.</h1>
+        <p class="lead">Des fiches claires, gratuites et prêtes à imprimer, souvent avec leur corrigé. Choisissez un degré, une matière, ou cherchez simplement un mot.</p>
         <div class="actions">
-          <button type="button" class="btn btn-primaire" data-telecharger>
+          <button type="button" class="btn btn-primary" data-download>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
             Télécharger tous les exercices en zip
           </button>
-          <a class="btn btn-secondaire" href="#fiches">Parcourir les fiches</a>
+          <a class="btn btn-secondary" href="#fiches">Parcourir les fiches</a>
         </div>
-        <ul class="chiffres" id="chiffres" aria-label="En bref"></ul>
+        <ul class="stats" id="stats" aria-label="En bref"></ul>
       </div>
 
       <svg class="illustration" viewBox="0 0 440 360" aria-hidden="true">
-        <g transform="rotate(9 250 190)"><rect class="f-fond-1" x="150" y="40" width="210" height="290" rx="10"/></g>
-        <g transform="rotate(-7 210 190)"><rect class="f-fond-2" x="100" y="36" width="210" height="290" rx="10"/></g>
-        <g class="ombre-feuille" transform="rotate(-1.5 230 190)">
-          <rect class="f-avant" x="120" y="26" width="226" height="312" rx="8"/>
-          <rect class="f-bord" x="120" y="26" width="226" height="312" rx="8"/>
-          <rect class="bandeau" x="136" y="42" width="194" height="34" rx="8"/>
-          <rect class="titre-feuille" x="150" y="54" width="92" height="10" rx="5"/>
-          <path class="ligne" d="M262 66h52" />
+        <g transform="rotate(9 250 190)"><rect class="sheet-back-1" x="150" y="40" width="210" height="290" rx="10"/></g>
+        <g transform="rotate(-7 210 190)"><rect class="sheet-back-2" x="100" y="36" width="210" height="290" rx="10"/></g>
+        <g class="sheet-shadow" transform="rotate(-1.5 230 190)">
+          <rect class="sheet-front" x="120" y="26" width="226" height="312" rx="8"/>
+          <rect class="sheet-outline" x="120" y="26" width="226" height="312" rx="8"/>
+          <rect class="banner" x="136" y="42" width="194" height="34" rx="8"/>
+          <rect class="sheet-title" x="150" y="54" width="92" height="10" rx="5"/>
+          <path class="dotted-line" d="M262 66h52" />
           <g>
-            <rect class="case-pleine" x="140" y="96" width="26" height="26" rx="6"/><text class="lettre-blanche" x="153" y="114" text-anchor="middle">B</text>
-            <rect class="case" x="172" y="96" width="26" height="26" rx="6"/>
-            <rect class="case-pleine" x="204" y="96" width="26" height="26" rx="6"/><text class="lettre-blanche" x="217" y="114" text-anchor="middle">D</text>
-            <rect class="case" x="236" y="96" width="26" height="26" rx="6"/><text class="lettre" x="249" y="114" text-anchor="middle" fill="#e03131" style="fill:#e03131">E</text>
+            <rect class="box-filled" x="140" y="96" width="26" height="26" rx="6"/><text class="letter-white" x="153" y="114" text-anchor="middle">B</text>
+            <rect class="box" x="172" y="96" width="26" height="26" rx="6"/>
+            <rect class="box-filled" x="204" y="96" width="26" height="26" rx="6"/><text class="letter-white" x="217" y="114" text-anchor="middle">D</text>
+            <rect class="box" x="236" y="96" width="26" height="26" rx="6"/><text class="letter" x="249" y="114" text-anchor="middle" fill="#e03131" style="fill:#e03131">E</text>
           </g>
           <polygon class="triangle" points="190,148 148,222 232,222"/>
-          <path class="marque-trait" d="M165 181l7 4M207 181l-7 4M190 216v12"/>
+          <path class="tick-marks" d="M165 181l7 4M207 181l-7 4M190 216v12"/>
           <rect x="258" y="150" width="20" height="20" rx="4" fill="#fff" stroke="#1d2230" stroke-width="1.8"/>
-          <path class="coche" d="M262 160l5 5 11-13"/>
-          <path class="ligne" d="M284 162h44"/>
+          <path class="checkmark" d="M262 160l5 5 11-13"/>
+          <path class="dotted-line" d="M284 162h44"/>
           <rect x="258" y="186" width="20" height="20" rx="4" fill="#fff" stroke="#1d2230" stroke-width="1.8"/>
-          <path class="ligne" d="M284 198h44"/>
-          <path class="ligne" d="M140 252h188M140 278h188M140 304h120"/>
+          <path class="dotted-line" d="M284 198h44"/>
+          <path class="dotted-line" d="M140 252h188M140 278h188M140 304h120"/>
         </g>
         <g transform="translate(18 62) rotate(38 340 250)">
           <rect x="250" y="238" width="150" height="20" rx="3" fill="#f2cf5b"/>
@@ -610,39 +610,39 @@
     </div>
   </section>
 
-  <section class="filtres" aria-labelledby="titre-filtres">
-    <div class="conteneur">
-      <h2 id="titre-filtres">Trouver une fiche</h2>
+  <section class="filters" aria-labelledby="filters-title">
+    <div class="container">
+      <h2 id="filters-title">Trouver une fiche</h2>
 
-      <div class="frise-cadre">
-        <span class="etiquette-filtre" id="etiquette-degres">Degré</span>
-        <div class="frise" id="frise" role="group" aria-labelledby="etiquette-degres"></div>
-        <p class="frise-fleche" aria-hidden="true"><span>de la 1<sup>re</sup> primaire à l’université</span></p>
+      <div class="timeline-frame">
+        <span class="filter-label" id="levels-label">Degré</span>
+        <div class="timeline" id="timeline" role="group" aria-labelledby="levels-label"></div>
+        <p class="timeline-arrow" aria-hidden="true"><span>de la 1<sup>re</sup> primaire à l’université</span></p>
       </div>
 
-      <div class="barre">
+      <div class="filter-bar">
         <div>
-          <span class="etiquette-filtre" id="etiquette-matieres">Matière</span>
-          <div class="matieres" id="matieres" role="group" aria-labelledby="etiquette-matieres"></div>
+          <span class="filter-label" id="subjects-label">Matière</span>
+          <div class="subjects" id="subjects" role="group" aria-labelledby="subjects-label"></div>
         </div>
-        <div class="recherche">
-          <label class="visuellement-cache" for="recherche">Rechercher une fiche</label>
+        <div class="search">
+          <label class="visually-hidden" for="search">Rechercher une fiche</label>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>
-          <input type="search" id="recherche" placeholder="Chercher&nbsp;: arbre, triangle…" autocomplete="off" spellcheck="false">
+          <input type="search" id="search" placeholder="Chercher&nbsp;: arbre, triangle…" autocomplete="off" spellcheck="false">
         </div>
       </div>
     </div>
   </section>
 
-  <section class="fiches" id="fiches" aria-labelledby="titre-fiches" tabindex="-1">
-    <div class="conteneur">
-      <div class="fiches-entete">
-        <h2 id="titre-fiches">Les fiches</h2>
-        <p class="resultat" id="resultat" aria-live="polite"></p>
-        <div class="outils">
-          <button type="button" class="lien-bouton" id="reinitialiser" hidden>Effacer les filtres</button>
-          <label class="tri">Trier
-            <select id="tri">
+  <section class="worksheets" id="fiches" aria-labelledby="worksheets-title" tabindex="-1">
+    <div class="container">
+      <div class="worksheets-header">
+        <h2 id="worksheets-title">Les fiches</h2>
+        <p class="results-count" id="results-count" aria-live="polite"></p>
+        <div class="list-tools">
+          <button type="button" class="link-button" id="reset-filters" hidden>Effacer les filtres</button>
+          <label class="sort">Trier
+            <select id="sort">
               <option value="degre">par degré</option>
               <option value="recent">les plus récentes</option>
               <option value="titre">de A à Z</option>
@@ -651,17 +651,17 @@
         </div>
       </div>
 
-      <div id="liste"></div>
+      <div id="worksheet-list"></div>
 
-      <div class="vide-etat" id="vide" hidden>
-        <div class="grand" aria-hidden="true">🔍</div>
+      <div class="empty-state" id="no-results" hidden>
+        <div class="big-icon" aria-hidden="true">🔍</div>
         <h3>Aucune fiche ne correspond</h3>
-        <p id="vide-texte">Essayez un autre degré, une autre matière ou un autre mot.</p>
-        <button type="button" class="btn btn-secondaire" id="vide-reinitialiser">Voir toutes les fiches</button>
+        <p id="no-results-text">Essayez un autre degré, une autre matière ou un autre mot.</p>
+        <button type="button" class="btn btn-secondary" id="no-results-reset">Voir toutes les fiches</button>
       </div>
 
       <noscript>
-        <div class="vide-etat">
+        <div class="empty-state">
           <h3>JavaScript est désactivé</h3>
           <p>La liste des fiches a besoin de JavaScript. Vous pouvez aussi parcourir les fichiers sur <a href="https://github.com/ctalpaert/exercices-scolaires">GitHub</a>.</p>
         </div>
@@ -670,8 +670,8 @@
   </section>
 </main>
 
-<footer class="pied" id="a-propos">
-  <div class="conteneur">
+<footer class="site-footer" id="a-propos">
+  <div class="container">
     <div>
       <h2>Exercices scolaires</h2>
       <p>Des fiches créées à la maison pour accompagner les devoirs, et partagées pour que d’autres élèves, parents et enseignants puissent s’en servir.</p>
@@ -681,38 +681,38 @@
       <h2>Licence</h2>
       <span class="badge-cc"><i>cc</i>CC BY-NC-SA 4.0</span>
       <p>Libre de copier, d’imprimer, de partager et d’adapter, en citant l’auteur. Pas d’utilisation commerciale (la revente est interdite)&nbsp;; les versions modifiées restent sous la même licence.</p>
-      <button type="button" class="lien-bouton" id="lire-licence" style="padding-left:0">Lire la licence</button>
+      <button type="button" class="link-button" id="read-license" style="padding-left:0">Lire la licence</button>
     </div>
     <div>
       <h2>Liens</h2>
       <ul>
         <li><a href="https://github.com/ctalpaert/exercices-scolaires">Code source sur GitHub</a></li>
         <li><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">La licence expliquée (Creative Commons)</a></li>
-        <li><button type="button" class="lien-bouton" data-telecharger style="padding-left:0">Télécharger tous les exercices en zip</button></li>
+        <li><button type="button" class="link-button" data-download style="padding-left:0">Télécharger tous les exercices en zip</button></li>
       </ul>
     </div>
   </div>
 </footer>
 
-<dialog class="licence" id="licence" aria-labelledby="licence-titre" aria-describedby="licence-intro">
+<dialog class="license" id="license" aria-labelledby="license-title" aria-describedby="license-intro">
   <form method="dialog" class="dlg">
-    <div class="dlg-tete">
+    <div class="dlg-head">
       <span class="badge-cc"><i>cc</i>BY-NC-SA 4.0</span>
-      <h2 id="licence-titre" tabindex="-1">Avant de télécharger</h2>
-      <p id="licence-intro">Les exercices sont gratuits et publiés sous licence <b>Creative Commons Attribution – Utilisation non commerciale – Partage dans les mêmes conditions 4.0 International</b> (CC BY-NC-SA 4.0). En téléchargeant l’archive, vous acceptez ses conditions.</p>
+      <h2 id="license-title" tabindex="-1">Avant de télécharger</h2>
+      <p id="license-intro">Les exercices sont gratuits et publiés sous licence <b>Creative Commons Attribution – Utilisation non commerciale – Partage dans les mêmes conditions 4.0 International</b> (CC BY-NC-SA 4.0). En téléchargeant l’archive, vous acceptez ses conditions.</p>
     </div>
 
-    <div class="dlg-milieu">
-      <ul class="resume">
-        <li class="t" style="--h:150"><span class="ico" aria-hidden="true">✅</span><span><b>Vous pouvez</b>copier, imprimer et distribuer les fiches, en classe comme à la maison, et les adapter.</span></li>
-        <li class="t" style="--h:255"><span class="ico" aria-hidden="true">✍️</span><span><b>Citer l’auteur</b>Mentionnez «&nbsp;Exercices scolaires, ctalpaert&nbsp;» avec un lien vers le site et vers la licence, et signalez vos modifications.</span></li>
-        <li class="t" style="--h:20"><span class="ico" aria-hidden="true">🚫</span><span><b>Pas d’utilisation commerciale</b>Interdiction de vendre ou de revendre ces fiches, modifiées ou non, ou de les inclure dans un produit payant.</span></li>
-        <li class="t" style="--h:300"><span class="ico" aria-hidden="true">🔁</span><span><b>Partage dans les mêmes conditions</b>Une version modifiée que vous diffusez doit l’être sous cette même licence.</span></li>
+    <div class="dlg-body">
+      <ul class="summary">
+        <li class="t" style="--h:150"><span class="icon" aria-hidden="true">✅</span><span><b>Vous pouvez</b>copier, imprimer et distribuer les fiches, en classe comme à la maison, et les adapter.</span></li>
+        <li class="t" style="--h:255"><span class="icon" aria-hidden="true">✍️</span><span><b>Citer l’auteur</b>Mentionnez «&nbsp;Exercices scolaires, ctalpaert&nbsp;» avec un lien vers le site et vers la licence, et signalez vos modifications.</span></li>
+        <li class="t" style="--h:20"><span class="icon" aria-hidden="true">🚫</span><span><b>Pas d’utilisation commerciale</b>Interdiction de vendre ou de revendre ces fiches, modifiées ou non, ou de les inclure dans un produit payant.</span></li>
+        <li class="t" style="--h:300"><span class="icon" aria-hidden="true">🔁</span><span><b>Partage dans les mêmes conditions</b>Une version modifiée que vous diffusez doit l’être sous cette même licence.</span></li>
       </ul>
 
-      <p class="texte-titre"><span>Texte complet de la licence</span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr" target="_blank" rel="noopener">Version officielle ↗</a></p>
-      <div class="texte-licence" id="texte-licence" tabindex="0" role="region" aria-label="Texte complet de la licence CC BY-NC-SA 4.0">
-<!-- TEXTE_LICENCE:DEBUT -->
+      <p class="license-text-heading"><span>Texte complet de la licence</span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr" target="_blank" rel="noopener">Version officielle ↗</a></p>
+      <div class="license-text" id="license-text" tabindex="0" role="region" aria-label="Texte complet de la licence CC BY-NC-SA 4.0">
+<!-- LICENSE_TEXT:START -->
 <h3>Attribution - Utilisation non commerciale - Partage dans les mêmes conditions 4.0 International</h3>
 <p>Lorsque Vous exercez les Droits accordés par la licence (définis ci-dessous), Vous acceptez d'être lié par les termes et conditions de la présente Licence publique Creative Commons Attribution - Utilisation non commerciale - Partage dans les mêmes conditions 4.0 International (la « Licence publique »). Dans la mesure où la présente Licence publique peut être interprétée comme un contrat, Vous bénéficiez des Droits accordés par la licence en contrepartie de Votre acceptation des présents termes et conditions, et le Donneur de licence Vous accorde ces droits en contrepartie des avantages que lui procure le fait de mettre à disposition l’Œuvre sous licence en vertu des présents termes et conditions.</p>
 <h4>Article 1 - Définitions.</h4>
@@ -828,14 +828,14 @@
 <li>Aucun terme ni aucune condition de la présente Licence publique ne sera écarté(e) et aucune violation ne sera admise sans l’accord exprès du Donneur de licence.</li>
 <li>Aucun terme ni aucune condition de la présente Licence publique ne constitue ou ne peut être interprété(e) comme une limitation ou une renonciation à un quelconque privilège ou à une immunité s’appliquant au Donneur de licence ou à Vous, y compris lorsque celles-ci émanent d’une procédure légale, quel(le) qu’en soit le système juridique concerné ou l’autorité compétente.</li>
 </ol>
-<!-- TEXTE_LICENCE:FIN -->
+<!-- LICENSE_TEXT:END -->
       </div>
     </div>
 
-    <div class="dlg-pied">
-      <p class="note" id="licence-note">L’archive contient toutes les fiches. Ouvrez <b>index.html</b> pour les parcourir hors ligne.</p>
-      <button type="submit" class="btn btn-secondaire" value="annuler" id="licence-annuler">Annuler</button>
-      <button type="submit" class="btn btn-primaire" value="accepter" id="licence-accepter">
+    <div class="dlg-foot">
+      <p class="note" id="license-note">L’archive contient toutes les fiches. Ouvrez <b>index.html</b> pour les parcourir hors ligne.</p>
+      <button type="submit" class="btn btn-secondary" value="cancel" id="license-cancel">Annuler</button>
+      <button type="submit" class="btn btn-primary" value="accept" id="license-accept">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19.5h14"/></svg>
         J’accepte et je télécharge
       </button>
@@ -845,33 +845,33 @@
 
 <div class="message" id="message" role="status" aria-live="polite"></div>
 
-<script src="catalogue.js"></script>
+<script src="catalog.js"></script>
 <script>
 (() => {
   "use strict";
 
-  /* ---------- Réglages ---------- */
-  const DEPOT = "ctalpaert/exercices-scolaires";
-  const BRANCHE = "main";
-  const URL_ZIP = `https://github.com/${DEPOT}/archive/refs/heads/${BRANCHE}.zip`;
-  const JOURS_NOUVEAU = 30;     // une fiche est « Nouveau » pendant 30 jours
-  const LARGEUR_A4 = 794;       // 210 mm en pixels CSS
+  /* ---------- Settings ---------- */
+  const REPO = "ctalpaert/exercices-scolaires";
+  const BRANCH = "main";
+  const ZIP_URL = `https://github.com/${REPO}/archive/refs/heads/${BRANCH}.zip`;
+  const NEW_DAYS = 30;        // a worksheet shows the « Nouveau » ribbon for 30 days
+  const A4_WIDTH = 794;       // 210 mm in CSS pixels
 
-  // Degrés scolaires de Suisse romande. Garder synchronisé avec NIVEAUX dans outils/generer_catalogue.py.
+  // School levels of French-speaking Switzerland. Keep in sync with LEVELS in tools/build_catalog.py.
   const CYCLES = [
-    { id: "c1", nom: "Cycle 1", detail: "1P – 4P", teinte: 40, niveaux: ["1P", "2P", "3P", "4P"] },
-    { id: "c2", nom: "Cycle 2", detail: "5P – 8P", teinte: 150, niveaux: ["5P", "6P", "7P", "8P"] },
-    { id: "c3", nom: "Cycle 3", detail: "9S – 11S", teinte: 250, niveaux: ["9S", "10S", "11S"] },
-    { id: "s2", nom: "Secondaire II", detail: "gymnase, ECG, formation professionnelle", teinte: 300, niveaux: ["SEC2"] },
-    { id: "t", nom: "Tertiaire", detail: "haute école et université", teinte: 355, niveaux: ["UNI"] },
+    { id: "c1", name: "Cycle 1", detail: "1P – 4P", hue: 40, levels: ["1P", "2P", "3P", "4P"] },
+    { id: "c2", name: "Cycle 2", detail: "5P – 8P", hue: 150, levels: ["5P", "6P", "7P", "8P"] },
+    { id: "c3", name: "Cycle 3", detail: "9S – 11S", hue: 250, levels: ["9S", "10S", "11S"] },
+    { id: "s2", name: "Secondaire II", detail: "gymnase, ECG, formation professionnelle", hue: 300, levels: ["SEC2"] },
+    { id: "t", name: "Tertiaire", detail: "haute école et université", hue: 355, levels: ["UNI"] },
   ];
-  const LIBELLES = { SEC2: "Sec II", UNI: "Uni" };
-  const NOMS_LONGS = { SEC2: "Secondaire II", UNI: "Haute école et université" };
-  const NIVEAUX = CYCLES.flatMap(c => c.niveaux);
-  const CYCLE_DE = Object.fromEntries(CYCLES.flatMap(c => c.niveaux.map(n => [n, c])));
+  const LEVEL_LABELS = { SEC2: "Sec II", UNI: "Uni" };
+  const LEVEL_NAMES = { SEC2: "Secondaire II", UNI: "Haute école et université" };
+  const LEVELS = CYCLES.flatMap(c => c.levels);
+  const CYCLE_OF = Object.fromEntries(CYCLES.flatMap(c => c.levels.map(n => [n, c])));
 
-  // Matières : emoji et teinte. Garder synchronisé avec MATIERES dans outils/generer_catalogue.py.
-  const MATIERES = {
+  // Subjects: emoji and hue. Keep in sync with SUBJECTS in tools/build_catalog.py.
+  const SUBJECTS = {
     "Français": ["📖", 350],
     "Allemand": ["🗣️", 15],
     "Anglais": ["🗣️", 265],
@@ -899,404 +899,412 @@
 
   const $ = sel => document.querySelector(sel);
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-  // Texte comparable pour la recherche : sans accents, apostrophes et tirets unifiés
-  const sansAccents = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "")
+  // Comparable text for search: no accents, unified apostrophes and dashes
+  const normalizeForSearch = s => String(s).normalize("NFD").replace(/[̀-ͯ]/g, "")
     .replace(/[’‘ʼ´`]/g, "'").replace(/[-‐‑–—]/g, " ").replace(/œ/g, "oe").replace(/æ/g, "ae").toLowerCase();
-  const libelle = n => LIBELLES[n] || n;
-  const pluriel = (n, un, plusieurs) => `${n} ${n > 1 ? plusieurs : un}`;
+  const levelLabel = n => LEVEL_LABELS[n] || n;
+  const plural = (n, one, many) => `${n} ${n > 1 ? many : one}`;
 
-  function infoMatiere(nom) {
-    if (MATIERES[nom]) return { emoji: MATIERES[nom][0], teinte: MATIERES[nom][1] };
-    let h = 0;                                    // matière inconnue : teinte stable tirée du nom
-    for (const c of String(nom)) h = (h * 31 + c.codePointAt(0)) % 360;
-    return { emoji: "📄", teinte: h };
+  function subjectInfo(name) {
+    if (SUBJECTS[name]) return { emoji: SUBJECTS[name][0], hue: SUBJECTS[name][1] };
+    let h = 0;                                    // unknown subject: stable hue derived from the name
+    for (const c of String(name)) h = (h * 31 + c.codePointAt(0)) % 360;
+    return { emoji: "📄", hue: h };
   }
 
-  function dateLocale(iso) {
+  function parseLocalDate(iso) {
     const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
     return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
   }
-  const formatDate = new Intl.DateTimeFormat("fr-CH", { day: "numeric", month: "long", year: "numeric" });
-  const formatDateCourte = new Intl.DateTimeFormat("fr-CH", { day: "numeric", month: "short", year: "numeric" });
+  const longDate = new Intl.DateTimeFormat("fr-CH", { day: "numeric", month: "long", year: "numeric" });
+  const shortDate = new Intl.DateTimeFormat("fr-CH", { day: "numeric", month: "short", year: "numeric" });
 
-  // « 3P – 4P » pour une suite continue, sinon « 3P, 5P »
-  function plageNiveaux(niveaux) {
-    if (!niveaux.length) return "";
-    const idx = niveaux.map(n => NIVEAUX.indexOf(n));
-    const continu = idx.every((v, i) => i === 0 || v === idx[i - 1] + 1);
-    if (niveaux.length > 2 && continu) return `${libelle(niveaux[0])} – ${libelle(niveaux[niveaux.length - 1])}`;
-    return niveaux.map(libelle).join(", ");
+  // « 3P – 4P » for a contiguous run, otherwise « 3P, 5P »
+  function levelRange(levels) {
+    if (!levels.length) return "";
+    const idx = levels.map(n => LEVELS.indexOf(n));
+    const contiguous = idx.every((v, i) => i === 0 || v === idx[i - 1] + 1);
+    if (levels.length > 2 && contiguous) return `${levelLabel(levels[0])} – ${levelLabel(levels[levels.length - 1])}`;
+    return levels.map(levelLabel).join(", ");
   }
 
-  /* ---------- Données ---------- */
-  const aujourdHui = new Date(); aujourdHui.setHours(0, 0, 0, 0);
-  const brutes = Array.isArray(window.CATALOGUE) ? window.CATALOGUE : null;
-  const FICHES = (brutes || []).map((f, i) => {
-    const niveaux = (f.niveaux || []).filter(n => NIVEAUX.includes(n));
-    const ajout = dateLocale(f.ajout);
-    const m = infoMatiere(f.matiere || "Autre");
+  /* ---------- Data ---------- */
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const rawCatalog = Array.isArray(window.CATALOG) ? window.CATALOG : null;
+  // Entries of catalog.js (written by tools/build_catalog.py), normalized once, with derived fields
+  const WORKSHEETS = (rawCatalog || []).map((f, i) => {
+    const levels = (f.levels || []).filter(n => LEVELS.includes(n));
+    const addedDate = parseLocalDate(f.added);
+    const m = subjectInfo(f.subject || "Autre");
     return {
-      ...f,
       id: i,
-      matiere: f.matiere || "Autre",
-      niveaux,
+      file: f.file,
+      title: f.title,
+      description: f.description,
+      subject: f.subject || "Autre",
+      pages: f.pages,
+      answer_key: !!f.answer_key,
+      randomized: !!f.randomized,
+      levels,
       emoji: m.emoji,
-      teinte: m.teinte,
-      date: ajout,
-      nouveau: !!ajout && (aujourdHui - ajout) / 864e5 <= JOURS_NOUVEAU,
-      rang: niveaux.length ? NIVEAUX.indexOf(niveaux[0]) : NIVEAUX.length,
-      texte: sansAccents([f.titre, f.description, f.matiere, ...(f.mots_cles || []), ...niveaux.map(libelle)].join(" ")),
+      hue: m.hue,
+      date: addedDate,
+      isNew: !!addedDate && (today - addedDate) / 864e5 <= NEW_DAYS,
+      rank: levels.length ? LEVELS.indexOf(levels[0]) : LEVELS.length,
+      searchText: normalizeForSearch([f.title, f.description, f.subject, ...(f.keywords || []), ...levels.map(levelLabel)].join(" ")),
     };
   });
 
-  /* ---------- État (reflété dans l'adresse pour pouvoir partager un lien filtré) ---------- */
+  /* ---------- State (mirrored in the URL so that a filtered view can be shared) ---------- */
+  // URL parameter names and values stay in French (niveau, matiere, q, tri=degre|recent|titre),
+  // and so do the #fiches and #a-propos fragment ids: links that were already shared use them.
   const params = new URLSearchParams(location.search);
-  const etat = {
-    niveau: NIVEAUX.includes(params.get("niveau")) ? params.get("niveau") : "",
-    matiere: params.get("matiere") || "",
+  const state = {
+    level: LEVELS.includes(params.get("niveau")) ? params.get("niveau") : "",
+    subject: params.get("matiere") || "",
     q: params.get("q") || "",
-    tri: ["degre", "recent", "titre"].includes(params.get("tri")) ? params.get("tri") : "degre",
+    sort: ["degre", "recent", "titre"].includes(params.get("tri")) ? params.get("tri") : "degre",
   };
 
-  function majAdresse() {
+  function updateUrl() {
     const p = new URLSearchParams();
-    if (etat.niveau) p.set("niveau", etat.niveau);
-    if (etat.matiere) p.set("matiere", etat.matiere);
-    if (etat.q.trim()) p.set("q", etat.q.trim());
-    if (etat.tri !== "degre") p.set("tri", etat.tri);
+    if (state.level) p.set("niveau", state.level);
+    if (state.subject) p.set("matiere", state.subject);
+    if (state.q.trim()) p.set("q", state.q.trim());
+    if (state.sort !== "degre") p.set("tri", state.sort);
     const qs = p.toString();
     try { history.replaceState(null, "", (qs ? "?" + qs : location.pathname) + location.hash); } catch (e) { /* file:// */ }
   }
 
-  function correspond(f, sauf) {
-    if (sauf !== "niveau" && etat.niveau && !f.niveaux.includes(etat.niveau)) return false;
-    if (sauf !== "matiere" && etat.matiere && f.matiere !== etat.matiere) return false;
-    const mots = sansAccents(etat.q).split(/\s+/).filter(Boolean);
-    return mots.every(m => f.texte.includes(m));
+  function matches(f, ignore) {
+    if (ignore !== "level" && state.level && !f.levels.includes(state.level)) return false;
+    if (ignore !== "subject" && state.subject && f.subject !== state.subject) return false;
+    const words = normalizeForSearch(state.q).split(/\s+/).filter(Boolean);
+    return words.every(m => f.searchText.includes(m));
   }
 
-  /* ---------- Frise des degrés et matières ---------- */
-  const frise = $("#frise");
-  const zoneMatieres = $("#matieres");
+  /* ---------- Level timeline and subjects ---------- */
+  const timeline = $("#timeline");
+  const subjectsBox = $("#subjects");
 
-  function construireFrise() {
-    frise.innerHTML =
-      `<button type="button" class="degre degre-tous" data-niveau="">Tous</button>` +
+  function buildTimeline() {
+    timeline.innerHTML =
+      `<button type="button" class="level level-all" data-level="">Tous</button>` +
       CYCLES.map(c => `
-        <div class="cycle t" style="--h:${c.teinte}">
-          <span class="cycle-nom" title="${esc(c.detail)}">${esc(c.nom)}</span>
-          <div class="cycle-degres">
-            ${c.niveaux.map(n => `<button type="button" class="degre" data-niveau="${n}" title="${esc(NOMS_LONGS[n] || n)}"><span>${esc(libelle(n))}</span></button>`).join("")}
+        <div class="cycle t" style="--h:${c.hue}">
+          <span class="cycle-name" title="${esc(c.detail)}">${esc(c.name)}</span>
+          <div class="cycle-levels">
+            ${c.levels.map(n => `<button type="button" class="level" data-level="${n}" title="${esc(LEVEL_NAMES[n] || n)}"><span>${esc(levelLabel(n))}</span></button>`).join("")}
           </div>
         </div>`).join("");
   }
 
-  function majFrise() {
-    const base = FICHES.filter(f => correspond(f, "niveau"));
-    frise.querySelectorAll(".degre").forEach(b => {
-      const n = b.dataset.niveau;
-      const nb = n ? base.filter(f => f.niveaux.includes(n)).length : base.length;
-      b.setAttribute("aria-pressed", String(etat.niveau === n));
-      b.classList.toggle("vide", !!n && nb === 0);
-      let badge = b.querySelector(".compte");
-      if (n && nb > 0) {
-        if (!badge) { badge = document.createElement("small"); badge.className = "compte"; b.append(badge); }
-        badge.textContent = nb;
+  function updateTimeline() {
+    const base = WORKSHEETS.filter(f => matches(f, "level"));
+    timeline.querySelectorAll(".level").forEach(b => {
+      const n = b.dataset.level;
+      const count = n ? base.filter(f => f.levels.includes(n)).length : base.length;
+      b.setAttribute("aria-pressed", String(state.level === n));
+      b.classList.toggle("empty", !!n && count === 0);
+      let badge = b.querySelector(".count");
+      if (n && count > 0) {
+        if (!badge) { badge = document.createElement("small"); badge.className = "count"; b.append(badge); }
+        badge.textContent = count;
       } else if (badge) badge.remove();
-      // Le nom accessible commence par le libellé visible (« Sec II », « Uni »…)
+      // The accessible name starts with the visible label (« Sec II », « Uni »…)
       b.setAttribute("aria-label", n
-        ? `${libelle(n)}${NOMS_LONGS[n] ? ` (${NOMS_LONGS[n]})` : ""} : ${pluriel(nb, "fiche", "fiches")}`
-        : `Tous les degrés : ${pluriel(nb, "fiche", "fiches")}`);
+        ? `${levelLabel(n)}${LEVEL_NAMES[n] ? ` (${LEVEL_NAMES[n]})` : ""} : ${plural(count, "fiche", "fiches")}`
+        : `Tous les degrés : ${plural(count, "fiche", "fiches")}`);
     });
   }
 
-  function majMatieres() {
-    const base = FICHES.filter(f => correspond(f, "matiere"));
-    const noms = [...new Set(FICHES.map(f => f.matiere))].sort((a, b) => a.localeCompare(b, "fr"));
-    if (etat.matiere && !noms.includes(etat.matiere)) noms.push(etat.matiere);
-    zoneMatieres.innerHTML =
-      `<button type="button" class="matiere-btn" data-matiere="" aria-pressed="${!etat.matiere}">Toutes <span class="compte">${base.length}</span></button>` +
-      noms.map(nom => {
-        const m = infoMatiere(nom);
-        const nb = base.filter(f => f.matiere === nom).length;
-        return `<button type="button" class="matiere-btn t" style="--h:${m.teinte}" data-matiere="${esc(nom)}" aria-pressed="${etat.matiere === nom}">
-          <span class="emoji" aria-hidden="true">${m.emoji}</span>${esc(nom)} <span class="compte">${nb}</span></button>`;
+  function updateSubjects() {
+    const base = WORKSHEETS.filter(f => matches(f, "subject"));
+    const names = [...new Set(WORKSHEETS.map(f => f.subject))].sort((a, b) => a.localeCompare(b, "fr"));
+    if (state.subject && !names.includes(state.subject)) names.push(state.subject);
+    subjectsBox.innerHTML =
+      `<button type="button" class="subject-btn" data-subject="" aria-pressed="${!state.subject}">Toutes <span class="count">${base.length}</span></button>` +
+      names.map(name => {
+        const m = subjectInfo(name);
+        const count = base.filter(f => f.subject === name).length;
+        return `<button type="button" class="subject-btn t" style="--h:${m.hue}" data-subject="${esc(name)}" aria-pressed="${state.subject === name}">
+          <span class="emoji" aria-hidden="true">${m.emoji}</span>${esc(name)} <span class="count">${count}</span></button>`;
       }).join("");
   }
 
-  /* ---------- Cartes ---------- */
-  const liste = $("#liste");
-  const cartes = new Map();          // id de fiche -> <li>
-  const observateur = "ResizeObserver" in window
-    ? new ResizeObserver(entrees => entrees.forEach(e => {
-        const w = e.contentRect.width;          // 0 quand la carte est masquée : on garde l'ancienne échelle
-        if (w > 0) e.target.style.setProperty("--echelle", (w / LARGEUR_A4).toFixed(4));
+  /* ---------- Cards ---------- */
+  const listEl = $("#worksheet-list");
+  const cards = new Map();          // worksheet id -> <li>
+  const resizeObserver = "ResizeObserver" in window
+    ? new ResizeObserver(entries => entries.forEach(e => {
+        const w = e.contentRect.width;          // 0 while the card is hidden: keep the previous scale
+        if (w > 0) e.target.style.setProperty("--scale", (w / A4_WIDTH).toFixed(4));
       }))
     : null;
-  // Les aperçus ne se chargent qu'à l'approche de l'écran (utile avec des dizaines de fiches)
-  const chargeur = "IntersectionObserver" in window
-    ? new IntersectionObserver(entrees => entrees.forEach(e => {
+  // Previews load only when they come near the viewport (useful with dozens of worksheets)
+  const lazyLoader = "IntersectionObserver" in window
+    ? new IntersectionObserver(entries => entries.forEach(e => {
         if (!e.isIntersecting) return;
-        const cadre = e.target.querySelector("iframe");
-        if (!cadre.src) cadre.src = cadre.dataset.src;
-        chargeur.unobserve(e.target);
+        const frame = e.target.querySelector("iframe");
+        if (!frame.src) frame.src = frame.dataset.src;
+        lazyLoader.unobserve(e.target);
       }), { rootMargin: "600px 0px" })
     : null;
 
-  const ICONES = {
+  const ICONS = {
     pages: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z" stroke-linejoin="round"/></svg>',
-    corrige: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>',
-    aleatoire: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="3"/><circle cx="5.5" cy="5.5" r=".6" fill="currentColor"/><circle cx="10.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="8" cy="8" r=".6" fill="currentColor"/></svg>',
+    answer_key: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3.2L13 4.8"/></svg>',
+    randomized: '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="3"/><circle cx="5.5" cy="5.5" r=".6" fill="currentColor"/><circle cx="10.5" cy="10.5" r=".6" fill="currentColor"/><circle cx="8" cy="8" r=".6" fill="currentColor"/></svg>',
   };
 
-  function carte(f, niveauTitre) {
+  function card(f, headingLevel) {
     const li = document.createElement("li");
-    const h = `h${niveauTitre}`;
-    const infos = [
-      `<li>${ICONES.pages}${pluriel(f.pages || 1, "page A4", "pages A4")}</li>`,
-      f.corrige ? `<li>${ICONES.corrige}Corrigé</li>` : "",
-      f.aleatoire ? `<li>${ICONES.aleatoire}Exercices à volonté</li>` : "",
+    const h = `h${headingLevel}`;
+    const info = [
+      `<li>${ICONS.pages}${plural(f.pages || 1, "page A4", "pages A4")}</li>`,
+      f.answer_key ? `<li>${ICONS.answer_key}Corrigé</li>` : "",
+      f.randomized ? `<li>${ICONS.randomized}Exercices à volonté</li>` : "",
     ].join("");
     li.innerHTML = `
-      <article class="fiche t" style="--h:${f.teinte}">
-        <div class="apercu" aria-hidden="true">
-          ${f.nouveau ? '<span class="ruban">Nouveau</span>' : ""}
-          <div class="feuille">
-            <div class="feuille-attente"><span>${f.emoji}</span></div>
+      <article class="card t" style="--h:${f.hue}">
+        <div class="preview" aria-hidden="true">
+          ${f.isNew ? '<span class="ribbon">Nouveau</span>' : ""}
+          <div class="sheet">
+            <div class="sheet-placeholder"><span>${f.emoji}</span></div>
             <iframe loading="lazy" tabindex="-1" scrolling="no" title="" sandbox="allow-same-origin allow-scripts"></iframe>
           </div>
         </div>
-        <div class="corps">
-          <div class="etiquettes">
-            ${f.nouveau ? '<span class="visuellement-cache">Nouveau, </span>' : ""}
-            <span class="pastille-matiere"><span aria-hidden="true">${f.emoji}</span>${esc(f.matiere)}</span>
-            ${f.niveaux.length ? `<span class="pastille-niveau"><span class="visuellement-cache">Degré </span>${esc(plageNiveaux(f.niveaux))}</span>` : ""}
+        <div class="card-body">
+          <div class="tags">
+            ${f.isNew ? '<span class="visually-hidden">Nouveau, </span>' : ""}
+            <span class="subject-pill"><span aria-hidden="true">${f.emoji}</span>${esc(f.subject)}</span>
+            ${f.levels.length ? `<span class="level-pill"><span class="visually-hidden">Degré </span>${esc(levelRange(f.levels))}</span>` : ""}
           </div>
-          <${h}><a class="fiche-lien" href="${esc(encodeURI(f.fichier))}">${esc(f.titre)}</a></${h}>
+          <${h}><a class="card-link" href="${esc(encodeURI(f.file))}">${esc(f.title)}</a></${h}>
           ${f.description ? `<p class="description">${esc(f.description)}</p>` : ""}
-          <ul class="infos">${infos}${f.date ? `<li class="date"><span class="visuellement-cache">Ajoutée le </span>${esc(formatDateCourte.format(f.date))}</li>` : ""}</ul>
+          <ul class="card-meta">${info}${f.date ? `<li class="date"><span class="visually-hidden">Ajoutée le </span>${esc(shortDate.format(f.date))}</li>` : ""}</ul>
         </div>
       </article>`;
 
-    const feuille = li.querySelector(".feuille");
-    const cadre = li.querySelector("iframe");
-    cadre.addEventListener("load", () => {
+    const sheet = li.querySelector(".sheet");
+    const frame = li.querySelector("iframe");
+    frame.addEventListener("load", () => {
       try {
-        // Même origine (GitHub Pages) : on retire les boutons, les champs de saisie et la marge grise de la fiche
-        const doc = cadre.contentDocument;
+        // Same origin (GitHub Pages): hide the worksheet's buttons, answer fields and grey margin
+        const doc = frame.contentDocument;
         const style = doc.createElement("style");
-        style.textContent = ".toolbar,.print-btn,.retour,.saisie{display:none!important}html,body{background:#fff!important;overflow:hidden!important}.page{margin:0!important;box-shadow:none!important}";
+        style.textContent = ".toolbar,.print-btn,.back-link,.answer-input{display:none!important}html,body{background:#fff!important;overflow:hidden!important}.page{margin:0!important;box-shadow:none!important}";
         doc.head.append(style);
-      } catch (e) { /* ouvert depuis le disque : aperçu tel quel */ }
-      feuille.classList.add("chargee");
+      } catch (e) { /* opened from disk: preview as is */ }
+      sheet.classList.add("loaded");
     });
-    cadre.dataset.src = encodeURI(f.fichier);
-    if (chargeur) chargeur.observe(feuille);
-    else cadre.src = cadre.dataset.src;
-    if (observateur) observateur.observe(feuille);
+    frame.dataset.src = encodeURI(f.file);
+    if (lazyLoader) lazyLoader.observe(sheet);
+    else frame.src = frame.dataset.src;
+    if (resizeObserver) resizeObserver.observe(sheet);
     return li;
   }
 
-  function trier(fiches) {
-    const parTitre = (a, b) => a.titre.localeCompare(b.titre, "fr", { sensitivity: "base" });
-    const copie = [...fiches];
-    if (etat.tri === "recent") return copie.sort((a, b) => (b.date || 0) - (a.date || 0) || parTitre(a, b));
-    if (etat.tri === "titre") return copie.sort(parTitre);
-    return copie.sort((a, b) => a.rang - b.rang || a.matiere.localeCompare(b.matiere, "fr") || parTitre(a, b));
+  function sortWorksheets(items) {
+    const byTitle = (a, b) => a.title.localeCompare(b.title, "fr", { sensitivity: "base" });
+    const copy = [...items];
+    if (state.sort === "recent") return copy.sort((a, b) => (b.date || 0) - (a.date || 0) || byTitle(a, b));
+    if (state.sort === "titre") return copy.sort(byTitle);
+    return copy.sort((a, b) => a.rank - b.rank || a.subject.localeCompare(b.subject, "fr") || byTitle(a, b));
   }
 
-  // Construit toutes les cartes dans l'ordre demandé. Les filtres se contentent ensuite
-  // de masquer des cartes, pour ne pas recharger les aperçus à chaque frappe.
-  function construireListe() {
-    if (observateur) observateur.disconnect();
-    if (chargeur) chargeur.disconnect();
-    cartes.clear();
-    liste.innerHTML = "";
-    const triees = trier(FICHES);
+  // Builds every card in the requested order. Filters then only
+  // hide cards, so that previews are not reloaded on every keystroke.
+  function buildList() {
+    if (resizeObserver) resizeObserver.disconnect();
+    if (lazyLoader) lazyLoader.disconnect();
+    cards.clear();
+    listEl.innerHTML = "";
+    const sorted = sortWorksheets(WORKSHEETS);
 
-    if (etat.tri === "degre") {
-      const groupes = [...CYCLES, { id: "autre", nom: "Autres fiches", detail: "", teinte: 220 }];
-      groupes.forEach(c => {
-        const membres = triees.filter(f => (CYCLE_DE[f.niveaux[0]] || { id: "autre" }).id === c.id);
-        if (!membres.length) return;
+    if (state.sort === "degre") {
+      const groups = [...CYCLES, { id: "other", name: "Autres fiches", detail: "", hue: 220 }];
+      groups.forEach(c => {
+        const members = sorted.filter(f => (CYCLE_OF[f.levels[0]] || { id: "other" }).id === c.id);
+        if (!members.length) return;
         const section = document.createElement("section");
-        section.className = "groupe t";
-        section.style.setProperty("--h", c.teinte);
-        section.dataset.groupe = c.id;
-        section.setAttribute("aria-labelledby", `groupe-${c.id}`);
-        section.innerHTML = `<h3 class="groupe-titre" id="groupe-${c.id}">${esc(c.nom)}${c.detail ? ` <small>${esc(c.detail)}</small>` : ""}</h3><ul class="grille" role="list"></ul>`;
+        section.className = "group t";
+        section.style.setProperty("--h", c.hue);
+        section.dataset.group = c.id;
+        section.setAttribute("aria-labelledby", `group-${c.id}`);
+        section.innerHTML = `<h3 class="group-title" id="group-${c.id}">${esc(c.name)}${c.detail ? ` <small>${esc(c.detail)}</small>` : ""}</h3><ul class="grid" role="list"></ul>`;
         const ul = section.querySelector("ul");
-        membres.forEach(f => { const li = carte(f, 4); cartes.set(f.id, li); ul.append(li); });
-        liste.append(section);
+        members.forEach(f => { const li = card(f, 4); cards.set(f.id, li); ul.append(li); });
+        listEl.append(section);
       });
     } else {
       const ul = document.createElement("ul");
-      ul.className = "grille";
+      ul.className = "grid";
       ul.setAttribute("role", "list");
-      triees.forEach(f => { const li = carte(f, 3); cartes.set(f.id, li); ul.append(li); });
-      liste.append(ul);
+      sorted.forEach(f => { const li = card(f, 3); cards.set(f.id, li); ul.append(li); });
+      listEl.append(ul);
     }
   }
 
-  function appliquerFiltres() {
-    if (!brutes) return;   // catalogue absent : le message d'erreur reste affiché
-    let nb = 0;
-    FICHES.forEach(f => {
-      const ok = correspond(f);
-      cartes.get(f.id).hidden = !ok;
-      if (ok) nb++;
+  function applyFilters() {
+    if (!rawCatalog) return;   // no catalog: the error message stays visible
+    let count = 0;
+    WORKSHEETS.forEach(f => {
+      const ok = matches(f);
+      cards.get(f.id).hidden = !ok;
+      if (ok) count++;
     });
-    liste.querySelectorAll(".groupe").forEach(s => { s.hidden = !s.querySelector(".grille > li:not([hidden])"); });
+    listEl.querySelectorAll(".group").forEach(s => { s.hidden = !s.querySelector(".grid > li:not([hidden])"); });
 
-    const filtre = etat.niveau || etat.matiere || etat.q.trim();
-    const total = FICHES.length;
-    $("#resultat").textContent = filtre
-      ? `${nb ? pluriel(nb, "fiche", "fiches") : "Aucune fiche"} sur ${total}`
-      : (total ? pluriel(total, "fiche", "fiches") : "");
-    $("#reinitialiser").hidden = !filtre;
+    const filtered = state.level || state.subject || state.q.trim();
+    const total = WORKSHEETS.length;
+    $("#results-count").textContent = filtered
+      ? `${count ? plural(count, "fiche", "fiches") : "Aucune fiche"} sur ${total}`
+      : (total ? plural(total, "fiche", "fiches") : "");
+    $("#reset-filters").hidden = !filtered;
 
-    $("#vide").hidden = nb > 0;
-    $("#vide-reinitialiser").hidden = !filtre;
-    if (!nb) {
-      let texte = "Essayez un autre degré, une autre matière ou un autre mot.";
-      if (!total) texte = "Aucune fiche n’est encore publiée. Revenez bientôt !";
-      else if (etat.niveau && !etat.q.trim()) {
-        const m = etat.matiere.toLocaleLowerCase("fr");
-        const deMatiere = m ? (/^[aeiouyhàâéèêîïôû]/.test(m) ? ` d’${m}` : ` de ${m}`) : "";
-        const pourNiveau = { SEC2: " au secondaire II", UNI: " pour la haute école et l’université" }[etat.niveau] || ` pour la ${etat.niveau}`;
-        texte = `Il n’y a pas encore de fiche${deMatiere}${pourNiveau}. De nouvelles fiches arrivent régulièrement !`;
+    $("#no-results").hidden = count > 0;
+    $("#no-results-reset").hidden = !filtered;
+    if (!count) {
+      let text = "Essayez un autre degré, une autre matière ou un autre mot.";
+      if (!total) text = "Aucune fiche n’est encore publiée. Revenez bientôt !";
+      else if (state.level && !state.q.trim()) {
+        const m = state.subject.toLocaleLowerCase("fr");
+        const ofSubject = m ? (/^[aeiouyhàâéèêîïôû]/.test(m) ? ` d’${m}` : ` de ${m}`) : "";
+        const forLevel = { SEC2: " au secondaire II", UNI: " pour la haute école et l’université" }[state.level] || ` pour la ${state.level}`;
+        text = `Il n’y a pas encore de fiche${ofSubject}${forLevel}. De nouvelles fiches arrivent régulièrement !`;
       }
-      $("#vide-texte").textContent = texte;
+      $("#no-results-text").textContent = text;
     }
-    majFrise();
-    majMatieres();
-    majAdresse();
+    updateTimeline();
+    updateSubjects();
+    updateUrl();
   }
 
-  function reinitialiser() {
-    etat.niveau = ""; etat.matiere = ""; etat.q = "";
-    $("#recherche").value = "";
-    appliquerFiltres();
-    $("#fiches").focus();   // le bouton cliqué vient d'être masqué : on garde le focus dans la liste
+  function resetFilters() {
+    state.level = ""; state.subject = ""; state.q = "";
+    $("#search").value = "";
+    applyFilters();
+    $("#fiches").focus();   // the clicked button was just hidden: keep focus in the list
   }
 
-  /* ---------- Chiffres clés ---------- */
-  function majChiffres() {
-    const matieres = new Set(FICHES.map(f => f.matiere)).size;
-    const derniere = FICHES.reduce((max, f) => (f.date && (!max || f.date > max) ? f.date : max), null);
-    $("#chiffres").innerHTML = [
-      `<li><b>${FICHES.length}</b> ${FICHES.length > 1 ? "fiches" : "fiche"}</li>`,
-      `<li><b>${matieres}</b> ${matieres > 1 ? "matières" : "matière"}</li>`,
-      `<li><b>${FICHES.filter(f => f.corrige).length}</b> avec corrigé</li>`,
-      derniere ? `<li>Mise à jour le ${esc(formatDate.format(derniere))}</li>` : "",
+  /* ---------- Key figures ---------- */
+  function updateStats() {
+    const subjectCount = new Set(WORKSHEETS.map(f => f.subject)).size;
+    const latest = WORKSHEETS.reduce((max, f) => (f.date && (!max || f.date > max) ? f.date : max), null);
+    $("#stats").innerHTML = [
+      `<li><b>${WORKSHEETS.length}</b> ${WORKSHEETS.length > 1 ? "fiches" : "fiche"}</li>`,
+      `<li><b>${subjectCount}</b> ${subjectCount > 1 ? "matières" : "matière"}</li>`,
+      `<li><b>${WORKSHEETS.filter(f => f.answer_key).length}</b> avec corrigé</li>`,
+      latest ? `<li>Mise à jour le ${esc(longDate.format(latest))}</li>` : "",
     ].join("");
   }
 
-  /* ---------- Licence et téléchargement ---------- */
-  const dialogue = $("#licence");
-  const btnAccepter = $("#licence-accepter");
-  const btnAnnuler = $("#licence-annuler");
-  let ouvreur = null;
-  let message = null;
+  /* ---------- License and download ---------- */
+  const dialog = $("#license");
+  const acceptBtn = $("#license-accept");
+  const cancelBtn = $("#license-cancel");
+  let dialogOpener = null;
+  let messageTimer = null;
 
-  function afficherMessage(texte) {
+  function showMessage(text) {
     const el = $("#message");
-    el.textContent = texte;
+    el.textContent = text;
     el.classList.add("visible");
-    clearTimeout(message);
-    message = setTimeout(() => el.classList.remove("visible"), 6000);
+    clearTimeout(messageTimer);
+    messageTimer = setTimeout(() => el.classList.remove("visible"), 6000);
   }
 
-  function telecharger() {
-    window.location.assign(URL_ZIP);
-    afficherMessage("Merci ! Le téléchargement de l’archive va commencer.");
+  function download() {
+    window.location.assign(ZIP_URL);
+    showMessage("Merci ! Le téléchargement de l’archive va commencer.");
   }
 
-  function ouvrirLicence(pourTelecharger) {
-    if (typeof dialogue.showModal !== "function") {   // très vieux navigateurs
-      if (!pourTelecharger) { window.open("https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr", "_blank", "noopener"); return; }
-      if (window.confirm("Ces exercices sont sous licence CC BY-NC-SA 4.0 : utilisation commerciale et revente interdites. Acceptez-vous ces conditions ?")) telecharger();
+  function openLicense(forDownload) {
+    if (typeof dialog.showModal !== "function") {   // very old browsers
+      if (!forDownload) { window.open("https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.fr", "_blank", "noopener"); return; }
+      if (window.confirm("Ces exercices sont sous licence CC BY-NC-SA 4.0 : utilisation commerciale et revente interdites. Acceptez-vous ces conditions ?")) download();
       return;
     }
-    btnAccepter.hidden = !pourTelecharger;
-    $("#licence-note").hidden = !pourTelecharger;
-    btnAnnuler.textContent = pourTelecharger ? "Annuler" : "Fermer";
-    $("#licence-titre").textContent = pourTelecharger ? "Avant de télécharger" : "Licence des exercices";
-    dialogue.returnValue = "";
-    $("#texte-licence").scrollTop = 0;
-    dialogue.showModal();
-    $("#licence-titre").focus();
+    acceptBtn.hidden = !forDownload;
+    $("#license-note").hidden = !forDownload;
+    cancelBtn.textContent = forDownload ? "Annuler" : "Fermer";
+    $("#license-title").textContent = forDownload ? "Avant de télécharger" : "Licence des exercices";
+    dialog.returnValue = "";
+    $("#license-text").scrollTop = 0;
+    dialog.showModal();
+    $("#license-title").focus();
   }
 
-  // Les deux boutons ferment la boîte (formulaire method="dialog") ; seul « J'accepte » lance le téléchargement
-  btnAccepter.addEventListener("click", telecharger);
-  // Un clic à côté de la boîte (sur le fond assombri) l'annule, mais pas une sélection de texte relâchée sur le fond
-  let appuiSurFond = false;
-  dialogue.addEventListener("pointerdown", e => { appuiSurFond = e.target === dialogue; });
-  dialogue.addEventListener("click", e => {
-    if (appuiSurFond && e.target === dialogue) dialogue.close("annuler");
-    appuiSurFond = false;
+  // Both buttons close the dialog (method="dialog" form); only the accept button starts the download
+  acceptBtn.addEventListener("click", download);
+  // A click outside the dialog (on the dimmed backdrop) cancels it, but not a text selection released over the backdrop
+  let pressedOnBackdrop = false;
+  dialog.addEventListener("pointerdown", e => { pressedOnBackdrop = e.target === dialog; });
+  dialog.addEventListener("click", e => {
+    if (pressedOnBackdrop && e.target === dialog) dialog.close("cancel");
+    pressedOnBackdrop = false;
   });
-  // Rendre le focus au bouton qui a ouvert la boîte (Safari ne donne pas le focus aux boutons cliqués)
-  dialogue.addEventListener("close", () => { if (ouvreur && ouvreur.isConnected) ouvreur.focus(); ouvreur = null; });
+  // Give focus back to the button that opened the dialog (Safari does not focus clicked buttons)
+  dialog.addEventListener("close", () => { if (dialogOpener && dialogOpener.isConnected) dialogOpener.focus(); dialogOpener = null; });
 
-  document.querySelectorAll("[data-telecharger]").forEach(b => b.addEventListener("click", () => { ouvreur = b; ouvrirLicence(true); }));
-  const btnLire = $("#lire-licence");
-  btnLire.addEventListener("click", () => { ouvreur = btnLire; ouvrirLicence(false); });
+  document.querySelectorAll("[data-download]").forEach(b => b.addEventListener("click", () => { dialogOpener = b; openLicense(true); }));
+  const readBtn = $("#read-license");
+  readBtn.addEventListener("click", () => { dialogOpener = readBtn; openLicense(false); });
 
-  /* ---------- Événements ---------- */
-  frise.addEventListener("click", e => {
-    const b = e.target.closest(".degre");
+  /* ---------- Events ---------- */
+  timeline.addEventListener("click", e => {
+    const b = e.target.closest(".level");
     if (!b) return;
-    const n = b.dataset.niveau;
-    etat.niveau = etat.niveau === n ? "" : n;
-    appliquerFiltres();
+    const n = b.dataset.level;
+    state.level = state.level === n ? "" : n;
+    applyFilters();
   });
-  zoneMatieres.addEventListener("click", e => {
-    const b = e.target.closest(".matiere-btn");
+  subjectsBox.addEventListener("click", e => {
+    const b = e.target.closest(".subject-btn");
     if (!b) return;
-    const m = b.dataset.matiere;
-    etat.matiere = etat.matiere === m ? "" : m;
-    appliquerFiltres();
-    zoneMatieres.querySelector(`[data-matiere="${CSS.escape(m)}"]`)?.focus();
+    const m = b.dataset.subject;
+    state.subject = state.subject === m ? "" : m;
+    applyFilters();
+    subjectsBox.querySelector(`[data-subject="${CSS.escape(m)}"]`)?.focus();
   });
-  const champ = $("#recherche");
-  champ.value = etat.q;
-  champ.addEventListener("input", () => { etat.q = champ.value; appliquerFiltres(); });
-  champ.addEventListener("keydown", e => { if (e.key === "Escape" && champ.value) { e.preventDefault(); champ.value = ""; etat.q = ""; appliquerFiltres(); } });
-  const tri = $("#tri");
-  tri.value = etat.tri;
-  tri.addEventListener("change", () => { etat.tri = tri.value; construireListe(); appliquerFiltres(); });
-  $("#reinitialiser").addEventListener("click", reinitialiser);
-  $("#vide-reinitialiser").addEventListener("click", reinitialiser);
+  const searchInput = $("#search");
+  searchInput.value = state.q;
+  searchInput.addEventListener("input", () => { state.q = searchInput.value; applyFilters(); });
+  searchInput.addEventListener("keydown", e => { if (e.key === "Escape" && searchInput.value) { e.preventDefault(); searchInput.value = ""; state.q = ""; applyFilters(); } });
+  const sortSelect = $("#sort");
+  sortSelect.value = state.sort;
+  sortSelect.addEventListener("change", () => { state.sort = sortSelect.value; buildList(); applyFilters(); });
+  $("#reset-filters").addEventListener("click", resetFilters);
+  $("#no-results-reset").addEventListener("click", resetFilters);
 
-  /* ---------- Démarrage ---------- */
-  construireFrise();
-  if (!brutes) {
-    $("#resultat").textContent = "";
-    $("#vide").hidden = false;
-    $("#vide").querySelector("h3").textContent = "Le catalogue n’a pas pu être chargé";
-    $("#vide-texte").textContent = "Le fichier catalogue.js est introuvable. Régénérez-le avec outils/generer_catalogue.py.";
-    $("#vide-reinitialiser").hidden = true;
-    majFrise(); majMatieres();
+  /* ---------- Startup ---------- */
+  buildTimeline();
+  if (!rawCatalog) {
+    $("#results-count").textContent = "";
+    $("#no-results").hidden = false;
+    $("#no-results").querySelector("h3").textContent = "Le catalogue n’a pas pu être chargé";
+    $("#no-results-text").textContent = "Le fichier catalog.js est introuvable. Régénérez-le avec tools/build_catalog.py.";
+    $("#no-results-reset").hidden = true;
+    updateTimeline(); updateSubjects();
     return;
   }
-  majChiffres();
-  construireListe();
-  appliquerFiltres();
+  updateStats();
+  buildList();
+  applyFilters();
 
-  // Sur téléphone, la frise défile : montrer le degré choisi, sinon le premier degré qui a des fiches
-  function montrerDansFrise() {
-    const bouton = frise.querySelector(".degre[aria-pressed='true']:not([data-niveau=''])")
-      || frise.querySelector(".degre:not(.vide):not([data-niveau=''])");
-    if (!bouton) return;
-    const f = frise.getBoundingClientRect();
-    const b = bouton.getBoundingClientRect();
-    if (b.left >= f.left && b.right <= f.right) return;   // déjà visible
-    frise.scrollLeft += (b.left - f.left) - (frise.clientWidth - b.width) / 2;
+  // On phones the timeline scrolls: show the selected level, otherwise the first level that has worksheets
+  function revealLevelInTimeline() {
+    const levelBtn = timeline.querySelector(".level[aria-pressed='true']:not([data-level=''])")
+      || timeline.querySelector(".level:not(.empty):not([data-level=''])");
+    if (!levelBtn) return;
+    const box = timeline.getBoundingClientRect();
+    const b = levelBtn.getBoundingClientRect();
+    if (b.left >= box.left && b.right <= box.right) return;   // already visible
+    timeline.scrollLeft += (b.left - box.left) - (timeline.clientWidth - b.width) / 2;
   }
-  montrerDansFrise();
-  if (document.fonts) document.fonts.ready.then(montrerDansFrise);   // les largeurs changent quand Lexend arrive
+  revealLevelInTimeline();
+  if (document.fonts) document.fonts.ready.then(revealLevelInTimeline);   // widths change once Lexend has loaded
 })();
 </script>
 </body>

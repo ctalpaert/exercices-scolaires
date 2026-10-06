@@ -6,9 +6,9 @@
 <title>L’alphabet et les voyelles</title>
 <meta name="description" content="Trouver la lettre d’avant et d’après, entourer les voyelles, ranger des mots dans l’ordre alphabétique, avec un défi pour finir.">
 <meta name="keywords" content="alphabet, lettres, voyelles, consonnes, ordre alphabétique">
-<meta name="exercice:matiere" content="Français">
-<meta name="exercice:niveau" content="4P">
-<meta name="exercice:ajout" content="2026-09-30">
+<meta name="worksheet:subject" content="Français">
+<meta name="worksheet:level" content="4P">
+<meta name="worksheet:added" content="2026-09-30">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@
     print-color-adjust: exact;
   }
 
-  /* Feuille A4 */
+  /* A4 sheet */
   .page {
     width: 210mm;
     height: 297mm;
@@ -52,7 +52,7 @@
     box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
   }
 
-  /* En-tête */
+  /* Header */
   .head {
     position: relative;
     display: grid;
@@ -83,7 +83,7 @@
     border-radius: 3mm;
   }
 
-  /* Bande alphabet */
+  /* Alphabet strip */
   .alphabet {
     margin: 3.5mm 0 0;
     padding: 0;
@@ -105,7 +105,7 @@
     border-radius: 1.5mm;
   }
 
-  /* Blocs d'exercice */
+  /* Exercise blocks */
   .ex {
     position: relative;
     margin-top: 5.5mm;
@@ -124,22 +124,22 @@
     background: var(--accent);
     border-radius: 3mm;
   }
-  .consigne { margin: 0; font-size: 10pt; font-weight: 500; }
-  .consigne small { font-size: 8pt; font-weight: 400; }
+  .instruction { margin: 0; font-size: 10pt; font-weight: 500; }
+  .instruction small { font-size: 8pt; font-weight: 400; }
 
   .ex1 { --accent: var(--pink); --border: #efb2cb; }
   .ex2 { --accent: var(--green); --border: #a9dab6; }
   .ex3 { --accent: var(--orange); --border: #f3c888; }
-  .defi { --accent: var(--purple); --border: #c7c2f4; }
+  .challenge { --accent: var(--purple); --border: #c7c2f4; }
 
-  /* Réponses du corrigé : masquées tant que le corrigé n'est pas affiché */
+  /* Answer key: hidden until the answers are shown */
   .ans { visibility: hidden; color: var(--answer); }
-  body.corrige .ans { visibility: visible; }
-  body.corrige .badge { display: inline-block; }
+  body.show-answers .ans { visibility: visible; }
+  body.show-answers .badge { display: inline-block; }
 
-  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
-     Le texte tapé s'imprime ; il est masqué quand le corrigé est affiché. */
-  .saisie {
+  /* Keyboard input: a transparent field laid over each area where the pupil writes.
+     Typed text is printed; it is hidden while the answers are shown. */
+  .answer-input {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -155,11 +155,11 @@
     border-radius: 1.5mm;
     outline: none;
   }
-  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
-  body.corrige .saisie { visibility: hidden; }
-  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+  .answer-input:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  body.show-answers .answer-input { visibility: hidden; }
+  @media print { .answer-input { background: none !important; box-shadow: none !important; } }
 
-  /* Exercice 1 : lettre d'avant, lettre d'après */
+  /* Exercise 1: letter before, letter after */
   .example {
     display: inline-block;
     margin: 2.5mm 0 0;
@@ -203,7 +203,7 @@
   .box.given { color: #fff; background: var(--purple); }
   .arrow { font-size: 12pt; font-weight: 700; color: #9a92ee; }
 
-  /* Exercice 2 : entourer les voyelles */
+  /* Exercise 2: circle the vowels */
   .vowels {
     margin: 2.5mm 0 0;
     display: flex;
@@ -252,9 +252,9 @@
     border: .45mm solid transparent;
     border-radius: 50%;
   }
-  body.corrige .word .v { border-color: var(--answer); }
+  body.show-answers .word .v { border-color: var(--answer); }
 
-  /* Exercice 3 et défi : ordre alphabétique */
+  /* Exercise 3 and challenge: alphabetical order */
   .sort-grid {
     margin-top: 2.5mm;
     display: grid;
@@ -276,7 +276,7 @@
     background: #fde5bb;
     border-radius: 1.5mm;
   }
-  .defi .chip { color: var(--ink); background: #fde4ee; }
+  .challenge .chip { color: var(--ink); background: #fde4ee; }
   .lines { margin: 1mm 0 0; padding: 0; list-style: none; }
   .lines li { height: 6.8mm; display: flex; align-items: flex-end; gap: 2mm; }
   .num {
@@ -301,9 +301,9 @@
     line-height: 1;
     border-bottom: .3mm dotted #8c7a5c;
   }
-  .write .saisie { height: 6.8mm; padding: 1.2mm 0 0 1.5mm; text-align: left; }
-  .defi .chips { margin-top: 2mm; }
-  .defi .lines {
+  .write .answer-input { height: 6.8mm; padding: 1.2mm 0 0 1.5mm; text-align: left; }
+  .challenge .chips { margin-top: 2mm; }
+  .challenge .lines {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 6mm;
@@ -319,7 +319,7 @@
     color: #8b82dd;
   }
 
-  /* Boutons (écran uniquement) */
+  /* Buttons (screen only) */
   .toolbar {
     position: fixed;
     top: 12px;
@@ -347,8 +347,8 @@
     .toolbar { display: none; }
   }
 
-  /* Lien vers la liste de tous les exercices (écran uniquement) */
-  .retour {
+  /* Link to the list of all worksheets (screen only) */
+  .back-link {
     position: fixed;
     top: 12px;
     left: 16px;
@@ -361,10 +361,10 @@
     border-radius: 6px;
     box-shadow: inset 0 0 0 1.5px #1864ab;
   }
-  .retour:hover { background: #e7f5ff; }
-  @media print { .retour { display: none; } }
+  .back-link:hover { background: #e7f5ff; }
+  @media print { .back-link { display: none; } }
 
-  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  /* Author and license, printed in the bottom margin of each sheet */
   .page { position: relative; }
   .page::after {
     content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
@@ -381,12 +381,12 @@
 </head>
 <body>
 
-<a class="retour" href="index.html">← Tous les exercices</a>
+<a class="back-link" href="index.html">← Tous les exercices</a>
 
 <div class="toolbar">
   <button type="button" onclick="window.print()">Imprimer</button>
   <button type="button" class="secondary" id="btn-new">🎲 Nouveaux exercices</button>
-  <button type="button" class="secondary" id="btn-corrige" aria-pressed="false">Afficher le corrigé</button>
+  <button type="button" class="secondary" id="btn-answers" aria-pressed="false">Afficher le corrigé</button>
 </div>
 
 <main class="page">
@@ -404,29 +404,29 @@
 
   <section class="ex ex1">
     <span class="tab">Exercice 1</span>
-    <p class="consigne">✏️ Complète chaque suite avec la lettre <b>d'avant</b> et la lettre <b>d'après</b>. Aide-toi de l'alphabet ci-dessus !</p>
+    <p class="instruction">✏️ Complète chaque suite avec la lettre <b>d'avant</b> et la lettre <b>d'après</b>. Aide-toi de l'alphabet ci-dessus !</p>
     <p class="example" id="ex1-example"></p>
     <div class="seq-grid" id="ex1-grid"></div>
   </section>
 
   <section class="ex ex2">
     <span class="tab">Exercice 2</span>
-    <p class="consigne">⭕ Entoure toutes les <b>voyelles</b> dans chaque mot.</p>
+    <p class="instruction">⭕ Entoure toutes les <b>voyelles</b> dans chaque mot.</p>
     <p class="vowels">Les voyelles :<span>A</span><span>E</span><span>I</span><span>O</span><span>U</span><span>Y</span></p>
     <div class="word-grid" id="ex2-grid"></div>
   </section>
 
   <section class="ex ex3">
     <span class="tab">Exercice 3</span>
-    <p class="consigne">📋 Recopie chaque liste de mots dans l'<b>ordre alphabétique</b>.</p>
+    <p class="instruction">📋 Recopie chaque liste de mots dans l'<b>ordre alphabétique</b>.</p>
     <div class="sort-grid" id="ex3-grid"></div>
   </section>
 
-  <section class="ex defi">
+  <section class="ex challenge">
     <span class="tab">Défi 🏆</span>
-    <p class="consigne">Range ces mots dans l'ordre alphabétique. <small>Ils commencent tous pareil : regarde bien la 3<sup>e</sup> lettre !</small></p>
-    <div class="chips" id="defi-chips"></div>
-    <ol class="lines" id="defi-lines"></ol>
+    <p class="instruction">Range ces mots dans l'ordre alphabétique. <small>Ils commencent tous pareil : regarde bien la 3<sup>e</sup> lettre !</small></p>
+    <div class="chips" id="challenge-chips"></div>
+    <ol class="lines" id="challenge-lines"></ol>
   </section>
 
   <footer>Bravo pour ton travail ! 🌟</footer>
@@ -436,7 +436,7 @@
   const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
   const VOWELS = new Set("AEIOUY");
 
-  // Mots de l'exercice 2 (majuscules, sans accent, 8 lettres au plus)
+  // Exercise 2 words (capitals, no accents, 8 letters at most)
   const WORDS_VOWELS = [
     "CHAT", "LUNE", "TORTUE", "FRAISE", "SOLEIL", "POMME", "TOMATE", "LAPIN", "CANARD", "MOUTON",
     "CHEVAL", "ROBOT", "CITRON", "JARDIN", "BATEAU", "NUAGE", "ORANGE", "BANANE", "MAISON", "POULE",
@@ -445,10 +445,10 @@
     "FLEUR", "TAPIS", "CHIEN", "SOURIS", "RENARD", "HIBOU", "PANDA", "KOALA", "LION", "VACHE",
     "FOURMI", "CERISE", "MOUCHE", "CADEAU", "PAPILLON", "CHOCOLAT", "BISCUIT", "CASTOR", "TRAIN", "PORTE"
   ];
-  // Mots avec un Y : un par série, pour ne pas oublier cette voyelle
+  // Words with a Y: one per set, so this vowel is not forgotten
   const WORDS_Y = ["STYLO", "PYJAMA", "CRAYON", "YAOURT", "YOYO", "CYGNE"];
 
-  // Mots de l'exercice 3 : on ne compare que la première lettre
+  // Exercise 3 words: only the first letter is compared
   const WORDS_ABC = [
     "arbre", "avion", "abeille", "ballon", "bateau", "banane", "chat", "citron", "cerise", "dragon",
     "domino", "dauphin", "fleur", "fusée", "fraise", "gâteau", "girafe", "guitare", "hibou", "hérisson",
@@ -458,8 +458,8 @@
     "vélo", "valise", "vache", "wagon", "yaourt", "zèbre", "zoo"
   ];
 
-  // Défi : mêmes deux premières lettres, troisième lettre toujours différente
-  const DEFI_FAMILIES = [
+  // Challenge: same first two letters, the third letter always differs
+  const CHALLENGE_FAMILIES = [
     ["bateau", "ballon", "banane", "bague", "baignoire", "barbe"],
     ["canard", "camion", "carotte", "cadeau", "cabane", "castor"],
     ["chat", "cheval", "chien", "chocolat"],
@@ -489,14 +489,14 @@
   const byAlpha = (a, b) => a.localeCompare(b, "fr");
   const isSorted = list => list.every((w, i) => i === 0 || byAlpha(list[i - 1], w) <= 0);
 
-  // Mélange jusqu'à obtenir une liste qui n'est pas déjà dans l'ordre alphabétique
+  // Shuffle until the list is not already in alphabetical order
   function unsorted(list) {
     let a = shuffle(list);
     while (isSorted(a)) a = shuffle(list);
     return a;
   }
 
-  // `count` lettres entre B et Y, jamais voisines, pour que l'une ne donne pas la réponse d'une autre
+  // `count` letters between B and Y, never adjacent, so that one does not give away another's answer
   function spacedLetters(count) {
     const slots = [...Array(24 - (count - 1)).keys()];
     return sample(slots, count)
@@ -504,7 +504,7 @@
       .map((slot, i) => ALPHABET[slot + i + 1]);
   }
 
-  // Groupes de mots dont les premières lettres sont toutes différentes
+  // Groups of words whose first letters are all different
   function buildGroups(pool, groupCount, size) {
     const groups = [];
     for (const word of shuffle(pool)) {
@@ -516,12 +516,12 @@
     return groups.map(unsorted);
   }
 
-  // Champ de saisie au clavier, transparent, posé sur la zone où l'élève écrit
-  const saisie = (label, extra = "") => `<input class="saisie" type="text" aria-label="${label}"${extra}`
+  // Transparent keyboard input field, laid over the area where the pupil writes
+  const answerInput = (label, extra = "") => `<input class="answer-input" type="text" aria-label="${label}"${extra}`
     + ` autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">`;
 
   const lines = (words, list) => words
-    .map((w, i) => `<li><span class="num">${i + 1}</span><span class="write"><span class="ans">${w}</span>${saisie(`${list}, mot ${i + 1}`)}</span></li>`)
+    .map((w, i) => `<li><span class="num">${i + 1}</span><span class="write"><span class="ans">${w}</span>${answerInput(`${list}, mot ${i + 1}`)}</span></li>`)
     .join("");
 
   const chips = words => words.map(w => `<span class="chip">${w}</span>`).join("");
@@ -531,26 +531,26 @@
     const markUsed = words => words.forEach(w => used.add(plain(w)));
     const unused = list => list.filter(w => !used.has(plain(w)));
 
-    // Défi
-    const defi = unsorted(sample(DEFI_FAMILIES[rand(DEFI_FAMILIES.length)], 3));
-    markUsed(defi);
-    document.getElementById("defi-chips").innerHTML = chips(defi);
-    document.getElementById("defi-lines").innerHTML = lines([...defi].sort(byAlpha), "Défi");
+    // Challenge
+    const challenge = unsorted(sample(CHALLENGE_FAMILIES[rand(CHALLENGE_FAMILIES.length)], 3));
+    markUsed(challenge);
+    document.getElementById("challenge-chips").innerHTML = chips(challenge);
+    document.getElementById("challenge-lines").innerHTML = lines([...challenge].sort(byAlpha), "Défi");
 
-    // Exercice 3
+    // Exercise 3
     const groups = buildGroups(unused(WORDS_ABC), 4, 3);
     markUsed(groups.flat());
     document.getElementById("ex3-grid").innerHTML = groups
       .map((g, n) => `<div class="sort-card"><div class="chips">${chips(g)}</div><ol class="lines">${lines([...g].sort(byAlpha), `Liste ${n + 1}`)}</ol></div>`)
       .join("");
 
-    // Exercice 2
+    // Exercise 2
     const words = shuffle([...sample(unused(WORDS_Y), 1), ...sample(unused(WORDS_VOWELS), 5)]);
     document.getElementById("ex2-grid").innerHTML = words
       .map(w => `<div class="word" aria-label="${w}">${[...w].map(c => `<span${VOWELS.has(c) ? ' class="v"' : ""}>${c}</span>`).join("")}</div>`)
       .join("");
 
-    // Exercice 1 : la première lettre sert d'exemple
+    // Exercise 1: the first letter is the example
     const [example, ...letters] = shuffle(spacedLetters(7));
     const around = l => [ALPHABET[ALPHABET.indexOf(l) - 1], ALPHABET[ALPHABET.indexOf(l) + 1]];
     const [exBefore, exAfter] = around(example);
@@ -558,8 +558,8 @@
     document.getElementById("ex1-grid").innerHTML = letters
       .map(l => {
         const [before, after] = around(l);
-        return `<div class="seq"><span class="box"><span class="ans">${before}</span>${saisie(`Lettre avant ${l}`, ' maxlength="1"')}</span><span class="arrow">›</span>`
-          + `<span class="box given">${l}</span><span class="arrow">›</span><span class="box"><span class="ans">${after}</span>${saisie(`Lettre après ${l}`, ' maxlength="1"')}</span></div>`;
+        return `<div class="seq"><span class="box"><span class="ans">${before}</span>${answerInput(`Lettre avant ${l}`, ' maxlength="1"')}</span><span class="arrow">›</span>`
+          + `<span class="box given">${l}</span><span class="arrow">›</span><span class="box"><span class="ans">${after}</span>${answerInput(`Lettre après ${l}`, ' maxlength="1"')}</span></div>`;
       })
       .join("");
   }
@@ -567,17 +567,17 @@
   document.getElementById("alphabet").innerHTML = ALPHABET.map(l => `<li>${l}</li>`).join("");
 
   document.getElementById("btn-new").addEventListener("click", generate);
-  document.getElementById("btn-corrige").addEventListener("click", e => {
-    const on = document.body.classList.toggle("corrige");
+  document.getElementById("btn-answers").addEventListener("click", e => {
+    const on = document.body.classList.toggle("show-answers");
     e.currentTarget.setAttribute("aria-pressed", on);
     e.currentTarget.textContent = on ? "Masquer le corrigé" : "Afficher le corrigé";
   });
-  // Entrée passe au champ de saisie suivant, comme Tab
+  // Enter moves to the next input field, like Tab
   document.addEventListener("keydown", e => {
-    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    if (e.key !== "Enter" || !e.target.classList.contains("answer-input")) return;
     e.preventDefault();
-    const champs = [...document.querySelectorAll(".saisie")];
-    champs[champs.indexOf(e.target) + 1]?.focus();
+    const fields = [...document.querySelectorAll(".answer-input")];
+    fields[fields.indexOf(e.target) + 1]?.focus();
   });
 
   generate();

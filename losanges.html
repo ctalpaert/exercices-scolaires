@@ -6,9 +6,9 @@
 <title>Les losanges</title>
 <meta name="description" content="Reconnaître six losanges (carré, aplati, debout, penché, couché, fin) grâce au codage des côtés de même longueur.">
 <meta name="keywords" content="géométrie, losange, côtés égaux, angle droit, codage">
-<meta name="exercice:matiere" content="Mathématiques">
-<meta name="exercice:niveau" content="4P">
-<meta name="exercice:ajout" content="2026-09-30">
+<meta name="worksheet:subject" content="Mathématiques">
+<meta name="worksheet:level" content="4P">
+<meta name="worksheet:added" content="2026-09-30">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
 <style>
   @page { size: A4 portrait; margin: 0; }
@@ -32,7 +32,7 @@
     print-color-adjust: exact;
   }
 
-  /* Feuille A4 */
+  /* A4 sheet */
   .page {
     width: 210mm;
     height: 297mm;
@@ -49,7 +49,7 @@
   h1 { margin: 0; font-size: 24pt; letter-spacing: .3pt; }
   header p { margin: 2mm 0 0; font-size: 12pt; }
 
-  /* Légende du codage */
+  /* Marking legend */
   .legend {
     margin: 3mm 0 0;
     padding: 0;
@@ -62,7 +62,7 @@
   .legend li { display: flex; align-items: center; gap: 1.8mm; }
   .legend svg { width: 7mm; height: 5mm; }
 
-  /* Les six figures */
+  /* The six figures */
   .grid {
     flex: 1;
     min-height: 0;
@@ -87,12 +87,12 @@
   .figure { flex: 1; min-height: 0; position: relative; }
   .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-  /* Ligne sur laquelle l'élève écrit le nom */
+  /* Line on which the pupil writes the name */
   .line { position: relative; flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
 
-  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
-     Le texte tapé s'imprime. */
-  .saisie {
+  /* Keyboard input: a transparent field laid over each area where the pupil writes.
+     Typed text is printed. */
+  .answer-input {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -108,9 +108,9 @@
     border-radius: 1.5mm;
     outline: none;
   }
-  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
-  @media print { .saisie { background: none !important; box-shadow: none !important; } }
-  .line .saisie { height: 10mm; font-size: 15pt; }
+  .answer-input:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  @media print { .answer-input { background: none !important; box-shadow: none !important; } }
+  .line .answer-input { height: 10mm; font-size: 15pt; }
 
   .shape { stroke-width: 4; stroke-linejoin: round; }
   .s1 { fill: #ffe08a; stroke: #b8860b; }
@@ -120,7 +120,7 @@
   .s5 { fill: #d0bfff; stroke: #6741d9; }
   .s6 { fill: #ffd8a8; stroke: #e8590c; }
 
-  /* Codage : traits (côtés égaux), carré (angle droit) */
+  /* Markings: ticks (equal sides), square (right angle) */
   .mark {
     fill: none;
     stroke: var(--ink);
@@ -129,7 +129,7 @@
     stroke-linejoin: round;
   }
 
-  /* Liste modèle */
+  /* List of names */
   .model {
     margin-top: 6mm;
     padding: 3.5mm 5mm 4mm;
@@ -168,8 +168,8 @@
     .print-btn { display: none; }
   }
 
-  /* Lien vers la liste de tous les exercices (écran uniquement) */
-  .retour {
+  /* Link to the list of all worksheets (screen only) */
+  .back-link {
     position: fixed;
     top: 12px;
     left: 16px;
@@ -182,10 +182,10 @@
     border-radius: 6px;
     box-shadow: inset 0 0 0 1.5px #1864ab;
   }
-  .retour:hover { background: #e7f5ff; }
-  @media print { .retour { display: none; } }
+  .back-link:hover { background: #e7f5ff; }
+  @media print { .back-link { display: none; } }
 
-  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  /* Author and license, printed in the bottom margin of each sheet */
   .page { position: relative; }
   .page::after {
     content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
@@ -202,7 +202,7 @@
 </head>
 <body>
 
-<a class="retour" href="index.html">← Tous les exercices</a>
+<a class="back-link" href="index.html">← Tous les exercices</a>
 
 <button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
 
@@ -229,7 +229,7 @@
   </header>
 
   <div class="grid">
-    <!-- 1. Losange debout : grande diagonale verticale -->
+    <!-- 1. Standing rhombus: long diagonal vertical -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 1">
@@ -237,10 +237,10 @@
           <path class="mark" d="M113.4,40 L122.6,34 M113.4,90 L122.6,96 M86.6,90 L77.4,96 M86.6,40 L77.4,34"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 2. Losange couché : grande diagonale horizontale -->
+    <!-- 2. Lying rhombus: long diagonal horizontal -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 2">
@@ -248,10 +248,10 @@
           <path class="mark" d="M59.8,44.8 L54.2,35.2 M140.2,44.8 L145.8,35.2 M140.2,85.2 L145.8,94.8 M59.8,85.2 L54.2,94.8"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 3. Losange penché : posé sur un côté -->
+    <!-- 3. Tilted rhombus: resting on one side -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 3">
@@ -259,10 +259,10 @@
           <path class="mark" d="M77,110.3 L77,99.3 M150.8,67.8 L141.2,62.2 M123,19.7 L123,30.7 M49.2,62.2 L58.8,67.8"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 4. Losange carré : 4 angles droits (le carré est un losange particulier) -->
+    <!-- 4. Square rhombus: 4 right angles (a square is a special rhombus) -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 4">
@@ -271,10 +271,10 @@
           <path class="mark" d="M92.9,16.1 L100,23.1 L107.1,16.1 M148.9,57.9 L141.9,65 L148.9,72.1 M107.1,113.9 L100,106.9 L92.9,113.9 M51.1,72.1 L58.1,65 L51.1,57.9"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 5. Losange fin : très étroit, debout -->
+    <!-- 5. Thin rhombus: very narrow, standing -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 5">
@@ -282,10 +282,10 @@
           <path class="mark" d="M104.3,37.7 L114.7,34.3 M104.3,92.3 L114.7,95.7 M95.7,92.3 L85.3,95.7 M95.7,37.7 L85.3,34.3"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 6. Losange aplati : très plat, couché -->
+    <!-- 6. Flattened rhombus: very flat, lying -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 6">
@@ -293,7 +293,7 @@
           <path class="mark" d="M55.3,58.8 L52.7,48.2 M144.7,58.8 L147.3,48.2 M144.7,71.2 L147.3,81.8 M55.3,71.2 L52.7,81.8"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
   </div>
 
@@ -311,12 +311,12 @@
 </main>
 
 <script>
-  // Entrée passe au champ de saisie suivant, comme Tab
+  // Enter moves to the next input field, like Tab
   document.addEventListener("keydown", e => {
-    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    if (e.key !== "Enter" || !e.target.classList.contains("answer-input")) return;
     e.preventDefault();
-    const champs = [...document.querySelectorAll(".saisie")];
-    champs[champs.indexOf(e.target) + 1]?.focus();
+    const fields = [...document.querySelectorAll(".answer-input")];
+    fields[fields.indexOf(e.target) + 1]?.focus();
   });
 </script>
 

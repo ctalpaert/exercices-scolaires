@@ -1,4 +1,4 @@
-# Filet de sécurité : la publication passe par outils/publier.py, qui ne copie
+# Filet de sécurité : la publication passe par tools/publish.py, qui ne copie
 # vers le dépôt que les fichiers de sa liste blanche (voir CLAUDE.md).
 
 # Fichiers système (Windows, macOS, Google Drive, LibreOffice, Office)

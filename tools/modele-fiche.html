@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--
-  MODÈLE DE FICHE : copier ce fichier, le renommer (minuscules, tirets, sans accent),
-  puis remplacer tout ce qui est entre [crochets]. Conventions : voir CLAUDE.md.
+  WORKSHEET TEMPLATE: copy this file, rename it (lowercase, hyphens, no accents),
+  then replace everything in [brackets]. Conventions: see CLAUDE.md.
 -->
 <title>[Titre de la fiche]</title>
 <meta name="description" content="[Une phrase qui dit ce que l’élève fait : verbe à l’infinitif, 160 caractères max.]">
 <meta name="keywords" content="[mot-clé, mot-clé, mot-clé]">
-<meta name="exercice:matiere" content="[Français]">
-<meta name="exercice:niveau" content="[4P]">
-<meta name="exercice:ajout" content="[AAAA-MM-JJ]">
+<meta name="worksheet:subject" content="[Français]">
+<meta name="worksheet:level" content="[4P]">
+<meta name="worksheet:added" content="[AAAA-MM-JJ]">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +43,7 @@
     print-color-adjust: exact;
   }
 
-  /* Feuille A4 (une <main class="page"> par feuille) */
+  /* A4 sheet (one <main class="page"> per sheet) */
   .page {
     width: 210mm;
     height: 297mm;
@@ -56,7 +56,7 @@
     box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
   }
 
-  /* En-tête : titre, étoiles d'auto-évaluation, prénom et date */
+  /* Header: title, self-assessment stars, first name and date */
   .head {
     position: relative;
     display: grid;
@@ -87,7 +87,7 @@
     border-radius: 3mm;
   }
 
-  /* Blocs d'exercice : chaque bloc a sa couleur d'accent */
+  /* Exercise blocks: each block has its accent colour */
   .ex {
     position: relative;
     margin-top: 6mm;
@@ -106,20 +106,20 @@
     background: var(--accent);
     border-radius: 3mm;
   }
-  .consigne { margin: 0; font-size: 11pt; font-weight: 500; line-height: 1.4; }
+  .instruction { margin: 0; font-size: 11pt; font-weight: 500; line-height: 1.4; }
 
   .ex1 { --accent: var(--pink); --border: #efb2cb; }
   .ex2 { --accent: var(--green); --border: #a9dab6; }
   .ex3 { --accent: var(--orange); --border: #f3c888; }
 
-  /* Réponses du corrigé : masquées tant que le corrigé n'est pas affiché */
+  /* Answer key: hidden until the answers are shown */
   .ans { visibility: hidden; color: var(--answer); }
-  body.corrige .ans { visibility: visible; }
-  body.corrige .badge { display: inline-block; }
+  body.show-answers .ans { visibility: visible; }
+  body.show-answers .badge { display: inline-block; }
 
-  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
-     Le texte tapé s'imprime ; il est masqué quand le corrigé est affiché. */
-  .saisie {
+  /* Keyboard input: a transparent field laid over each area where the pupil writes.
+     Typed text is printed; it is hidden while the answers are shown. */
+  .answer-input {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -135,15 +135,15 @@
     border-radius: 1.5mm;
     outline: none;
   }
-  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
-  body.corrige .saisie { visibility: hidden; }
-  @media print { .saisie { background: none !important; box-shadow: none !important; } }
+  .answer-input:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  body.show-answers .answer-input { visibility: hidden; }
+  @media print { .answer-input { background: none !important; box-shadow: none !important; } }
 
-  /* Lignes d'écriture */
+  /* Writing lines */
   .lines { margin: 3mm 0 0; padding: 0; list-style: none; }
   .lines li { height: 10mm; display: flex; align-items: flex-end; gap: 3mm; font-size: 12pt; }
   .write { position: relative; flex: 1; padding-left: 1.5mm; line-height: 1; border-bottom: .3mm dotted #8c7a5c; }
-  .write .saisie { height: 8mm; padding: 1.5mm 0 0 1.5mm; text-align: left; }
+  .write .answer-input { height: 8mm; padding: 1.5mm 0 0 1.5mm; text-align: left; }
 
   footer {
     margin-top: auto;
@@ -154,7 +154,7 @@
     color: #8b82dd;
   }
 
-  /* Boutons (écran uniquement) */
+  /* Buttons (screen only) */
   .toolbar {
     position: fixed;
     top: 12px;
@@ -182,8 +182,8 @@
     .toolbar { display: none; }
   }
 
-  /* Lien vers la liste de tous les exercices (écran uniquement) */
-  .retour {
+  /* Link to the list of all worksheets (screen only) */
+  .back-link {
     position: fixed;
     top: 12px;
     left: 16px;
@@ -196,10 +196,10 @@
     border-radius: 6px;
     box-shadow: inset 0 0 0 1.5px #1864ab;
   }
-  .retour:hover { background: #e7f5ff; }
-  @media print { .retour { display: none; } }
+  .back-link:hover { background: #e7f5ff; }
+  @media print { .back-link { display: none; } }
 
-  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  /* Author and license, printed in the bottom margin of each sheet */
   .page { position: relative; }
   .page::after {
     content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
@@ -216,14 +216,14 @@
 </head>
 <body>
 
-<!-- Chemin vers index.html : "index.html" à la racine, "../index.html" dans un sous-dossier -->
-<a class="retour" href="index.html">← Tous les exercices</a>
+<!-- Path to index.html: "index.html" at the root, "../index.html" in a subfolder -->
+<a class="back-link" href="index.html">← Tous les exercices</a>
 
 <div class="toolbar">
   <button type="button" onclick="window.print()">Imprimer</button>
-  <!-- Si la fiche tire ses questions au hasard, ajouter :
+  <!-- If the worksheet draws its questions at random, add:
   <button type="button" class="secondary" id="btn-new">🎲 Nouveaux exercices</button> -->
-  <button type="button" class="secondary" id="btn-corrige" aria-pressed="false">Afficher le corrigé</button>
+  <button type="button" class="secondary" id="btn-answers" aria-pressed="false">Afficher le corrigé</button>
 </div>
 
 <main class="page">
@@ -239,34 +239,34 @@
 
   <section class="ex ex1">
     <span class="tab">Exercice 1</span>
-    <p class="consigne">✏️ [Consigne courte, à l’impératif, en tutoyant l’élève. Mettre le mot important en <b>gras</b>.]</p>
-    <!-- Chaque zone d'écriture reçoit un champ .saisie (aria-label = ce qu'on y écrit) -->
+    <p class="instruction">✏️ [Consigne courte, à l’impératif, en tutoyant l’élève. Mettre le mot important en <b>gras</b>.]</p>
+    <!-- Each writing area gets an .answer-input field (aria-label = what is written there) -->
     <ol class="lines">
-      <li>[Question 1] <span class="write"><span class="ans">[réponse]</span><input class="saisie" type="text" aria-label="[Réponse 1]" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></span></li>
-      <li>[Question 2] <span class="write"><span class="ans">[réponse]</span><input class="saisie" type="text" aria-label="[Réponse 2]" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></span></li>
+      <li>[Question 1] <span class="write"><span class="ans">[réponse]</span><input class="answer-input" type="text" aria-label="[Réponse 1]" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></span></li>
+      <li>[Question 2] <span class="write"><span class="ans">[réponse]</span><input class="answer-input" type="text" aria-label="[Réponse 2]" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></span></li>
     </ol>
   </section>
 
   <section class="ex ex2">
     <span class="tab">Exercice 2</span>
-    <p class="consigne">⭕ [Consigne]</p>
+    <p class="instruction">⭕ [Consigne]</p>
   </section>
 
   <footer>Bravo pour ton travail ! 🌟</footer>
 </main>
 
 <script>
-  document.getElementById("btn-corrige").addEventListener("click", e => {
-    const on = document.body.classList.toggle("corrige");
+  document.getElementById("btn-answers").addEventListener("click", e => {
+    const on = document.body.classList.toggle("show-answers");
     e.currentTarget.setAttribute("aria-pressed", on);
     e.currentTarget.textContent = on ? "Masquer le corrigé" : "Afficher le corrigé";
   });
-  // Entrée passe au champ de saisie suivant, comme Tab
+  // Enter moves to the next input field, like Tab
   document.addEventListener("keydown", e => {
-    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    if (e.key !== "Enter" || !e.target.classList.contains("answer-input")) return;
     e.preventDefault();
-    const champs = [...document.querySelectorAll(".saisie")];
-    champs[champs.indexOf(e.target) + 1]?.focus();
+    const fields = [...document.querySelectorAll(".answer-input")];
+    fields[fields.indexOf(e.target) + 1]?.focus();
   });
 </script>
 

@@ -6,9 +6,9 @@
 <title>Les formes géométriques</title>
 <meta name="description" content="Observer six figures et écrire leur nom : triangle, losange, rectangle, carré, forme convexe et forme concave.">
 <meta name="keywords" content="géométrie, formes, figures, triangle, carré, rectangle, losange, convexe, concave">
-<meta name="exercice:matiere" content="Mathématiques">
-<meta name="exercice:niveau" content="4P">
-<meta name="exercice:ajout" content="2026-09-29">
+<meta name="worksheet:subject" content="Mathématiques">
+<meta name="worksheet:level" content="4P">
+<meta name="worksheet:added" content="2026-09-29">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
 <style>
   @page { size: A4 portrait; margin: 0; }
@@ -32,7 +32,7 @@
     print-color-adjust: exact;
   }
 
-  /* Feuille A4 */
+  /* A4 sheet */
   .page {
     width: 210mm;
     height: 297mm;
@@ -49,7 +49,7 @@
   h1 { margin: 0; font-size: 24pt; letter-spacing: .3pt; }
   header p { margin: 2mm 0 0; font-size: 12pt; }
 
-  /* Les six figures */
+  /* The six figures */
   .grid {
     flex: 1;
     min-height: 0;
@@ -74,12 +74,12 @@
   .figure { flex: 1; min-height: 0; position: relative; }
   .figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 
-  /* Ligne sur laquelle l'élève écrit le nom */
+  /* Line on which the pupil writes the name */
   .line { position: relative; flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
 
-  /* Saisie au clavier : champ transparent posé sur chaque zone où l'élève écrit.
-     Le texte tapé s'imprime. */
-  .saisie {
+  /* Keyboard input: a transparent field laid over each area where the pupil writes.
+     Typed text is printed. */
+  .answer-input {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -95,9 +95,9 @@
     border-radius: 1.5mm;
     outline: none;
   }
-  .saisie:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
-  @media print { .saisie { background: none !important; box-shadow: none !important; } }
-  .line .saisie { height: 10mm; font-size: 15pt; }
+  .answer-input:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+  @media print { .answer-input { background: none !important; box-shadow: none !important; } }
+  .line .answer-input { height: 10mm; font-size: 15pt; }
 
   .shape { stroke-width: 4; stroke-linejoin: round; }
   .s1 { fill: #ffe08a; stroke: #b8860b; }
@@ -107,7 +107,7 @@
   .s5 { fill: #d0bfff; stroke: #6741d9; }
   .s6 { fill: #ffd8a8; stroke: #e8590c; }
 
-  /* Liste modèle */
+  /* List of names */
   .model {
     margin-top: 6mm;
     padding: 3.5mm 5mm 4mm;
@@ -146,8 +146,8 @@
     .print-btn { display: none; }
   }
 
-  /* Lien vers la liste de tous les exercices (écran uniquement) */
-  .retour {
+  /* Link to the list of all worksheets (screen only) */
+  .back-link {
     position: fixed;
     top: 12px;
     left: 16px;
@@ -160,10 +160,10 @@
     border-radius: 6px;
     box-shadow: inset 0 0 0 1.5px #1864ab;
   }
-  .retour:hover { background: #e7f5ff; }
-  @media print { .retour { display: none; } }
+  .back-link:hover { background: #e7f5ff; }
+  @media print { .back-link { display: none; } }
 
-  /* Auteur et licence, imprimés dans la marge du bas de chaque feuille */
+  /* Author and license, printed in the bottom margin of each sheet */
   .page { position: relative; }
   .page::after {
     content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
@@ -180,7 +180,7 @@
 </head>
 <body>
 
-<a class="retour" href="index.html">← Tous les exercices</a>
+<a class="back-link" href="index.html">← Tous les exercices</a>
 
 <button class="print-btn" type="button" onclick="window.print()">Imprimer</button>
 
@@ -198,17 +198,17 @@
           <polygon class="shape s1" points="100,8 20,122 180,122"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 2. Losange -->
+    <!-- 2. Rhombus -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 2">
           <polygon class="shape s2" points="100,10 185,65 100,120 15,65"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
     <!-- 3. Rectangle -->
@@ -218,37 +218,37 @@
           <rect class="shape s3" x="15" y="20" width="170" height="90"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 4. Carré -->
+    <!-- 4. Square -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 4">
           <rect class="shape s4" x="48" y="13" width="104" height="104"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 4" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 5. Forme convexe : pentagone irrégulier -->
+    <!-- 5. Convex shape: irregular pentagon -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 5">
           <polygon class="shape s5" points="50,14 142,22 180,72 112,118 20,90"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 5" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
 
-    <!-- 6. Forme concave : pointe de flèche -->
+    <!-- 6. Concave shape: arrowhead -->
     <figure class="card">
       <div class="figure">
         <svg viewBox="0 0 200 130" role="img" aria-label="Figure 6">
           <polygon class="shape s6" points="100,10 180,118 100,72 20,118"/>
         </svg>
       </div>
-      <div class="line"><input class="saisie" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+      <div class="line"><input class="answer-input" type="text" aria-label="Nom de la figure 6" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
     </figure>
   </div>
 
@@ -266,12 +266,12 @@
 </main>
 
 <script>
-  // Entrée passe au champ de saisie suivant, comme Tab
+  // Enter moves to the next input field, like Tab
   document.addEventListener("keydown", e => {
-    if (e.key !== "Enter" || !e.target.classList.contains("saisie")) return;
+    if (e.key !== "Enter" || !e.target.classList.contains("answer-input")) return;
     e.preventDefault();
-    const champs = [...document.querySelectorAll(".saisie")];
-    champs[champs.indexOf(e.target) + 1]?.focus();
+    const fields = [...document.querySelectorAll(".answer-input")];
+    fields[fields.indexOf(e.target) + 1]?.focus();
   });
 </script>
 
