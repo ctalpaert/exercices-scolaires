@@ -193,6 +193,63 @@
   .back-link:hover { background: #e7f5ff; }
   @media print { .back-link { display: none; } }
 
+  /* Actions menu (screen only): below 1200px the toolbar would cover the sheet, so it becomes
+     a sidebar on the right, hidden by default and opened by the ☰ button laid over the page */
+  .menu-toggle { display: none; }
+  .toolbar { z-index: 10; }   /* just above 1200px, the buttons may touch the sheet: keep them on top */
+  @media screen and (max-width: 1199.98px) {
+    /* On a phone, the browser widens the area of fixed elements to the 794px sheet: 100% (that area)
+       minus 100vw (the screen) keeps the button and the menu on the screen (elsewhere: 10px and 0) */
+    .menu-toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      right: max(10px, 100% - 100vw + 10px);
+      z-index: 11;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      padding: 0;
+      color: #fff;
+      background: #1c7ed6;
+      border: 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+      cursor: pointer;
+    }
+    .menu-toggle svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+    .menu-toggle .icon-close, .menu-toggle[aria-expanded="true"] .icon-open { display: none; }
+    .menu-toggle[aria-expanded="true"] .icon-close { display: inline; }
+    .toolbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      right: max(0px, 100% - 100vw);
+      bottom: 0;
+      width: min(280px, 85vw);
+      max-width: none;
+      margin: 0;
+      padding: 66px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 10px;
+      overflow-y: auto;
+      background: #fff;
+      box-shadow: -4px 0 18px rgba(0, 0, 0, .2);
+      transform: translateX(100%);
+      visibility: hidden;
+    }
+    /* It slides in, but closes at once: a closing menu must not take the focus */
+    .menu-toggle[aria-expanded="true"] ~ .toolbar { transform: none; visibility: visible; transition: transform .2s ease; }
+    .toolbar .back-link { position: static; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+    .toolbar button, .toolbar .back-link { min-height: 44px; font-size: 15px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .menu-toggle[aria-expanded="true"] ~ .toolbar { transition: none; } }
+  @media print { .menu-toggle { display: none; } }
+
   /* Author and license, printed in the bottom margin of each sheet */
   .page { position: relative; }
   .page::after {
@@ -210,9 +267,12 @@
 </head>
 <body>
 
-<a class="back-link" href="index.html">← Tous les exercices</a>
+<button type="button" class="menu-toggle" aria-expanded="false" aria-controls="toolbar" aria-label="Menu">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path class="icon-open" d="M4 6h16M4 12h16M4 18h16"/><path class="icon-close" d="M6 6l12 12M18 6 6 18"/></svg>
+</button>
 
-<div class="toolbar">
+<div class="toolbar" id="toolbar">
+  <a class="back-link" href="index.html">← Tous les exercices</a>
   <button type="button" onclick="window.print()">Imprimer</button>
   <button type="button" class="secondary" id="btn-clear">Effacer mes réponses</button>
 </div>
@@ -322,6 +382,31 @@
 </main>
 
 <script>
+  // ---- Actions menu: below 1200px, the toolbar is a sidebar opened and closed by the ☰ button ----
+  (() => {
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.getElementById(toggle.getAttribute("aria-controls"));
+    const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
+    const setOpen = open => {
+      if (!open && menu.contains(document.activeElement)) toggle.focus();   // the focus would be lost in the hidden menu
+      toggle.setAttribute("aria-expanded", open);
+    };
+    toggle.addEventListener("click", () => setOpen(!isOpen()));
+    // A chosen action closes the menu, to show its effect; so do Escape, a press (mouse, finger) or the focus
+    // beside the menu. pointerdown, not click: Safari on iPhone and iPad may send no click for a tap on plain text
+    menu.addEventListener("click", e => { if (isOpen() && e.target.closest("a, button")) setOpen(false); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && isOpen()) setOpen(false); });
+    document.addEventListener("pointerdown", e => {
+      if (isOpen() && !menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
+    });
+    menu.addEventListener("focusout", e => {
+      const to = e.relatedTarget;
+      if (isOpen() && to && to !== toggle && !menu.contains(to)) setOpen(false);
+    });
+    // Back to a wide window: the toolbar is shown as usual
+    matchMedia("(max-width: 1199.98px)").addEventListener?.("change", () => setOpen(false));
+  })();
+
   // Enter moves to the next input field, like Tab
   document.addEventListener("keydown", e => {
     if (e.key !== "Enter" || !e.target.classList.contains("answer-input")) return;

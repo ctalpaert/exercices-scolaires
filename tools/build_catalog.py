@@ -46,10 +46,12 @@ TEMPLATE_PLACEHOLDER = re.compile(r"\[[^\]]+\]")   # "[Titre de la fiche]" left 
 # of the localStorage script that every worksheet with answer fields carries
 SAVED_WORK_MARKER = "exercices-scolaires:"
 PREVIEW_MARKER = "#preview"
+# Actions menu (see CLAUDE.md, "Écran seulement"): script that opens the toolbar as a sidebar below 1200px
+MENU_SCRIPT_MARKER = 'querySelector(".menu-toggle")'
 
 
 class WorksheetReader(HTMLParser):
-    """Collects the title, the <meta> tags, the known buttons and the number of A4 sheets."""
+    """Collects the title, the <meta> tags, the known buttons, the actions menu and the number of A4 sheets."""
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -58,6 +60,11 @@ class WorksheetReader(HTMLParser):
         self.ids = set()
         self.sheets = 0
         self.back_link = None   # href of the "← Tous les exercices" link
+        self.back_link_in_toolbar = False
+        self.toolbar_id = None
+        self.menu_controls = None   # aria-controls of the ☰ button (.menu-toggle)
+        self._toolbar_tag = None
+        self._toolbar_depth = 0     # > 0 inside the .toolbar element
         self._in_title = False
         self._in_head = True
 
@@ -74,14 +81,25 @@ class WorksheetReader(HTMLParser):
         classes = a.get("class", "").split()
         if "page" in classes:
             self.sheets += 1
+        # Only the elements with the same tag name as the toolbar are counted to find its end
+        if self._toolbar_depth:
+            if tag == self._toolbar_tag:
+                self._toolbar_depth += 1
+        elif "toolbar" in classes and self._toolbar_tag is None:
+            self._toolbar_tag, self._toolbar_depth, self.toolbar_id = tag, 1, a.get("id")
         if tag == "a" and "back-link" in classes and self.back_link is None:
             self.back_link = a.get("href", "")
+            self.back_link_in_toolbar = self._toolbar_depth > 0
+        if "menu-toggle" in classes and self.menu_controls is None:
+            self.menu_controls = a.get("aria-controls", "")
 
     def handle_endtag(self, tag):
         if tag == "title":
             self._in_title = False
         elif tag == "head":
             self._in_head = False
+        if self._toolbar_depth and tag == self._toolbar_tag:
+            self._toolbar_depth -= 1
 
     def handle_data(self, data):
         if self._in_title:
@@ -163,6 +181,16 @@ def read_worksheet(path, warn):
         warn(f'no <a class="back-link" href="{expected}"> link')
     elif reader.back_link != expected:
         warn(f'the .back-link link points to "{reader.back_link}" instead of "{expected}"')
+
+    # Actions menu: below 1200px the .toolbar, back link included, is a sidebar opened by the ☰ button
+    if reader.toolbar_id is None:
+        warn('no element class="toolbar" with an id (the actions: back link and buttons)')
+    elif reader.menu_controls != reader.toolbar_id:
+        warn(f'no <button class="menu-toggle" aria-controls="{reader.toolbar_id}"> button (actions menu, see CLAUDE.md)')
+    elif MENU_SCRIPT_MARKER not in text:
+        warn(f"the .menu-toggle button has no script ({MENU_SCRIPT_MARKER}, see CLAUDE.md)")
+    if reader.back_link is not None and not reader.back_link_in_toolbar:
+        warn("the .back-link link must be inside the .toolbar (it goes into the actions menu below 1200px)")
 
     for name, value in [("title", title), ("description", description), ("keywords", ", ".join(keywords)),
                         ("subject", subject), ("level", m.get("worksheet:level", ""))]:

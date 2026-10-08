@@ -82,7 +82,7 @@ window.CATALOG = [
       "rectangle",
       "losange",
       "convexe",
-      "non convexe",
+      "non-convexe"
     ],
     "added": "2026-09-29",
     "pages": 1,

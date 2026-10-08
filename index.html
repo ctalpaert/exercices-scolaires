@@ -1236,7 +1236,7 @@
         // Same origin (GitHub Pages): hide the worksheet's buttons, answer fields and grey margin
         const doc = frame.contentDocument;
         const style = doc.createElement("style");
-        style.textContent = ".toolbar,.back-link,.answer-input{display:none!important}html,body{background:#fff!important;overflow:hidden!important}.page{margin:0!important;box-shadow:none!important}";
+        style.textContent = ".menu-toggle,.toolbar,.back-link,.answer-input{display:none!important}html,body{background:#fff!important;overflow:hidden!important}.page{margin:0!important;box-shadow:none!important}";
         doc.head.append(style);
       } catch (e) { /* opened from disk: preview as is */ }
       sheet.classList.add("loaded");
