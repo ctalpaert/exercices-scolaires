@@ -2,7 +2,8 @@
 """Copy the publishable files from the working folder to the git clone of the repository.
 
 Only what is on the allow list goes to GitHub:
-- the .html worksheets (same rules as build_catalog.py) and the local files they use;
+- the .html worksheets (same rules as build_catalog.py) and the local files they use
+  (shared styles and script of assets/, images…);
 - index.html, catalog.js, the scripts and the template of the tools/ folder;
 - LICENSE, README.md, CLAUDE.md, .gitignore, .nojekyll.
 Never: PDF, DOCX, ODT, photos or scans of the original worksheets, desktop.ini, _sources/ and .claude/ folders.
@@ -31,7 +32,7 @@ DEFAULT_REPO = Path.home() / "Documents" / "GitHub" / "exercices-scolaires"
 SITE_FILES = ["index.html", "catalog.js", "LICENSE", "README.md", "CLAUDE.md", ".gitignore", ".nojekyll"]
 TOOLS = ["tools/build_catalog.py", "tools/publish.py", "tools/modele-fiche.html"]
 FORBIDDEN_EXTENSIONS = {".pdf", ".doc", ".docx", ".odt", ".ods", ".odp", ".xls", ".xlsx", ".ppt", ".pptx", ".rtf"}
-EXCLUDED_DIRS = {"tools", "node_modules"}
+EXCLUDED_DIRS = {"tools", "assets", "node_modules"}
 TEXT_EXTENSIONS = {".html", ".htm", ".js", ".css", ".md", ".py", ".txt", ".svg", ".json", ""}
 
 

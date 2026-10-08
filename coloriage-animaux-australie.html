@@ -10,38 +10,26 @@
 <meta name="worksheet:level" content="4P">
 <meta name="worksheet:added" content="2026-09-29">
 <link rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr">
+<link rel="stylesheet" href="assets/worksheet.css">
 <style>
-  @page { size: A4 portrait; margin: 0; }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  body {
-    background: #e6e6e6;
-    font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif;
-    color: #1a1a1a;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
+  html { background: #e6e6e6; }
+  body { font-family: "Trebuchet MS", "Segoe UI", Verdana, sans-serif; color: #1a1a1a; }
 
-  .toolbar {
-    max-width: 210mm; margin: 12px auto 0; padding: 0 4px;
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 12px; font-size: 14px; color: #444;
+  /* On wide screens, a bar above the sheet: back link, printing advice and button.
+     Below 1200px, the actions menu of assets/worksheet.css */
+  .toolbar { font-size: 14px; color: #444; }
+  @media screen and (min-width: 1200px) {
+    .toolbar {
+      position: static; max-width: 210mm; margin: 12px auto 0; padding: 0 4px;
+      flex-direction: row; justify-content: space-between; align-items: center; gap: 12px;
+    }
+    .toolbar .back-link { position: static; }
   }
-  .toolbar .back-link { position: static; }
-  /* In the actions menu (below 1200px), the printing advice goes under the button */
+  /* In the actions menu, the printing advice goes under the button */
   @media screen and (max-width: 1199.98px) { .print-hint { order: 1; text-align: center; } }
-  .toolbar button {
-    font: inherit; padding: 8px 18px; border: 0; border-radius: 8px;
-    background: #1a1a1a; color: #fff; cursor: pointer;
-  }
+  .toolbar button { padding: 8px 18px; border-radius: 8px; background: #1a1a1a; }
 
-  .page {
-    width: 210mm; height: 297mm; margin: 12px auto 24px;
-    padding: 11mm 10mm 10mm;
-    background: #fff;
-    box-shadow: 0 2px 14px rgba(0,0,0,.25);
-    display: flex; flex-direction: column;
-  }
+  .page { margin: 12px auto 24px; padding: 11mm 10mm 10mm; box-shadow: 0 2px 14px rgba(0,0,0,.25); }
 
   header { text-align: center; }
   header h1 { margin: 0; font-size: 26pt; letter-spacing: .5px; }
@@ -73,100 +61,6 @@
   .k  { fill: #1a1a1a; stroke: none; }
   .t1 { fill: none; stroke: #1a1a1a; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
   .t2 { fill: none; stroke: #fff;    stroke-width: 9;  stroke-linecap: round; stroke-linejoin: round; }
-
-  @media print {
-    html, body { background: #fff; }
-    .toolbar { display: none; }
-    .page { margin: 0; box-shadow: none; height: 296mm; overflow: hidden; }
-  }
-
-  /* Link to the list of all worksheets (screen only) */
-  .back-link {
-    position: fixed;
-    top: 12px;
-    left: 16px;
-    padding: 8px 14px;
-    font: inherit;
-    font-size: 14px;
-    color: #1864ab;
-    text-decoration: none;
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: inset 0 0 0 1.5px #1864ab;
-  }
-  .back-link:hover { background: #e7f5ff; }
-  @media print { .back-link { display: none; } }
-
-  /* Actions menu (screen only): below 1200px the toolbar would cover the sheet, so it becomes
-     a sidebar on the right, hidden by default and opened by the ☰ button laid over the page */
-  .menu-toggle { display: none; }
-  .toolbar { z-index: 10; }   /* just above 1200px, the buttons may touch the sheet: keep them on top */
-  @media screen and (max-width: 1199.98px) {
-    /* On a phone, the browser widens the area of fixed elements to the 794px sheet: 100% (that area)
-       minus 100vw (the screen) keeps the button and the menu on the screen (elsewhere: 10px and 0) */
-    .menu-toggle {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      right: max(10px, 100% - 100vw + 10px);
-      z-index: 11;
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      padding: 0;
-      color: #fff;
-      background: #1c7ed6;
-      border: 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
-      cursor: pointer;
-    }
-    .menu-toggle svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
-    .menu-toggle .icon-close, .menu-toggle[aria-expanded="true"] .icon-open { display: none; }
-    .menu-toggle[aria-expanded="true"] .icon-close { display: inline; }
-    .toolbar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      right: max(0px, 100% - 100vw);
-      bottom: 0;
-      width: min(280px, 85vw);
-      max-width: none;
-      margin: 0;
-      padding: 66px 16px 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: stretch;
-      gap: 10px;
-      overflow-y: auto;
-      background: #fff;
-      box-shadow: -4px 0 18px rgba(0, 0, 0, .2);
-      transform: translateX(100%);
-      visibility: hidden;
-    }
-    /* It slides in, but closes at once: a closing menu must not take the focus */
-    .menu-toggle[aria-expanded="true"] ~ .toolbar { transform: none; visibility: visible; transition: transform .2s ease; }
-    .toolbar .back-link { position: static; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
-    .toolbar button, .toolbar .back-link { min-height: 44px; font-size: 15px; }
-  }
-  @media (prefers-reduced-motion: reduce) { .menu-toggle[aria-expanded="true"] ~ .toolbar { transition: none; } }
-  @media print { .menu-toggle { display: none; } }
-
-  /* Author and license, printed in the bottom margin of each sheet */
-  .page { position: relative; }
-  .page::after {
-    content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 1.2mm;
-    font: 6.5pt/1 "Trebuchet MS", "Segoe UI", Arial, sans-serif;
-    color: #7b8591;
-    text-align: center;
-    pointer-events: none;
-  }
 </style>
 </head>
 <body>
@@ -421,32 +315,7 @@
   </footer>
 </main>
 
-<script>
-  // ---- Actions menu: below 1200px, the toolbar is a sidebar opened and closed by the ☰ button ----
-  (() => {
-    const toggle = document.querySelector(".menu-toggle");
-    const menu = document.getElementById(toggle.getAttribute("aria-controls"));
-    const isOpen = () => toggle.getAttribute("aria-expanded") === "true";
-    const setOpen = open => {
-      if (!open && menu.contains(document.activeElement)) toggle.focus();   // the focus would be lost in the hidden menu
-      toggle.setAttribute("aria-expanded", open);
-    };
-    toggle.addEventListener("click", () => setOpen(!isOpen()));
-    // A chosen action closes the menu, to show its effect; so do Escape, a press (mouse, finger) or the focus
-    // beside the menu. pointerdown, not click: Safari on iPhone and iPad may send no click for a tap on plain text
-    menu.addEventListener("click", e => { if (isOpen() && e.target.closest("a, button")) setOpen(false); });
-    document.addEventListener("keydown", e => { if (e.key === "Escape" && isOpen()) setOpen(false); });
-    document.addEventListener("pointerdown", e => {
-      if (isOpen() && !menu.contains(e.target) && !toggle.contains(e.target)) setOpen(false);
-    });
-    menu.addEventListener("focusout", e => {
-      const to = e.relatedTarget;
-      if (isOpen() && to && to !== toggle && !menu.contains(to)) setOpen(false);
-    });
-    // Back to a wide window: the toolbar is shown as usual
-    matchMedia("(max-width: 1199.98px)").addEventListener?.("change", () => setOpen(false));
-  })();
-</script>
+<script src="assets/worksheet.js"></script>
 
 </body>
 </html>

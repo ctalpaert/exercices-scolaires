@@ -1,0 +1,94 @@
+/* Look of the "name the shapes" worksheets (formes-geometriques.html, losanges.html, triangles.html):
+   title, six drawings in cards with a line to write the name, box with the names to choose from.
+   Linked after assets/worksheet.css and before the worksheet's own <style>, which may change any of it. */
+
+:root {
+  --rule: #cfd6dd;
+  --model-bg: #f3f6f9;
+}
+
+body { font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif; }
+
+.page { padding: 12mm; }
+
+header { text-align: center; }
+h1 { margin: 0; font-size: 24pt; letter-spacing: .3pt; }
+header p { margin: 2mm 0 0; font-size: 12pt; }
+
+/* Marking legend */
+.legend {
+  margin: 3mm 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 7mm;
+  font-size: 10pt;
+}
+.legend li { display: flex; align-items: center; gap: 1.8mm; }
+.legend svg { width: 7mm; height: 5mm; }
+
+/* The six figures */
+.grid {
+  flex: 1;
+  min-height: 0;
+  margin-top: 5mm;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 6mm;
+}
+
+.card {
+  margin: 0;
+  padding: 4mm 5mm 5mm;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border: .35mm solid var(--rule);
+  border-radius: 4mm;
+  break-inside: avoid;
+}
+
+.figure { flex: 1; min-height: 0; position: relative; }
+.figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* Line on which the pupil writes the name */
+.line { position: relative; flex: none; height: 14mm; border-bottom: .45mm solid var(--ink); }
+.line .answer-input { height: 10mm; font-size: 15pt; }
+
+.shape { stroke-width: 4; stroke-linejoin: round; }
+.s1 { fill: #ffe08a; stroke: #b8860b; }
+.s2 { fill: #ffb3c1; stroke: #c2185b; }
+.s3 { fill: #a5d8ff; stroke: #1c7ed6; }
+.s4 { fill: #b2f2bb; stroke: #2f9e44; }
+.s5 { fill: #d0bfff; stroke: #6741d9; }
+.s6 { fill: #ffd8a8; stroke: #e8590c; }
+
+/* Markings: ticks (equal sides), square (right angle), arc (obtuse angle) */
+.mark {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* List of names (the worksheet sets their font size) */
+.model {
+  margin-top: 6mm;
+  padding: 3.5mm 5mm 4mm;
+  border: .35mm solid var(--rule);
+  border-radius: 4mm;
+  background: var(--model-bg);
+}
+.model h2 { margin: 0 0 2.5mm; font-size: 11pt; font-weight: normal; text-align: center; }
+.model ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5mm 4mm;
+}
+.model li { text-align: center; font-weight: bold; }

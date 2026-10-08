@@ -4,7 +4,7 @@ Fiches d'exercices à imprimer, créées à partir des notions travaillées en c
 
 **Site : <https://ctalpaert.github.io/exercices-scolaires/>**
 
-Chaque fiche est une page HTML autonome au format A4, prête à imprimer (bouton « Imprimer »), souvent avec un corrigé. La page d'accueil `index.html` les classe par degré scolaire, par matière, et permet de les chercher.
+Chaque fiche est une page HTML au format A4, prête à imprimer (bouton « Imprimer »), souvent avec un corrigé. Les styles et le script communs à toutes les fiches sont dans le dossier `assets/`. La page d'accueil `index.html` les classe par degré scolaire, par matière, et permet de les chercher.
 
 ## Utiliser les fiches hors ligne
 

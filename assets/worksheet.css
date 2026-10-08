@@ -1,0 +1,178 @@
+/* Shared styles of every worksheet (see CLAUDE.md): A4 sheet, keyboard input, answer key,
+   license mention, screen buttons, actions menu and printing.
+   Linked before the worksheet's own <style>, which may change the look on screen. The printing rules
+   are !important: whatever the worksheet's styles, a sheet is printed on exactly one A4 page. */
+
+@page { size: A4 portrait; margin: 0; }
+
+:root {
+  color-scheme: light;
+  --ink: #1f2933;
+  --answer: #e03131;
+}
+
+* { box-sizing: border-box; }
+
+html { background: #e9edf1; }
+
+body {
+  margin: 0;
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* A4 sheet: one element with the class "page" per sheet. The worksheet sets its padding */
+.page {
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  margin: 10mm auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+}
+
+/* Author and license, printed in the bottom margin of each sheet */
+.page::after {
+  content: "Exercices scolaires · ctalpaert.github.io/exercices-scolaires · Licence CC BY-NC-SA 4.0 · pas d’utilisation commerciale";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1.2mm;
+  font: 6.5pt/1 "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  color: #7b8591;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* Answer key: hidden until the answers are shown (#btn-answers), with the "Corrigé" badge */
+.ans { visibility: hidden; }
+body.show-answers .ans { visibility: visible; }
+body.show-answers .badge { display: inline-block; }
+
+/* Keyboard input: a transparent field laid over each area where the pupil writes.
+   Typed text is printed; it is hidden while the answers are shown. */
+.answer-input {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: #1864ab;
+  text-align: center;
+  background: transparent;
+  border: 0;
+  border-radius: 1.5mm;
+  outline: none;
+}
+.answer-input:focus { background: rgba(28, 126, 214, .08); box-shadow: 0 0 0 .4mm #1c7ed6; }
+body.show-answers .answer-input { visibility: hidden; }
+
+/* Buttons (screen only). Just above 1200px, they may touch the sheet: keep them on top */
+.toolbar {
+  position: fixed;
+  top: 12px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+.toolbar button {
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 14px;
+  color: #fff;
+  background: #1c7ed6;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.toolbar button.secondary { color: #1c7ed6; background: #fff; box-shadow: inset 0 0 0 1.5px #1c7ed6; }
+
+/* Link to the list of all worksheets (screen only), first item of the toolbar */
+.back-link {
+  position: fixed;
+  top: 12px;
+  left: 16px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 14px;
+  color: #1864ab;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: inset 0 0 0 1.5px #1864ab;
+}
+.back-link:hover { background: #e7f5ff; }
+
+/* Actions menu (screen only): below 1200px the toolbar would cover the sheet, so it becomes
+   a sidebar on the right, hidden by default and opened by the ☰ button laid over the page */
+.menu-toggle { display: none; }
+@media screen and (max-width: 1199.98px) {
+  /* On a phone, the browser widens the area of fixed elements to the 794px sheet: 100% (that area)
+     minus 100vw (the screen) keeps the button and the menu on the screen (elsewhere: 10px and 0) */
+  .menu-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    right: max(10px, 100% - 100vw + 10px);
+    z-index: 11;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    color: #fff;
+    background: #1c7ed6;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+    cursor: pointer;
+  }
+  .menu-toggle svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+  .menu-toggle .icon-close, .menu-toggle[aria-expanded="true"] .icon-open { display: none; }
+  .menu-toggle[aria-expanded="true"] .icon-close { display: inline; }
+  .toolbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    right: max(0px, 100% - 100vw);
+    bottom: 0;
+    width: min(280px, 85vw);
+    max-width: none;
+    margin: 0;
+    padding: 66px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 10px;
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: -4px 0 18px rgba(0, 0, 0, .2);
+    transform: translateX(100%);
+    visibility: hidden;
+  }
+  /* It slides in, but closes at once: a closing menu must not take the focus */
+  .menu-toggle[aria-expanded="true"] ~ .toolbar { transform: none; visibility: visible; transition: transform .2s ease; }
+  .toolbar .back-link { position: static; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+  .toolbar button, .toolbar .back-link { min-height: 44px; font-size: 15px; }
+}
+@media (prefers-reduced-motion: reduce) { .menu-toggle[aria-expanded="true"] ~ .toolbar { transition: none; } }
+
+/* Printing: the sheets only, one per A4 page, without the screen buttons */
+@media print {
+  html, body { background: #fff !important; }
+  .page { margin: 0 !important; height: 296mm !important; box-shadow: none !important; break-after: page; }
+  .page:last-of-type { break-after: auto; }
+  .toolbar, .back-link, .menu-toggle { display: none !important; }
+  .answer-input { background: none !important; box-shadow: none !important; }
+}
