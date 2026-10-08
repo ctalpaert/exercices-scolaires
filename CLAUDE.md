@@ -22,6 +22,7 @@ Ce fichier sert de référence pour créer de nouvelles fiches et maintenir `ind
 | `assets/worksheet.css`, `assets/worksheet.js` | Fichiers communs à toutes les fiches (section « Fichiers communs ») : feuille A4, champs de saisie, corrigé, mention de licence, boutons et menu, impression, exercices enregistrés. |
 | `assets/worksheet-standard.css` | Présentation du modèle (Lexend, en-tête `.head`, blocs `.ex`, pied), pour les fiches faites à partir de `tools/modele-fiche.html`. |
 | `assets/worksheet-shapes.css` | Présentation des fiches « nomme les formes » : `formes-geometriques.html`, `losanges.html`, `triangles.html`. |
+| `assets/favicon.svg` | Icône d'onglet du site, déclarée dans `index.html` et dans chaque fiche (`<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">`, `../assets/…` dans un sous-dossier). |
 | `*.html` (racine ou sous-dossiers) | Les fiches. Un sous-dossier par thème quand la fiche a plusieurs variantes ou des images (ex. `Arbres/`). |
 | `LICENSE` | Texte officiel CC BY-NC-SA 4.0 (anglais). |
 | `.nojekyll` | Désactive Jekyll sur GitHub Pages (fichiers servis tels quels). |
